@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class playerController : MonoBehaviour
+public class playerController : MonoBehaviour, IDamage
 {
     [SerializeField] int HP;
     [SerializeField] CharacterController controller;
@@ -21,6 +21,7 @@ public class playerController : MonoBehaviour
     Vector3 moveDir;
     Vector3 playerVel;
     Vector3 playerPos;
+
     int jumpCount;
     int HPOrig;
     bool isShooting;
@@ -30,6 +31,7 @@ public class playerController : MonoBehaviour
     void Start()
     {
         HPOrig = HP;
+        UpdatePlayerUI();
 
     }
 
@@ -51,7 +53,12 @@ public class playerController : MonoBehaviour
             (Input.GetAxis("Vertical") * transform.forward);
         controller.Move(moveDir * speed * Time.deltaTime);
 
-        sprint();
+        Sprint();
+        if (Input.GetButton("Fire1") && !isShooting)
+        {
+            StartCoroutine(shoot());
+        }
+        //Crouch();
 
         if (Input.GetButtonDown("Jump") && jumpCount < jumpMax)
         {
@@ -61,7 +68,7 @@ public class playerController : MonoBehaviour
         playerVel.y -= gravity * Time.deltaTime;
         controller.Move(playerVel * Time.deltaTime);
     }
-    void sprint()
+    void Sprint()
     {
         if (Input.GetButtonDown("Sprint"))
         {
@@ -73,4 +80,53 @@ public class playerController : MonoBehaviour
         }
     }
 
+    IEnumerator shoot()
+    {
+        isShooting = true;
+        RaycastHit hit;
+        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, shootDist))
+        {
+            Debug.Log(hit.transform.name);
+            IDamage dmg = hit.collider.GetComponent<IDamage>();
+            if (hit.transform != transform && dmg != null)
+            {
+                dmg.TakeDamage(shootDamage);
+            }
+        }
+        yield return new WaitForSeconds(shootRate);
+        isShooting = false;
+    }
+
+    public void TakeDamage(int amount)
+    {
+        HP -= amount;
+        StartCoroutine(flashScreenDamage());
+        UpdatePlayerUI();
+        if (HP <= 0)
+        {
+            gameManager.Instance.youLose();
+        }
+    }
+    IEnumerator flashScreenDamage()
+    {
+        gameManager.Instance.playerFlashDamage.SetActive(true);
+        yield return new WaitForSeconds(0.1f);
+        gameManager.Instance.playerFlashDamage.SetActive(false);
+
+    }
+    void UpdatePlayerUI()
+    {
+        gameManager.Instance.playerHPBar.fillAmount = (float)HP / HPOrig;
+    }
+
+    void Crouch()
+    {
+        if (Input.GetButton("Crouch") && controller.isGrounded)
+        {
+            controller.height = 0.5f;
+        }
+        else
+            controller.height = 1.0f;
+            
+    }
 }
