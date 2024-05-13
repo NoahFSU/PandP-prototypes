@@ -488,6 +488,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6862649173775173788, guid: 72096fb490bbc7d419da6189e68866f1, type: 3}
+      propertyPath: m_StoppingDistance
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7555669306603474117, guid: 72096fb490bbc7d419da6189e68866f1, type: 3}
+      propertyPath: bullet
+      value: 
+      objectReference: {fileID: 5452501656411146394, guid: 7906fa759c7b01546afe90a26866e793, type: 3}
     - target: {fileID: 7555669306603474117, guid: 72096fb490bbc7d419da6189e68866f1, type: 3}
       propertyPath: enemySpeed
       value: 5
