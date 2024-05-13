@@ -52,7 +52,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5452501656411146394}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -225,9 +225,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: -4892129406073025133}
-  damage: 0
-  speed: 0
-  destroyTime: 0
+  damage: 1
+  speed: 100
+  destroyTime: 3
 --- !u!54 &-4892129406073025133
 Rigidbody:
   m_ObjectHideFlags: 0
