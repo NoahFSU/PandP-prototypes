@@ -1,13 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEditor;
 
+
 public class gameManager : MonoBehaviour
 {
     public static gameManager Instance;
+
     [SerializeField] GameObject menuActive;
     [SerializeField] GameObject menuPause;
     [SerializeField] GameObject menuWin;
@@ -59,7 +62,7 @@ public class gameManager : MonoBehaviour
     public void stateUnPaused()
     {
         isPaused = !isPaused;
-        Time.timeScale = 0;
+        Time.timeScale = 1;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.Locked;
         menuActive.SetActive(isPaused);
