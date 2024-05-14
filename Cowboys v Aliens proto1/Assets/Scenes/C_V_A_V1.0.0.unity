@@ -8580,7 +8580,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 680456627}
     m_Modifications:
-    - target: {fileID: 3910642952985542885, guid: 8faff4095b20f4541abf20f2361f841b, type: 3}
+    - target: {fileID: 1276346221208915062, guid: 8faff4095b20f4541abf20f2361f841b, type: 3}
+      propertyPath: m_StoppingDistance
+      value: 4
+      objectReference: {fileID: 0}
+      1abf20f2361f841b, type: 3}
       propertyPath: m_Name
       value: Slow Enemy Variant (1)
       objectReference: {fileID: 0}
