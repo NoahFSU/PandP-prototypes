@@ -785,6 +785,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -48
       objectReference: {fileID: 0}
+    - target: {fileID: 4183798015359768512, guid: 8a602c74337c88f439e04424acbc61a8, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4473329681056894181, guid: 8a602c74337c88f439e04424acbc61a8, type: 3}
       propertyPath: m_Name
       value: UI
@@ -8824,7 +8828,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1276346221208915062, guid: 8faff4095b20f4541abf20f2361f841b, type: 3}
       propertyPath: m_StoppingDistance
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7632075417247690524, guid: 8faff4095b20f4541abf20f2361f841b, type: 3}
       propertyPath: m_LocalPosition.x
