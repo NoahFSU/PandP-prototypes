@@ -47,7 +47,7 @@ GameObject:
   - component: {fileID: 5629664937567423646}
   - component: {fileID: 7275909826425400055}
   m_Layer: 0
-  m_Name: Fast Enemy
+  m_Name: Dp Fast
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
