@@ -409,6 +409,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wall(Breaks) (17)
       objectReference: {fileID: 0}
+    - target: {fileID: 5741670199458396445, guid: e253890b2b5245e45bf03ade4c87bca6, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5741670199458396445, guid: e253890b2b5245e45bf03ade4c87bca6, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1906,6 +1914,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wall(Breaks) (12)
       objectReference: {fileID: 0}
+    - target: {fileID: 5741670199458396445, guid: e253890b2b5245e45bf03ade4c87bca6, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5741670199458396445, guid: e253890b2b5245e45bf03ade4c87bca6, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2194,6 +2210,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wall(Breaks) (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 5741670199458396445, guid: e253890b2b5245e45bf03ade4c87bca6, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5741670199458396445, guid: e253890b2b5245e45bf03ade4c87bca6, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2258,6 +2282,14 @@ PrefabInstance:
     - target: {fileID: 5741670199458396445, guid: e253890b2b5245e45bf03ade4c87bca6, type: 3}
       propertyPath: m_Name
       value: Wall(Breaks) (10)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5741670199458396445, guid: e253890b2b5245e45bf03ade4c87bca6, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5741670199458396445, guid: e253890b2b5245e45bf03ade4c87bca6, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2324,6 +2356,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wall(Breaks) (14)
       objectReference: {fileID: 0}
+    - target: {fileID: 5741670199458396445, guid: e253890b2b5245e45bf03ade4c87bca6, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5741670199458396445, guid: e253890b2b5245e45bf03ade4c87bca6, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2384,6 +2424,14 @@ PrefabInstance:
     - target: {fileID: 5741670199458396445, guid: e253890b2b5245e45bf03ade4c87bca6, type: 3}
       propertyPath: m_Name
       value: Wall(Breaks) (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5741670199458396445, guid: e253890b2b5245e45bf03ade4c87bca6, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5741670199458396445, guid: e253890b2b5245e45bf03ade4c87bca6, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3897,6 +3945,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wall(Breaks) (16)
       objectReference: {fileID: 0}
+    - target: {fileID: 5741670199458396445, guid: e253890b2b5245e45bf03ade4c87bca6, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5741670199458396445, guid: e253890b2b5245e45bf03ade4c87bca6, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4343,6 +4399,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wall(Breaks) (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 5741670199458396445, guid: e253890b2b5245e45bf03ade4c87bca6, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5741670199458396445, guid: e253890b2b5245e45bf03ade4c87bca6, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4484,6 +4548,14 @@ PrefabInstance:
     - target: {fileID: 5741670199458396445, guid: e253890b2b5245e45bf03ade4c87bca6, type: 3}
       propertyPath: m_Name
       value: Wall(Breaks) (15)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5741670199458396445, guid: e253890b2b5245e45bf03ade4c87bca6, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5741670199458396445, guid: e253890b2b5245e45bf03ade4c87bca6, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5289,6 +5361,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wall(Breaks) (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 5741670199458396445, guid: e253890b2b5245e45bf03ade4c87bca6, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5741670199458396445, guid: e253890b2b5245e45bf03ade4c87bca6, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5644,6 +5724,14 @@ PrefabInstance:
     - target: {fileID: 5741670199458396445, guid: e253890b2b5245e45bf03ade4c87bca6, type: 3}
       propertyPath: m_Name
       value: Wall(Breaks) (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5741670199458396445, guid: e253890b2b5245e45bf03ade4c87bca6, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5741670199458396445, guid: e253890b2b5245e45bf03ade4c87bca6, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6413,6 +6501,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wall(Breaks) (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 5741670199458396445, guid: e253890b2b5245e45bf03ade4c87bca6, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5741670199458396445, guid: e253890b2b5245e45bf03ade4c87bca6, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -7068,6 +7164,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wall(Breaks) (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 5741670199458396445, guid: e253890b2b5245e45bf03ade4c87bca6, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5741670199458396445, guid: e253890b2b5245e45bf03ade4c87bca6, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -7237,6 +7341,14 @@ PrefabInstance:
     - target: {fileID: 5741670199458396445, guid: e253890b2b5245e45bf03ade4c87bca6, type: 3}
       propertyPath: m_Name
       value: Wall(Breaks)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5741670199458396445, guid: e253890b2b5245e45bf03ade4c87bca6, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5741670199458396445, guid: e253890b2b5245e45bf03ade4c87bca6, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -7456,6 +7568,14 @@ PrefabInstance:
     - target: {fileID: 5741670199458396445, guid: e253890b2b5245e45bf03ade4c87bca6, type: 3}
       propertyPath: m_Name
       value: Wall(Breaks) (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5741670199458396445, guid: e253890b2b5245e45bf03ade4c87bca6, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5741670199458396445, guid: e253890b2b5245e45bf03ade4c87bca6, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -8029,6 +8149,14 @@ PrefabInstance:
     - target: {fileID: 5741670199458396445, guid: e253890b2b5245e45bf03ade4c87bca6, type: 3}
       propertyPath: m_Name
       value: Wall(Breaks) (13)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5741670199458396445, guid: e253890b2b5245e45bf03ade4c87bca6, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5741670199458396445, guid: e253890b2b5245e45bf03ade4c87bca6, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -8664,6 +8792,14 @@ PrefabInstance:
     - target: {fileID: 5741670199458396445, guid: e253890b2b5245e45bf03ade4c87bca6, type: 3}
       propertyPath: m_Name
       value: Wall(Breaks) (11)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5741670199458396445, guid: e253890b2b5245e45bf03ade4c87bca6, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5741670199458396445, guid: e253890b2b5245e45bf03ade4c87bca6, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -9311,6 +9447,14 @@ PrefabInstance:
     - target: {fileID: 5741670199458396445, guid: e253890b2b5245e45bf03ade4c87bca6, type: 3}
       propertyPath: m_Name
       value: Wall(Breaks) (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5741670199458396445, guid: e253890b2b5245e45bf03ade4c87bca6, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5741670199458396445, guid: e253890b2b5245e45bf03ade4c87bca6, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
