@@ -47,7 +47,7 @@ GameObject:
   - component: {fileID: 5629664937567423646}
   - component: {fileID: 7275909826425400055}
   m_Layer: 0
-  m_Name: Enemy
+  m_Name: Fast Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -92,10 +92,10 @@ MonoBehaviour:
   model: {fileID: 9051156121037970395}
   agent: {fileID: 6862649173775173788}
   shootingPos: {fileID: 9135536949487006921}
-  enemyHP: 3
-  enemySpeed: 5
+  enemyHP: 2
+  enemySpeed: 10
   enemyShootingDMG: 1
-  enemyShooingRate: 0.5
+  enemyShooingRate: 0.25
   bullet: {fileID: 5452501656411146394, guid: 7906fa759c7b01546afe90a26866e793, type: 3}
 --- !u!195 &6862649173775173788
 NavMeshAgent:
