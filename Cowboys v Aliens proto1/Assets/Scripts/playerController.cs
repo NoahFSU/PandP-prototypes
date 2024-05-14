@@ -2,9 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-using UnityEngine.UIElements;
-
-
 public class playerController : MonoBehaviour, IDamage
 {
     [SerializeField] int HP;
@@ -19,6 +16,7 @@ public class playerController : MonoBehaviour, IDamage
     [SerializeField] int shootDamage;
     [SerializeField] int shootDist;
     [SerializeField] float shootRate;
+    
 
     Vector3 moveDir;
     Vector3 playerVel;
@@ -40,8 +38,8 @@ public class playerController : MonoBehaviour, IDamage
     // Update is called once per frame
     void Update()
     {
-        Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * shootDist, Color.red);
         movement();
+        Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * shootDist, Color.red);
     }
     void movement()
     {
@@ -56,6 +54,7 @@ public class playerController : MonoBehaviour, IDamage
         controller.Move(moveDir * speed * Time.deltaTime);
 
         Sprint();
+
         if (Input.GetButton("Fire1") && !isShooting)
         {
             StartCoroutine(shoot());
@@ -90,11 +89,13 @@ public class playerController : MonoBehaviour, IDamage
         {
             Debug.Log(hit.transform.name);
             IDamage dmg = hit.collider.GetComponent<IDamage>();
+           
             if (hit.transform != transform && dmg != null)
             {
                 dmg.TakeDamage(shootDamage);
             }
         }
+
         yield return new WaitForSeconds(shootRate);
         isShooting = false;
     }
@@ -104,6 +105,7 @@ public class playerController : MonoBehaviour, IDamage
         HP -= amount;
         UpdatePlayerUI();
         StartCoroutine(flashScreenDamage());
+       
         if (HP <= 0)
         {
             gameManager.Instance.youLose();
