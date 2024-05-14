@@ -23,8 +23,8 @@ public class gameManager : MonoBehaviour
     public GameObject Player;
     public playerController playerscript;
 
-    private int enemyCount;
     public bool isPaused;
+    int enemyCount;
 
     // Start is called before the first frame update
     void Awake()
@@ -63,7 +63,7 @@ public class gameManager : MonoBehaviour
     {
         isPaused = !isPaused;
         Time.timeScale = 1;
-        Cursor.visible = true;
+        Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         menuActive.SetActive(isPaused);
         menuActive = null;
@@ -78,7 +78,7 @@ public class gameManager : MonoBehaviour
         {
             statePause();
             menuActive = menuWin;
-            menuActive.SetActive(!isPaused);
+            menuActive.SetActive(isPaused);
         }
     }
 
@@ -86,6 +86,6 @@ public class gameManager : MonoBehaviour
     {
         statePause();
         menuActive = menuLose;
-        menuActive.SetActive(!isPaused);
+        menuActive.SetActive(isPaused);
     }
 }
