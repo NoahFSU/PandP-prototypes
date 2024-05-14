@@ -52,6 +52,10 @@ PrefabInstance:
       propertyPath: m_Speed
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 6862649173775173788, guid: 72096fb490bbc7d419da6189e68866f1, type: 3}
+      propertyPath: m_AutoBraking
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8704926172191392783, guid: 72096fb490bbc7d419da6189e68866f1, type: 3}
       propertyPath: m_Name
       value: Enemy Variant
