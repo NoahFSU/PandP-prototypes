@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+using UnityEngine.UIElements;
+
 
 public class playerController : MonoBehaviour, IDamage
 {
@@ -100,8 +102,8 @@ public class playerController : MonoBehaviour, IDamage
     public void TakeDamage(int amount)
     {
         HP -= amount;
-        StartCoroutine(flashScreenDamage());
         UpdatePlayerUI();
+        StartCoroutine(flashScreenDamage());
         if (HP <= 0)
         {
             gameManager.Instance.youLose();
