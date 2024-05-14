@@ -52,6 +52,10 @@ PrefabInstance:
       propertyPath: m_Speed
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 6862649173775173788, guid: 1f7578b55739b34419f2a55467fa0ab1, type: 3}
+      propertyPath: m_BaseOffset
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8704926172191392783, guid: 1f7578b55739b34419f2a55467fa0ab1, type: 3}
       propertyPath: m_Name
       value: Fast Enemy Variant
