@@ -96,7 +96,7 @@ MonoBehaviour:
   enemySpeed: 1
   enemyShootingDMG: 1
   enemyShooingRate: 0.5
-  bullet: {fileID: 0}
+  bullet: {fileID: 5452501656411146394, guid: 7906fa759c7b01546afe90a26866e793, type: 3}
 --- !u!195 &6862649173775173788
 NavMeshAgent:
   m_ObjectHideFlags: 0
