@@ -1000,6 +1000,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fast Enemy Variant (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 8958817730802842462, guid: 13cd954a58b5e5548a26a5626e84d399, type: 3}
+      propertyPath: m_StoppingDistance
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1264,6 +1268,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 680456627}
     m_Modifications:
+    - target: {fileID: 1276346221208915062, guid: 8faff4095b20f4541abf20f2361f841b, type: 3}
+      propertyPath: m_StoppingDistance
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 3910642952985542885, guid: 8faff4095b20f4541abf20f2361f841b, type: 3}
       propertyPath: m_Name
       value: Slow Enemy Variant (3)
@@ -1621,6 +1629,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fast Enemy Variant (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 8958817730802842462, guid: 13cd954a58b5e5548a26a5626e84d399, type: 3}
+      propertyPath: m_StoppingDistance
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1678,6 +1690,10 @@ PrefabInstance:
     - target: {fileID: 2462345585583943841, guid: 496f460e8b34f7b4699d2710e31d8049, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6516964041496237003, guid: 496f460e8b34f7b4699d2710e31d8049, type: 3}
+      propertyPath: m_StoppingDistance
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 9044340137423003480, guid: 496f460e8b34f7b4699d2710e31d8049, type: 3}
       propertyPath: m_Name
@@ -1935,6 +1951,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 680456627}
     m_Modifications:
+    - target: {fileID: 1276346221208915062, guid: 8faff4095b20f4541abf20f2361f841b, type: 3}
+      propertyPath: m_StoppingDistance
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 3910642952985542885, guid: 8faff4095b20f4541abf20f2361f841b, type: 3}
       propertyPath: m_Name
       value: Slow Enemy Variant
@@ -4092,6 +4112,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6516964041496237003, guid: 496f460e8b34f7b4699d2710e31d8049, type: 3}
+      propertyPath: m_StoppingDistance
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 9044340137423003480, guid: 496f460e8b34f7b4699d2710e31d8049, type: 3}
       propertyPath: m_Name
       value: Enemy Variant (5)
@@ -4153,6 +4177,10 @@ PrefabInstance:
     - target: {fileID: 2462345585583943841, guid: 496f460e8b34f7b4699d2710e31d8049, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6516964041496237003, guid: 496f460e8b34f7b4699d2710e31d8049, type: 3}
+      propertyPath: m_StoppingDistance
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 9044340137423003480, guid: 496f460e8b34f7b4699d2710e31d8049, type: 3}
       propertyPath: m_Name
@@ -5031,6 +5059,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6516964041496237003, guid: 496f460e8b34f7b4699d2710e31d8049, type: 3}
+      propertyPath: m_StoppingDistance
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 9044340137423003480, guid: 496f460e8b34f7b4699d2710e31d8049, type: 3}
       propertyPath: m_Name
       value: Enemy Variant
@@ -5499,6 +5531,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fast Enemy Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 8958817730802842462, guid: 13cd954a58b5e5548a26a5626e84d399, type: 3}
+      propertyPath: m_StoppingDistance
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5951,6 +5987,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6516964041496237003, guid: 496f460e8b34f7b4699d2710e31d8049, type: 3}
+      propertyPath: m_StoppingDistance
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 9044340137423003480, guid: 496f460e8b34f7b4699d2710e31d8049, type: 3}
       propertyPath: m_Name
       value: Enemy Variant (1)
@@ -6021,6 +6061,10 @@ PrefabInstance:
     - target: {fileID: 6604254427920349133, guid: 13cd954a58b5e5548a26a5626e84d399, type: 3}
       propertyPath: m_Name
       value: Fast Enemy Variant (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8958817730802842462, guid: 13cd954a58b5e5548a26a5626e84d399, type: 3}
+      propertyPath: m_StoppingDistance
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -7090,6 +7134,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6516964041496237003, guid: 496f460e8b34f7b4699d2710e31d8049, type: 3}
+      propertyPath: m_StoppingDistance
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 9044340137423003480, guid: 496f460e8b34f7b4699d2710e31d8049, type: 3}
       propertyPath: m_Name
       value: Enemy Variant (2)
@@ -7363,6 +7411,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 680456627}
     m_Modifications:
+    - target: {fileID: 1276346221208915062, guid: 8faff4095b20f4541abf20f2361f841b, type: 3}
+      propertyPath: m_StoppingDistance
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 3910642952985542885, guid: 8faff4095b20f4541abf20f2361f841b, type: 3}
       propertyPath: m_Name
       value: Slow Enemy Variant (2)
@@ -8580,6 +8632,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 680456627}
     m_Modifications:
+    - target: {fileID: 1276346221208915062, guid: 8faff4095b20f4541abf20f2361f841b, type: 3}
+      propertyPath: m_StoppingDistance
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 3910642952985542885, guid: 8faff4095b20f4541abf20f2361f841b, type: 3}
       propertyPath: m_Name
       value: Slow Enemy Variant (1)
