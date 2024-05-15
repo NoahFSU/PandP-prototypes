@@ -69,9 +69,10 @@ public class EnemyAI : MonoBehaviour, IDamage
 
     IEnumerator FlashingRed()
     {
+        Color temp = model.material.color;
         model.material.color = Color.red;
         yield return new WaitForSeconds(0.1f);
-        model.material.color = Color.white;
+        model.material.color = temp;
     }
 
     void OnTriggerEnter(Collider other)
