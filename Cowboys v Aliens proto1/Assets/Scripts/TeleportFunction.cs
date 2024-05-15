@@ -15,11 +15,9 @@ public class TeleportFunction : MonoBehaviour
 
     void OnTriggerEnter(Collider Col)
     {
-        touched = !touched;
-        //   Col.transform.position = new Vector3(toLocation.transform.position.x, toLocation.transform.position.y, toLocation.transform.position.z);
-
-        //gameManager.Instance.Player.transform.position = toLocation.transform.position;
-        thePlayer.transform.position = toLocation.transform.position;
+        gameManager.Instance.Player.GetComponent<CharacterController>().enabled = false;
+        Col.transform.position = toLocation.transform.position;
+        gameManager.Instance.Player.GetComponent<CharacterController>().enabled = true;
     }
 }
 
