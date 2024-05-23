@@ -15,10 +15,12 @@ public class gameManager : MonoBehaviour
     [SerializeField] GameObject menuWin;
     [SerializeField] GameObject menuLose;
     [SerializeField] TMP_Text enemyCountText;
+    [SerializeField] public TMP_Text magAmmoText;
+    [SerializeField] public TMP_Text reserverAmmoText;
 
     public GameObject playerFlashDamage;
     public Image playerHPBar;
-
+    public Image reload;
     public GameObject Player;
     public playerController playerscript;
 

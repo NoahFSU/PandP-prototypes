@@ -65,7 +65,7 @@ public class playerController : MonoBehaviour, IDamage
         {
             StartCoroutine(shoot());
         }
-        if (Input.GetButton("Reload"))
+        if (Input.GetButtonDown("Reload"))
         {
             if (gunList[selectedGun].ammoCurrent > 0)
             {
@@ -94,9 +94,11 @@ public class playerController : MonoBehaviour, IDamage
     }
     IEnumerator reload()
     {
+
         yield return new WaitForSeconds(gunList[selectedGun].reloadTime);
         gunList[selectedGun].ammoCurrent -= (gunList[selectedGun].magMax - gunList[selectedGun].magAmmount);
         gunList[selectedGun].magAmmount += gunList[selectedGun].magMax - gunList[selectedGun].magAmmount;
+        UpdateAmmoUi(true);
     }
     IEnumerator shoot()
     {
@@ -113,7 +115,7 @@ public class playerController : MonoBehaviour, IDamage
                 dmg.TakeDamage(shootDamage);
             }
         }
-
+        UpdateAmmoUi();
         yield return new WaitForSeconds(shootRate);
         isShooting = false;
     }
@@ -140,6 +142,19 @@ public class playerController : MonoBehaviour, IDamage
     {
         gameManager.Instance.playerHPBar.fillAmount = (float)HP / HPOrig;
     }
+    void UpdateAmmoUi(bool reload = false)
+    {
+        if (!reload)
+        {
+            gameManager.Instance.magAmmoText.text = gunList[selectedGun].magAmmount.ToString("F0");
+        }
+        else
+        {
+            gameManager.Instance.magAmmoText.text = gunList[selectedGun].magMax.ToString("F0");
+            gameManager.Instance.reserverAmmoText.text = gunList[selectedGun].ammoCurrent.ToString("F0");
+        }
+
+    }
     public void getGunStats(GunStats gun)
     {
         gunList.Add(gun);
@@ -147,7 +162,8 @@ public class playerController : MonoBehaviour, IDamage
         shootDamage = gun.shootDamage;
         shootRate = gun.shootRate;
         shootDist = gun.shootDistance;
-
+        gameManager.Instance.magAmmoText.text = gun.magMax.ToString("F0");
+        gameManager.Instance.reserverAmmoText.text = gun.ammoCurrent.ToString("F0");
         gunModel.GetComponent<MeshFilter>().sharedMesh = gun.gunModel.GetComponent<MeshFilter>().sharedMesh;
         gunModel.GetComponent<MeshRenderer>().sharedMaterial = gun.gunModel.GetComponent<MeshRenderer>().sharedMaterial;
     }
