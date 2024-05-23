@@ -61,12 +61,15 @@ public class playerController : MonoBehaviour, IDamage
 
         Sprint();
 
-        if (Input.GetButton("Fire1") && !isShooting)
+        if (Input.GetButton("Fire1") && gunList.Count > 0 && gunList[selectedGun].magAmmount > 0 && !isShooting)
         {
             StartCoroutine(shoot());
         }
-        //Crouch();
+        if (Input.GetButton("Reload"))
+        {
 
+        }
+        //Crouch();
         if (Input.GetButtonDown("Jump") && jumpCount < jumpMax)
         {
             jumpCount++;
