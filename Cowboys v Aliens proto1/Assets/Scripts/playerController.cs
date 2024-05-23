@@ -67,7 +67,10 @@ public class playerController : MonoBehaviour, IDamage
         }
         if (Input.GetButton("Reload"))
         {
-
+            if (gunList[selectedGun].ammoCurrent > 0)
+            {
+                StartCoroutine(reload());
+            }
         }
         //Crouch();
         if (Input.GetButtonDown("Jump") && jumpCount < jumpMax)
@@ -89,7 +92,13 @@ public class playerController : MonoBehaviour, IDamage
             speed /= sprintMod;
         }
     }
+    IEnumerator reload()
+    {
+        yield return new WaitForSeconds(gunList[selectedGun].reloadTime);
+        gunList[selectedGun].ammoCurrent -= (gunList[selectedGun].magMax - gunList[selectedGun].magAmmount);
+        gunList[selectedGun].magAmmount += gunList[selectedGun].magMax - gunList[selectedGun].magAmmount;
 
+    }
     IEnumerator shoot()
     {
         isShooting = true;
@@ -132,7 +141,7 @@ public class playerController : MonoBehaviour, IDamage
     {
         gameManager.Instance.playerHPBar.fillAmount = (float)HP / HPOrig;
     }
-public void getGunStats(GunStats gun)
+    public void getGunStats(GunStats gun)
     {
         gunList.Add(gun);
         selectedGun = gunList.Count - 1;
@@ -145,12 +154,12 @@ public void getGunStats(GunStats gun)
     }
     void selectGun()
     {
-        if(Input.GetAxis("Mouse ScrollWheel")> 0 && selectedGun< gunList.Count - 1)
+        if (Input.GetAxis("Mouse ScrollWheel") > 0 && selectedGun < gunList.Count - 1)
         {
             selectedGun++;
             changeGun();
         }
-        else if(Input.GetAxis("Mouse ScrollWheel")< 0 && selectedGun> 0)
+        else if (Input.GetAxis("Mouse ScrollWheel") < 0 && selectedGun > 0)
         {
             selectedGun--;
             changeGun();
