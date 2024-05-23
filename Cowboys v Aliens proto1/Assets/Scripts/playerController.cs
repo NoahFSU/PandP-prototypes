@@ -97,7 +97,6 @@ public class playerController : MonoBehaviour, IDamage
         yield return new WaitForSeconds(gunList[selectedGun].reloadTime);
         gunList[selectedGun].ammoCurrent -= (gunList[selectedGun].magMax - gunList[selectedGun].magAmmount);
         gunList[selectedGun].magAmmount += gunList[selectedGun].magMax - gunList[selectedGun].magAmmount;
-
     }
     IEnumerator shoot()
     {
