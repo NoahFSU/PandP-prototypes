@@ -12,19 +12,21 @@ public class playerController : MonoBehaviour, IDamage
     [SerializeField] int jumpSpeed;
     [SerializeField] int gravity;
 
-
+    [SerializeField] GameObject gunModel;
     [SerializeField] int shootDamage;
     [SerializeField] int shootDist;
     [SerializeField] float shootRate;
-    
+    [SerializeReference] List<GunStats> gunList = new List<GunStats>();
+
 
     Vector3 moveDir;
     Vector3 playerVel;
-    Vector3 playerPos;
+    Vector3 playerPos; //Why Do we have this?
 
     int jumpCount;
     int HPOrig;
     bool isShooting;
+    int selectedGun;
 
 
     // Start is called before the first frame update
@@ -38,8 +40,12 @@ public class playerController : MonoBehaviour, IDamage
     // Update is called once per frame
     void Update()
     {
-        movement();
-        Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * shootDist, Color.red);
+        if (!gameManager.Instance.isPaused)
+        {
+            Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * shootDist, Color.red);
+            movement();
+            selectGun();
+        }
     }
     void movement()
     {
@@ -84,12 +90,13 @@ public class playerController : MonoBehaviour, IDamage
     IEnumerator shoot()
     {
         isShooting = true;
+        gunList[selectedGun].magAmmount--;
         RaycastHit hit;
         if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, shootDist))
         {
             Debug.Log(hit.transform.name);
             IDamage dmg = hit.collider.GetComponent<IDamage>();
-           
+
             if (hit.transform != transform && dmg != null)
             {
                 dmg.TakeDamage(shootDamage);
@@ -105,7 +112,7 @@ public class playerController : MonoBehaviour, IDamage
         HP -= amount;
         UpdatePlayerUI();
         StartCoroutine(flashScreenDamage());
-       
+
         if (HP <= 0)
         {
             gameManager.Instance.youLose();
@@ -122,7 +129,39 @@ public class playerController : MonoBehaviour, IDamage
     {
         gameManager.Instance.playerHPBar.fillAmount = (float)HP / HPOrig;
     }
+public void getGunStats(GunStats gun)
+    {
+        gunList.Add(gun);
+        selectedGun = gunList.Count - 1;
+        shootDamage = gun.shootDamage;
+        shootRate = gun.shootRate;
+        shootDist = gun.shootDistance;
 
+        gunModel.GetComponent<MeshFilter>().sharedMesh = gun.gunModel.GetComponent<MeshFilter>().sharedMesh;
+        gunModel.GetComponent<MeshRenderer>().sharedMaterial = gun.gunModel.GetComponent<MeshRenderer>().sharedMaterial;
+    }
+    void selectGun()
+    {
+        if(Input.GetAxis("Mouse ScrollWheel")> 0 && selectedGun< gunList.Count - 1)
+        {
+            selectedGun++;
+            changeGun();
+        }
+        else if(Input.GetAxis("Mouse ScrollWheel")< 0 && selectedGun> 0)
+        {
+            selectedGun--;
+            changeGun();
+        }
+    }
+    void changeGun()
+    {
+        shootDamage = gunList[selectedGun].shootDamage;
+        shootRate = gunList[selectedGun].shootRate;
+        shootDist = gunList[selectedGun].shootDistance;
+
+        gunModel.GetComponent<MeshFilter>().sharedMesh = gunList[selectedGun].gunModel.GetComponent<MeshFilter>().sharedMesh;
+        gunModel.GetComponent<MeshRenderer>().sharedMaterial = gunList[selectedGun].gunModel.GetComponent<MeshRenderer>().sharedMaterial;
+    }
     void Crouch()
     {
         if (Input.GetButton("Crouch") && controller.isGrounded)
@@ -131,6 +170,6 @@ public class playerController : MonoBehaviour, IDamage
         }
         else
             controller.height = 1.0f;
-            
+
     }
 }
