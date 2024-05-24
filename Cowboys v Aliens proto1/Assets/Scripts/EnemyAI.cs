@@ -9,6 +9,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     [SerializeField] Renderer model;
     [SerializeField] NavMeshAgent agent;
     [SerializeField] Transform shootingPos;
+    [SerializeField] FloatingHealthbar healthbar;
 
     [SerializeField] int enemyHP;
     [SerializeField] int enemySpeed;
@@ -24,6 +25,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     void Start()
     {
         gameManager.Instance.updateGameGoal(1);
+        healthbar.UpdateHealthBar(enemyHP);
         agent.speed = enemySpeed;
     }
 
@@ -43,6 +45,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     public void TakeDamage(int amount)
     {
         enemyHP -= amount;
+        healthbar.UpdateHealthBar(enemyHP);
         agent.SetDestination(gameManager.Instance.Player.transform.position);
         StartCoroutine(FlashingRed());
 
