@@ -12,12 +12,12 @@ public class GunStats : ScriptableObject
     [Range(0.1f, 6)] public float shootRate;
     [Range(0.1f, 6)] public float reloadTime;
     [Range(1, 9)] public int projAmmount;
-    
-     public int ammoMax;
+
+    public int ammoMax;
     public int magAmmount;
     public int magMax;
     public int ammoCurrent;
-   
+
 
     public ParticleSystem hitEffect;
     public AudioClip shootSound;
