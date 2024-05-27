@@ -843,17 +843,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2462345585583943841, guid: 496f460e8b34f7b4699d2710e31d8049, type: 3}
   m_PrefabInstance: {fileID: 1102248082}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &264098790 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3225720345541729944, guid: 09eda9905c7119a4892aee5fd8a9b8a8, type: 3}
-  m_PrefabInstance: {fileID: 3300417165049482689}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &265631851
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -901,10 +890,6 @@ PrefabInstance:
     - target: {fileID: 290754052871067700, guid: 13cd954a58b5e5548a26a5626e84d399, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5454487386688470791, guid: 13cd954a58b5e5548a26a5626e84d399, type: 3}
-      propertyPath: viewAngle
-      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 6604254427920349133, guid: 13cd954a58b5e5548a26a5626e84d399, type: 3}
       propertyPath: m_Name
@@ -1182,10 +1167,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 680456627}
     m_Modifications:
-    - target: {fileID: 2760803344120449071, guid: 8faff4095b20f4541abf20f2361f841b, type: 3}
-      propertyPath: viewAngle
-      value: 90
-      objectReference: {fileID: 0}
     - target: {fileID: 3910642952985542885, guid: 8faff4095b20f4541abf20f2361f841b, type: 3}
       propertyPath: m_Name
       value: Slow Enemy Variant (3)
@@ -1658,10 +1639,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5454487386688470791, guid: 13cd954a58b5e5548a26a5626e84d399, type: 3}
-      propertyPath: viewAngle
-      value: 90
-      objectReference: {fileID: 0}
     - target: {fileID: 6604254427920349133, guid: 13cd954a58b5e5548a26a5626e84d399, type: 3}
       propertyPath: m_Name
       value: Fast Enemy Variant (1)
@@ -1731,10 +1708,6 @@ PrefabInstance:
     - target: {fileID: 2462345585583943841, guid: 496f460e8b34f7b4699d2710e31d8049, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7896725942107887506, guid: 496f460e8b34f7b4699d2710e31d8049, type: 3}
-      propertyPath: viewAngle
-      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 9044340137423003480, guid: 496f460e8b34f7b4699d2710e31d8049, type: 3}
       propertyPath: m_Name
@@ -1992,10 +1965,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 680456627}
     m_Modifications:
-    - target: {fileID: 2760803344120449071, guid: 8faff4095b20f4541abf20f2361f841b, type: 3}
-      propertyPath: viewAngle
-      value: 90
-      objectReference: {fileID: 0}
     - target: {fileID: 3910642952985542885, guid: 8faff4095b20f4541abf20f2361f841b, type: 3}
       propertyPath: m_Name
       value: Slow Enemy Variant
@@ -4153,10 +4122,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7896725942107887506, guid: 496f460e8b34f7b4699d2710e31d8049, type: 3}
-      propertyPath: viewAngle
-      value: 90
-      objectReference: {fileID: 0}
     - target: {fileID: 9044340137423003480, guid: 496f460e8b34f7b4699d2710e31d8049, type: 3}
       propertyPath: m_Name
       value: Enemy Variant (5)
@@ -4218,10 +4183,6 @@ PrefabInstance:
     - target: {fileID: 2462345585583943841, guid: 496f460e8b34f7b4699d2710e31d8049, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7896725942107887506, guid: 496f460e8b34f7b4699d2710e31d8049, type: 3}
-      propertyPath: viewAngle
-      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 9044340137423003480, guid: 496f460e8b34f7b4699d2710e31d8049, type: 3}
       propertyPath: m_Name
@@ -5183,10 +5144,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7896725942107887506, guid: 496f460e8b34f7b4699d2710e31d8049, type: 3}
-      propertyPath: viewAngle
-      value: 90
-      objectReference: {fileID: 0}
     - target: {fileID: 9044340137423003480, guid: 496f460e8b34f7b4699d2710e31d8049, type: 3}
       propertyPath: m_Name
       value: Enemy Variant
@@ -5651,10 +5608,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5454487386688470791, guid: 13cd954a58b5e5548a26a5626e84d399, type: 3}
-      propertyPath: viewAngle
-      value: 90
-      objectReference: {fileID: 0}
     - target: {fileID: 6604254427920349133, guid: 13cd954a58b5e5548a26a5626e84d399, type: 3}
       propertyPath: m_Name
       value: Fast Enemy Variant
@@ -6115,10 +6068,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7896725942107887506, guid: 496f460e8b34f7b4699d2710e31d8049, type: 3}
-      propertyPath: viewAngle
-      value: 90
-      objectReference: {fileID: 0}
     - target: {fileID: 9044340137423003480, guid: 496f460e8b34f7b4699d2710e31d8049, type: 3}
       propertyPath: m_Name
       value: Enemy Variant (1)
@@ -6185,10 +6134,6 @@ PrefabInstance:
     - target: {fileID: 290754052871067700, guid: 13cd954a58b5e5548a26a5626e84d399, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5454487386688470791, guid: 13cd954a58b5e5548a26a5626e84d399, type: 3}
-      propertyPath: viewAngle
-      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 6604254427920349133, guid: 13cd954a58b5e5548a26a5626e84d399, type: 3}
       propertyPath: m_Name
@@ -6882,17 +6827,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1441742704 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5390792644999971933, guid: 09eda9905c7119a4892aee5fd8a9b8a8, type: 3}
-  m_PrefabInstance: {fileID: 3300417165049482689}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!43 &1445559640
 Mesh:
   m_ObjectHideFlags: 0
@@ -7281,10 +7215,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7896725942107887506, guid: 496f460e8b34f7b4699d2710e31d8049, type: 3}
-      propertyPath: viewAngle
-      value: 90
-      objectReference: {fileID: 0}
     - target: {fileID: 9044340137423003480, guid: 496f460e8b34f7b4699d2710e31d8049, type: 3}
       propertyPath: m_Name
       value: Enemy Variant (2)
@@ -7558,10 +7488,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 680456627}
     m_Modifications:
-    - target: {fileID: 2760803344120449071, guid: 8faff4095b20f4541abf20f2361f841b, type: 3}
-      propertyPath: viewAngle
-      value: 90
-      objectReference: {fileID: 0}
     - target: {fileID: 3910642952985542885, guid: 8faff4095b20f4541abf20f2361f841b, type: 3}
       propertyPath: m_Name
       value: Slow Enemy Variant (2)
@@ -8783,10 +8709,6 @@ PrefabInstance:
       propertyPath: m_StoppingDistance
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 2760803344120449071, guid: 8faff4095b20f4541abf20f2361f841b, type: 3}
-      propertyPath: viewAngle
-      value: 90
-      objectReference: {fileID: 0}
     - target: {fileID: 7632075417247690524, guid: 8faff4095b20f4541abf20f2361f841b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 79.527245
@@ -9917,14 +9839,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2913782734542888496, guid: 09eda9905c7119a4892aee5fd8a9b8a8, type: 3}
-      propertyPath: magAmmoText
-      value: 
-      objectReference: {fileID: 1441742704}
-    - target: {fileID: 2913782734542888496, guid: 09eda9905c7119a4892aee5fd8a9b8a8, type: 3}
-      propertyPath: reserverAmmoText
-      value: 
-      objectReference: {fileID: 264098790}
     - target: {fileID: 6709742051513216782, guid: 09eda9905c7119a4892aee5fd8a9b8a8, type: 3}
       propertyPath: m_Name
       value: UI

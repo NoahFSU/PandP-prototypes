@@ -17,10 +17,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     [SerializeField] float enemyShooingRate;
     [SerializeField] GameObject bullet;
 
-    [SerializeField] int viewAngle;
 
-    Vector3 playerDirection;
-    float angleToTarget;
     bool isShooting;
     bool isPlayerInRange;
 
@@ -35,35 +32,16 @@ public class EnemyAI : MonoBehaviour, IDamage
     // Update is called once per frame
     void Update()
     {
-        if(isPlayerInRange && CanSeePlayer())
+        if(isPlayerInRange)
         {
-            
+            agent.SetDestination(gameManager.Instance.Player.transform.position);
+            if(!isShooting)
+            {
+                StartCoroutine(Shoot());
+            }
         }
     }
  
-    bool CanSeePlayer()
-    {
-        playerDirection = gameManager.Instance.Player.transform.position - transform.position;
-        angleToTarget = Vector3.Angle(playerDirection, transform.forward);
-        Debug.Log(angleToTarget);
-        Debug.DrawRay(transform.position, playerDirection);
-
-        RaycastHit hit;
-        if(Physics.Raycast(transform.position, playerDirection, out hit))
-        {
-            if(hit.collider.CompareTag("Player") && angleToTarget <= viewAngle)
-            {
-                agent.SetDestination(gameManager.Instance.Player.transform.position);
-                if (!isShooting)
-                {
-                    StartCoroutine(Shoot());
-                }
-                return true;
-            }
-        }
-        return false;
-    }
-
     public void TakeDamage(int amount)
     {
         enemyHP -= amount;
