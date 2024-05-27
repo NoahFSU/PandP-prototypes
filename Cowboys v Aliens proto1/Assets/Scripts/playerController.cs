@@ -33,7 +33,7 @@ public class playerController : MonoBehaviour, IDamage
     void Start()
     {
         HPOrig = HP;
-        UpdatePlayerUI();
+        SpawnPlayer();
 
     }
 
@@ -188,6 +188,16 @@ public class playerController : MonoBehaviour, IDamage
 
         gunModel.GetComponent<MeshFilter>().sharedMesh = gunList[selectedGun].gunModel.GetComponent<MeshFilter>().sharedMesh;
         gunModel.GetComponent<MeshRenderer>().sharedMaterial = gunList[selectedGun].gunModel.GetComponent<MeshRenderer>().sharedMaterial;
+    }
+
+    public void SpawnPlayer()
+    {
+        HP = HPOrig;
+        UpdatePlayerUI();
+
+        controller.enabled = false;
+        transform.position = gameManager.Instance.playerSpawnPos.transform.position;
+        controller.enabled = true;
     }
     void Crouch()
     {
