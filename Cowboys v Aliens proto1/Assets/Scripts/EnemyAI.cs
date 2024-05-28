@@ -6,42 +6,120 @@ using UnityEngine.AI;
 
 public class EnemyAI : MonoBehaviour, IDamage
 {
+ 
     [SerializeField] Renderer model;
     [SerializeField] NavMeshAgent agent;
     [SerializeField] Transform shootingPos;
+
+    //uncomment when the model is fully implemented
+    //[SerializeField] Transform headPos; 
     [SerializeField] FloatingHealthbar healthbar;
 
+    [SerializeField] GameObject bullet;
     [SerializeField] int enemyHP;
     [SerializeField] int enemySpeed;
     [SerializeField] int enemyShootingDMG;
     [SerializeField] float enemyShooingRate;
-    [SerializeField] GameObject bullet;
 
+    [SerializeField] int viewAngle;
+    [SerializeField] int faceTargetSpeed;
+    [SerializeField] int roamingDistance;
+    [SerializeField] int roamTimer;
+
+    Vector3 playerDirection;
+    Vector3 startingPos;
+
+    float angleToTarget;
+    float stoppingDistanceOrig;
 
     bool isShooting;
     bool isPlayerInRange;
+    bool destinationChoosen;
+
 
     // Start is called before the first frame update
     void Start()
     {
         gameManager.Instance.updateGameGoal(1);
         healthbar.UpdateHealthBar(enemyHP);
+
+        startingPos = transform.position;
+        stoppingDistanceOrig = agent.stoppingDistance;
+
         agent.speed = enemySpeed;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(isPlayerInRange)
+        if (isPlayerInRange && !CanSeePlayer())
         {
-            agent.SetDestination(gameManager.Instance.Player.transform.position);
-            if(!isShooting)
-            {
-                StartCoroutine(Shoot());
-            }
+            StartCoroutine(Roaming());
+        }
+        else if (!isPlayerInRange)
+        {
+            StartCoroutine(Roaming());
         }
     }
- 
+
+    IEnumerator Roaming()
+    {
+        if (!destinationChoosen && agent.remainingDistance < 0.05f)
+        {
+            destinationChoosen = true;
+            agent.stoppingDistance = 0;
+
+            yield return new WaitForSeconds(roamTimer);
+
+            Vector3 randPos = Random.insideUnitSphere * roamingDistance;
+            randPos += startingPos;
+
+            NavMeshHit hit;
+            NavMesh.SamplePosition(randPos, out hit, roamingDistance, 1);
+            agent.SetDestination(hit.position);
+
+            destinationChoosen = false;
+        }
+    }
+
+    bool CanSeePlayer()
+    {
+        playerDirection = gameManager.Instance.Player.transform.position - transform.position;//headPos.position;
+        angleToTarget = Vector3.Angle(new Vector3(playerDirection.x, playerDirection.y + 1, playerDirection.z), transform.forward);
+
+        //comment out when everything is working perfectly fine
+        Debug.Log(angleToTarget);
+        Debug.DrawRay(/*headPos.position*/ transform.position, playerDirection);
+
+        RaycastHit hit;
+        if (Physics.Raycast(/*headPos.position*/ transform.position, playerDirection, out hit))
+        {
+            if (hit.collider.CompareTag("Player") && angleToTarget <= viewAngle)
+            {
+                agent.stoppingDistance = stoppingDistanceOrig;
+                agent.SetDestination(gameManager.Instance.Player.transform.position);
+                if (!isShooting)
+                {
+                    StartCoroutine(Shoot());
+                }
+
+                if(agent.remainingDistance <= agent.stoppingDistance)
+                {
+                    FaceTarget();
+                }
+                return true;
+            }
+        }
+        agent.stoppingDistance = 0;
+        return false;
+    }
+
+    void FaceTarget()
+    {
+        Quaternion rot = Quaternion.LookRotation(new Vector3(playerDirection.x, playerDirection.y, playerDirection.z));
+        transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * faceTargetSpeed);
+    }
+
     public void TakeDamage(int amount)
     {
         enemyHP -= amount;
@@ -91,6 +169,7 @@ public class EnemyAI : MonoBehaviour, IDamage
         if (other.CompareTag("Player"))
         {
             isPlayerInRange = false;
+            agent.stoppingDistance = 0;
         }
     }
 }
