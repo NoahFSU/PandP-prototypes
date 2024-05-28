@@ -23,6 +23,7 @@ public class gameManager : MonoBehaviour
     public Image playerHPBar;
     public Image reload;
     public GameObject Player;
+    public GameObject Enemy;
     public playerController playerscript;
     public GameObject checkpointPopup;
 
@@ -34,6 +35,7 @@ public class gameManager : MonoBehaviour
     {
         Instance = this;
         Player = GameObject.FindWithTag("Player");
+        Enemy = GameObject.FindWithTag("Enemy");
         playerscript = Player.GetComponent<playerController>();
         playerSpawnPos = GameObject.FindWithTag("Player Spawn Pos");
     }
