@@ -6,13 +6,13 @@ using UnityEngine.AI;
 
 public class EnemyAI : MonoBehaviour, IDamage
 {
- 
+    [SerializeField] Animator anima;
     [SerializeField] Renderer model;
     [SerializeField] NavMeshAgent agent;
     [SerializeField] Transform shootingPos;
 
     //uncomment when the model is fully implemented
-    //[SerializeField] Transform headPos; 
+    [SerializeField] Transform headPos; 
     [SerializeField] FloatingHealthbar healthbar;
 
     [SerializeField] GameObject bullet;
@@ -25,6 +25,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     [SerializeField] int faceTargetSpeed;
     [SerializeField] int roamingDistance;
     [SerializeField] int roamTimer;
+    [SerializeField] int animationSpeedTrans;
 
     Vector3 playerDirection;
     Vector3 startingPos;
@@ -52,6 +53,9 @@ public class EnemyAI : MonoBehaviour, IDamage
     // Update is called once per frame
     void Update()
     {
+        float animationSpeed = agent.velocity.normalized.magnitude;
+        anima.SetFloat("Speed", Mathf.Lerp(anima.GetFloat("Speed"), animationSpeed, Time.deltaTime * animationSpeedTrans));
+
         if (isPlayerInRange && !CanSeePlayer())
         {
             StartCoroutine(Roaming());
@@ -84,15 +88,15 @@ public class EnemyAI : MonoBehaviour, IDamage
 
     bool CanSeePlayer()
     {
-        playerDirection = gameManager.Instance.Player.transform.position - transform.position;//headPos.position;
+        playerDirection = gameManager.Instance.Player.transform.position - headPos.position;
         angleToTarget = Vector3.Angle(new Vector3(playerDirection.x, playerDirection.y + 1, playerDirection.z), transform.forward);
 
         //comment out when everything is working perfectly fine
         Debug.Log(angleToTarget);
-        Debug.DrawRay(/*headPos.position*/ transform.position, playerDirection);
+        Debug.DrawRay(headPos.position, playerDirection);
 
         RaycastHit hit;
-        if (Physics.Raycast(/*headPos.position*/ transform.position, playerDirection, out hit))
+        if (Physics.Raycast(headPos.position, playerDirection, out hit))
         {
             if (hit.collider.CompareTag("Player") && angleToTarget <= viewAngle)
             {

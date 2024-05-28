@@ -92,11 +92,16 @@ MonoBehaviour:
   model: {fileID: 9051156121037970395}
   agent: {fileID: 6862649173775173788}
   shootingPos: {fileID: 9135536949487006921}
+  healthbar: {fileID: 0}
+  bullet: {fileID: 5452501656411146394, guid: 7906fa759c7b01546afe90a26866e793, type: 3}
   enemyHP: 3
   enemySpeed: 5
   enemyShootingDMG: 1
   enemyShooingRate: 0.5
-  bullet: {fileID: 5452501656411146394, guid: 7906fa759c7b01546afe90a26866e793, type: 3}
+  viewAngle: 90
+  faceTargetSpeed: 10
+  roamingDistance: 15
+  roamTimer: 3
 --- !u!195 &6862649173775173788
 NavMeshAgent:
   m_ObjectHideFlags: 0
