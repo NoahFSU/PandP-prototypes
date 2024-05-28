@@ -11,28 +11,34 @@ public class playerController : MonoBehaviour, IDamage
     [SerializeField] int jumpMax;
     [SerializeField] int jumpSpeed;
     [SerializeField] int gravity;
+    [SerializeField] float crouchSpeedMod = 0.5f;
 
     [SerializeField] GameObject gunModel;
     [SerializeField] int shootDamage;
     [SerializeField] int shootDist;
     [SerializeField] float shootRate;
     [SerializeReference] List<GunStats> gunList = new List<GunStats>();
-
+    
 
     Vector3 moveDir;
     Vector3 playerVel;
-    Vector3 playerPos; //Why Do we have this?
+
 
     int jumpCount;
     int HPOrig;
     bool isShooting;
     int selectedGun;
+    bool isCrouching = false;
+    float origHeight;
+    int origSpeed;
 
 
     // Start is called before the first frame update
     void Start()
     {
         HPOrig = HP;
+        origHeight = controller.height;
+        origSpeed = speed;
         SpawnPlayer();
 
     }
@@ -60,6 +66,7 @@ public class playerController : MonoBehaviour, IDamage
         controller.Move(moveDir * speed * Time.deltaTime);
 
         Sprint();
+        Crouch();
 
         if (Input.GetButton("Fire1") && gunList.Count > 0 && gunList[selectedGun].magAmmount > 0 && !isShooting)
         {
@@ -72,7 +79,7 @@ public class playerController : MonoBehaviour, IDamage
                 StartCoroutine(reload());
             }
         }
-        //Crouch();
+       
         if (Input.GetButtonDown("Jump") && jumpCount < jumpMax)
         {
             jumpCount++;
@@ -201,12 +208,20 @@ public class playerController : MonoBehaviour, IDamage
     }
     void Crouch()
     {
-        if (Input.GetButton("Crouch") && controller.isGrounded)
+        if (Input.GetButtonDown("Crouch"))
         {
-            controller.height = 0.5f;
+            isCrouching = !isCrouching;
+            if (isCrouching)
+            {
+                controller.height = origHeight / 2;
+                speed = (int)(speed * crouchSpeedMod);
+            }
+            else
+            {
+                controller.height = origHeight;
+                speed = (int)(speed / crouchSpeedMod);
+            }
         }
-        else
-            controller.height = 1.0f;
 
     }
 }
