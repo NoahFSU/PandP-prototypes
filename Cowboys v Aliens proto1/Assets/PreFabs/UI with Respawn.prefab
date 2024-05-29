@@ -609,6 +609,14 @@ PrefabInstance:
       propertyPath: m_fontSizeBase
       value: 30
       objectReference: {fileID: 0}
+    - target: {fileID: 1095745707154864671, guid: 8a602c74337c88f439e04424acbc61a8, type: 3}
+      propertyPath: magAmmoText
+      value: 
+      objectReference: {fileID: 5390792644999971933}
+    - target: {fileID: 1095745707154864671, guid: 8a602c74337c88f439e04424acbc61a8, type: 3}
+      propertyPath: reserverAmmoText
+      value: 
+      objectReference: {fileID: 3225720345541729944}
     - target: {fileID: 2456518374637574140, guid: 8a602c74337c88f439e04424acbc61a8, type: 3}
       propertyPath: reload
       value: 
@@ -991,7 +999,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8810942782797876001, guid: 8a602c74337c88f439e04424acbc61a8, type: 3}
       propertyPath: m_Name
-      value: UI Variant
+      value: UI with Respawn
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
