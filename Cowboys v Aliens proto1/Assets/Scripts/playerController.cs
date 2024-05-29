@@ -32,7 +32,6 @@ public class playerController : MonoBehaviour, IDamage
     float origHeight;
     int origSpeed;
 
-
     // Start is called before the first frame update
     void Start()
     {
@@ -101,11 +100,12 @@ public class playerController : MonoBehaviour, IDamage
     }
     IEnumerator reload()
     {
-
+        gameManager.Instance.reloadUI.SetActive(true);
         yield return new WaitForSeconds(gunList[selectedGun].reloadTime);
         gunList[selectedGun].ammoCurrent -= (gunList[selectedGun].magMax - gunList[selectedGun].magAmmount);
         gunList[selectedGun].magAmmount += gunList[selectedGun].magMax - gunList[selectedGun].magAmmount;
         UpdateAmmoUi(true);
+        gameManager.Instance.reloadUI.SetActive(false);
     }
     IEnumerator shoot()
     {

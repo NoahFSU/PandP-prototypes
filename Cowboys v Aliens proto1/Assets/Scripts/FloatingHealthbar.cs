@@ -6,20 +6,21 @@ using UnityEngine.UI;
 public class FloatingHealthbar : MonoBehaviour
 {
     [SerializeField] private Slider slider;
-    private Camera camera;
+  //  private Camera camera;
     [SerializeField] private Transform target;
     [SerializeField] private Vector3 offset;
 
     public void UpdateHealthBar(float currentValue)
     {
         slider.value = currentValue;
-        camera = Camera.main;
+       // camera = Camera.main;
+      //  Camera.main.tr
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.rotation = camera.transform.rotation;
+        transform.rotation = Camera.main.transform.rotation;
         transform.position = target.position + offset;
     }
 }
