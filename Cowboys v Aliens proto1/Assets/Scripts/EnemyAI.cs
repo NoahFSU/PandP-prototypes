@@ -54,7 +54,9 @@ public class EnemyAI : MonoBehaviour, IDamage
     void Update()
     {
         float animationSpeed = agent.velocity.normalized.magnitude;
+
         anima.SetFloat("Speed", Mathf.Lerp(anima.GetFloat("Speed"), animationSpeed, Time.deltaTime * animationSpeedTrans));
+       
 
         if (isPlayerInRange && !CanSeePlayer())
         {
@@ -141,15 +143,22 @@ public class EnemyAI : MonoBehaviour, IDamage
     IEnumerator Shoot()
     {
         isShooting = true;
-        GameObject newBullet = Instantiate(bullet, shootingPos.position, transform.rotation);
-        IDamage enemyDmg = newBullet.GetComponent<IDamage>();
-        if(enemyDmg != null)
-        {
-            enemyDmg.TakeDamage(enemyShootingDMG);
-        }
+
+        anima.SetTrigger("Shoot");
 
         yield return new WaitForSeconds(enemyShooingRate);
         isShooting = false;
+    }
+
+    public void CreateBullet()
+    {
+        GameObject newBullet = Instantiate(bullet, shootingPos.position, transform.rotation);
+        IDamage enemyDmg = newBullet.GetComponent<IDamage>();
+
+        if (enemyDmg != null)
+        {
+            enemyDmg.TakeDamage(enemyShootingDMG);
+        }
     }
 
     IEnumerator FlashingRed()
