@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40b6f1b47a5dd4443a57baa413588e88, type: 3}
   m_Name: Revolver
   m_EditorClassIdentifier: 
-  gunModel: {fileID: 8761155532341135743, guid: 7d1b943ff3185bd4fbdd8c549b3a34df, type: 3}
+  gunModel: {fileID: 5884405469530735240, guid: 3d6c7430bd21a564489df266ea8864e1, type: 3}
   shootDamage: 35
   shootDistance: 421
   shootRate: 1
