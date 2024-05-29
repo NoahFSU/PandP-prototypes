@@ -224,4 +224,9 @@ public class playerController : MonoBehaviour, IDamage
         }
 
     }
+
+    public void RestoreHealth(int amount)
+    {
+        HP += amount;
+    }
 }
