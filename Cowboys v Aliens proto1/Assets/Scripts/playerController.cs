@@ -18,7 +18,13 @@ public class playerController : MonoBehaviour, IDamage
     [SerializeField] int shootDist;
     [SerializeField] float shootRate;
     [SerializeReference] List<GunStats> gunList = new List<GunStats>();
-    
+    [SerializeField] AudioSource aud;   
+    [SerializeField] AudioClip[] audPlayerHit;
+    [Range(0, 1)][SerializeField] float audPlayerHitVol;
+    [SerializeField]AudioClip[] audJump;
+    [Range(0, 1)][SerializeField] float audJumpVol;
+
+
 
     Vector3 moveDir;
     Vector3 playerVel;
@@ -81,6 +87,7 @@ public class playerController : MonoBehaviour, IDamage
        
         if (Input.GetButtonDown("Jump") && jumpCount < jumpMax)
         {
+            aud.PlayOneShot(audJump[Random.Range(0, audJump.Length)], audJumpVol);
             jumpCount++;
             playerVel.y = jumpSpeed;
         }
@@ -129,6 +136,7 @@ public class playerController : MonoBehaviour, IDamage
 
     public void TakeDamage(int amount)
     {
+        aud.PlayOneShot(audPlayerHit[Random.Range(0, audPlayerHit.Length)], audPlayerHitVol);
         HP -= amount;
         UpdatePlayerUI();
         StartCoroutine(flashScreenDamage());
@@ -228,5 +236,10 @@ public class playerController : MonoBehaviour, IDamage
     public void RestoreHealth(int amount)
     {
         HP += amount;
+        if (HP > HPOrig)
+        {
+            HP = HPOrig;
+        }
+        UpdatePlayerUI();
     }
 }
