@@ -15,11 +15,11 @@ MonoBehaviour:
   gunModel: {fileID: 7055669345451170858, guid: 20556134e1eed6947a46a0ee89d57d8f, type: 3}
   shootDamage: 35
   shootDistance: 391
-  shootRate: 1.98
+  shootRate: 0.85
   reloadTime: 1.53
   projAmmount: 1
   ammoMax: 100
-  magAmmount: 5
+  magAmmount: 6
   magMax: 6
   ammoCurrent: 100
   hitEffect: {fileID: 6683926199875988124, guid: 2b4a6a9e9d15abc4d8fa029c7389f796, type: 3}

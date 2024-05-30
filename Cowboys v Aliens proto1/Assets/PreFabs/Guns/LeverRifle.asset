@@ -15,13 +15,13 @@ MonoBehaviour:
   gunModel: {fileID: 5884322393017213235, guid: 2a23ad109c3b3ae43a414b5d209b915d, type: 3}
   shootDamage: 75
   shootDistance: 644
-  shootRate: 1.7
+  shootRate: 1
   reloadTime: 2.56
   projAmmount: 1
   ammoMax: 100
   magAmmount: 5
   magMax: 5
-  ammoCurrent: 90
+  ammoCurrent: 94
   hitEffect: {fileID: 6683926199875988124, guid: 7ea08586186f4b443891498329fac0ba, type: 3}
   shootSound: {fileID: 8300000, guid: 982b1896316155b4fbd2cc5cef6d79a6, type: 3}
   reloadSound: {fileID: 8300000, guid: af63539a5e39c99489395bdea2471f60, type: 3}

@@ -12,18 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40b6f1b47a5dd4443a57baa413588e88, type: 3}
   m_Name: AlienAR
   m_EditorClassIdentifier: 
-  gunModel: {fileID: 2916512647553543661, guid: 6556279192db63042b26bf1493ca3bcb, type: 3}
+  gunModel: {fileID: 919132149155446097, guid: bd61623bb4575514a957ba15be2b91e0, type: 3}
   shootDamage: 20
   shootDistance: 404
-  shootRate: 1.25
+  shootRate: 0.14
   reloadTime: 1.67
   projAmmount: 1
   ammoMax: 200
-  magAmmount: 30
+  magAmmount: 13
   magMax: 30
-  ammoCurrent: 200
+  ammoCurrent: 170
   hitEffect: {fileID: 6683926199875988124, guid: ef087cc5be145a349bcbcd495b06a576, type: 3}
   shootSound: {fileID: 0}
   reloadSound: {fileID: 0}
   shootVol: 0
   reloadVol: 0
+  Icon: {fileID: 0}
