@@ -225,8 +225,16 @@ public class playerController : MonoBehaviour, IDamage
 
     }
 
+    //methods for item pickups
     public void RestoreHealth(int amount)
     {
         HP += amount;
+    }
+
+    public void AddAmmo(int amount)
+    {
+        gunList[selectedGun].ammoCurrent += amount;
+
+        gameManager.Instance.reserverAmmoText.text = gunList[selectedGun].ammoCurrent.ToString("F0");
     }
 }
