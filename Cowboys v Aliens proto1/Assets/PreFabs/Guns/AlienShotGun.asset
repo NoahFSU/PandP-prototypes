@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: AlienShotGun
   m_EditorClassIdentifier: 
   gunModel: {fileID: 0}
-  shootDamage: 21
+  shootDamage: 19
   shootDistance: 179
   shootRate: 1.75
   reloadTime: 1.75
@@ -24,4 +24,7 @@ MonoBehaviour:
   ammoCurrent: 0
   hitEffect: {fileID: 0}
   shootSound: {fileID: 0}
+  reloadSound: {fileID: 0}
   shootVol: 0
+  reloadVol: 0
+  Icon: {fileID: 0}

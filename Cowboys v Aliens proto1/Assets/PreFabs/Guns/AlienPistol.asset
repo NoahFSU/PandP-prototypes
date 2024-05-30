@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: AlienPistol
   m_EditorClassIdentifier: 
   gunModel: {fileID: 1574792690887394741, guid: 3d77f4587c466894aaa4b6c465816018, type: 3}
-  shootDamage: 25
+  shootDamage: 30
   shootDistance: 250
-  shootRate: 0.75
+  shootRate: 1.53
   reloadTime: 1
   projAmmount: 1
   ammoMax: 100
@@ -27,3 +27,4 @@ MonoBehaviour:
   reloadSound: {fileID: 0}
   shootVol: 0
   reloadVol: 0
+  Icon: {fileID: 0}
