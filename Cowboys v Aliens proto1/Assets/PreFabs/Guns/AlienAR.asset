@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40b6f1b47a5dd4443a57baa413588e88, type: 3}
+  m_Name: AlienAR
+  m_EditorClassIdentifier: 
+  gunModel: {fileID: 0}
+  shootDamage: 20
+  shootDistance: 404
+  shootRate: 1.25
+  reloadTime: 1.67
+  projAmmount: 1
+  ammoMax: 200
+  magAmmount: 0
+  magMax: 30
+  ammoCurrent: 0
+  hitEffect: {fileID: 0}
+  shootSound: {fileID: 0}
+  reloadSound: {fileID: 0}
+  shootVol: 0
+  reloadVol: 0
