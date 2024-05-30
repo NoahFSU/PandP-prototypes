@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2720520723703606755}
   - component: {fileID: 1648225927560994729}
   - component: {fileID: 3884592164802652821}
-  - component: {fileID: 5923868564321099309}
+  - component: {fileID: 8597490542320620336}
   m_Layer: 0
   m_Name: GunTest
   m_TagString: Untagged
@@ -84,7 +84,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!95 &5923868564321099309
+--- !u!95 &8597490542320620336
 Animator:
   serializedVersion: 5
   m_ObjectHideFlags: 0
@@ -183,7 +183,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 02dddddb62d9e764a9c44b08eaa26af6, type: 3}
   - {fileID: 8300000, guid: 07f0aedbb0bc79a4d967d29970c39b25, type: 3}
   audJumpVol: 0.5
-  ReloadAnim: {fileID: 5923868564321099309}
+  ReloadAnim: {fileID: 8597490542320620336}
 --- !u!33 &7932583570981186767
 MeshFilter:
   m_ObjectHideFlags: 0

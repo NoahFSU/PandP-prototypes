@@ -122,6 +122,8 @@ public class playerController : MonoBehaviour, IDamage
         ReloadAnim.SetBool("Reloading", true);
         isReloading = true;
         //  gameManager.Instance.reloadUI.SetActive(true);
+
+        GetComponent<AudioSource>().PlayOneShot(gunList[selectedGun].reloadSound, gunList[selectedGun].reloadVol);
         yield return new WaitForSeconds(gunList[selectedGun].reloadTime - .25f);
         ReloadAnim.SetBool("Reloading", false);
         yield return new WaitForSeconds(.25f);
@@ -152,6 +154,9 @@ public class playerController : MonoBehaviour, IDamage
                 dmg.TakeDamage(shootDamage);
             }
         }
+
+        Instantiate(gunList[selectedGun].hitEffect, hit.point, Quaternion.identity);
+
         UpdateAmmoUi();
         yield return new WaitForSeconds(shootRate);
         isShooting = false;
