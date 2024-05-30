@@ -19,18 +19,19 @@ public class playerController : MonoBehaviour, IDamage
     [SerializeField] int shootDist;
     [SerializeField] float shootRate;
     [SerializeReference] List<GunStats> gunList = new List<GunStats>();
-    [SerializeField] AudioSource aud;   
+    [SerializeField] AudioSource aud;
     [SerializeField] AudioClip[] audPlayerHit;
     [Range(0, 1)][SerializeField] float audPlayerHitVol;
-    [SerializeField]AudioClip[] audJump;
+    [SerializeField] AudioClip[] audJump;
     [Range(0, 1)][SerializeField] float audJumpVol;
+    [SerializeField] Animator ReloadAnim;
 
 
 
     Vector3 moveDir;
     Vector3 playerVel;
 
-
+    bool isReloading = false;
     int jumpCount;
     int HPOrig;
     bool isShooting;
@@ -49,6 +50,7 @@ public class playerController : MonoBehaviour, IDamage
 
     }
 
+
     // Update is called once per frame
     void Update()
     {
@@ -58,6 +60,13 @@ public class playerController : MonoBehaviour, IDamage
             movement();
             selectGun();
         }
+    }
+    void OnEnable()
+    {
+
+        isReloading = false;
+        ReloadAnim.SetBool("Reloading", false);
+
     }
     void movement()
     {
@@ -74,6 +83,17 @@ public class playerController : MonoBehaviour, IDamage
         Sprint();
         Crouch();
 
+        if (Input.GetButtonDown("Jump") && jumpCount < jumpMax)
+        {
+            aud.PlayOneShot(audJump[Random.Range(0, audJump.Length)], audJumpVol);
+            jumpCount++;
+            playerVel.y = jumpSpeed;
+        }
+        playerVel.y -= gravity * Time.deltaTime;
+        controller.Move(playerVel * Time.deltaTime);
+
+        if (isReloading)
+            return;
         if (Input.GetButton("Fire1") && gunList.Count > 0 && gunList[selectedGun].magAmmount > 0 && !isShooting)
         {
             StartCoroutine(shoot());
@@ -85,15 +105,6 @@ public class playerController : MonoBehaviour, IDamage
                 StartCoroutine(reload());
             }
         }
-       
-        if (Input.GetButtonDown("Jump") && jumpCount < jumpMax)
-        {
-            aud.PlayOneShot(audJump[Random.Range(0, audJump.Length)], audJumpVol);
-            jumpCount++;
-            playerVel.y = jumpSpeed;
-        }
-        playerVel.y -= gravity * Time.deltaTime;
-        controller.Move(playerVel * Time.deltaTime);
     }
     void Sprint()
     {
@@ -108,13 +119,18 @@ public class playerController : MonoBehaviour, IDamage
     }
     IEnumerator reload()
     {
-        gameManager.Instance.reloadUI.SetActive(true);
-        GetComponent<AudioSource>().PlayOneShot(gunList[selectedGun].reloadSound, gunList[selectedGun].reloadVol);
-        yield return new WaitForSeconds(gunList[selectedGun].reloadTime);
+        ReloadAnim.SetBool("Reloading", true);
+        isReloading = true;
+        //  gameManager.Instance.reloadUI.SetActive(true);
+        yield return new WaitForSeconds(gunList[selectedGun].reloadTime - .25f);
+        ReloadAnim.SetBool("Reloading", false);
+        yield return new WaitForSeconds(.25f);
         gunList[selectedGun].ammoCurrent -= (gunList[selectedGun].magMax - gunList[selectedGun].magAmmount);
         gunList[selectedGun].magAmmount += gunList[selectedGun].magMax - gunList[selectedGun].magAmmount;
-        UpdateAmmoUi(true);
-        gameManager.Instance.reloadUI.SetActive(false);
+        isReloading = false;
+        UpdateAmmoUi();
+
+        // gameManager.Instance.reloadUI.SetActive(false);
     }
     IEnumerator shoot()
     {
@@ -140,7 +156,12 @@ public class playerController : MonoBehaviour, IDamage
         yield return new WaitForSeconds(shootRate);
         isShooting = false;
     }
-
+    IEnumerator FlashMuzzle()
+    {
+        muzzleFlash.SetActive(true);
+        yield return new WaitForSeconds(0.05f);
+        muzzleFlash.SetActive(false);
+    }
     public void TakeDamage(int amount)
     {
         aud.PlayOneShot(audPlayerHit[Random.Range(0, audPlayerHit.Length)], audPlayerHitVol);
@@ -164,17 +185,13 @@ public class playerController : MonoBehaviour, IDamage
     {
         gameManager.Instance.playerHPBar.fillAmount = (float)HP / HPOrig;
     }
-    void UpdateAmmoUi(bool reload = false)
+    void UpdateAmmoUi()
     {
-        if (!reload)
-        {
+
             gameManager.Instance.magAmmoText.text = gunList[selectedGun].magAmmount.ToString("F0");
-        }
-        else
-        {
-            gameManager.Instance.magAmmoText.text = gunList[selectedGun].magMax.ToString("F0");
+
             gameManager.Instance.reserverAmmoText.text = gunList[selectedGun].ammoCurrent.ToString("F0");
-        }
+        
 
     }
     public void getGunStats(GunStats gun)
@@ -195,15 +212,18 @@ public class playerController : MonoBehaviour, IDamage
     }
     void selectGun()
     {
+
         if (Input.GetAxis("Mouse ScrollWheel") > 0 && selectedGun < gunList.Count - 1)
         {
             selectedGun++;
             changeGun();
+            UpdateAmmoUi();
         }
         else if (Input.GetAxis("Mouse ScrollWheel") < 0 && selectedGun > 0)
         {
             selectedGun--;
             changeGun();
+            UpdateAmmoUi();
         }
     }
     void changeGun()
@@ -257,15 +277,12 @@ public class playerController : MonoBehaviour, IDamage
 
     public void AddAmmo(int amount)
     {
-        gunList[selectedGun].ammoCurrent += amount;
+        if (gunList.Count > 0)
+        {
+            gunList[selectedGun].ammoCurrent += amount;
 
-        gameManager.Instance.reserverAmmoText.text = gunList[selectedGun].ammoCurrent.ToString("F0");
-    }
+            gameManager.Instance.reserverAmmoText.text = gunList[selectedGun].ammoCurrent.ToString("F0");
+        }
 
-    IEnumerator FlashMuzzle()
-    {
-        muzzleFlash.SetActive(true);
-        yield return new WaitForSeconds(0.05f);
-        muzzleFlash.SetActive(false);
     }
 }
