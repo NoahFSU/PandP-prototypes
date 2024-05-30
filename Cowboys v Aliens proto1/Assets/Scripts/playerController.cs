@@ -13,11 +13,14 @@ public class playerController : MonoBehaviour, IDamage
     [SerializeField] int gravity;
     [SerializeField] float crouchSpeedMod = 0.5f;
 
+    [SerializeField] GameObject muzzleFlash;
     [SerializeField] GameObject gunModel;
     [SerializeField] int shootDamage;
     [SerializeField] int shootDist;
     [SerializeField] float shootRate;
-    [SerializeReference] List<GunStats> gunList = new List<GunStats>();
+    [SerializeField] List<GunStats> gunList = new List<GunStats>();
+
+    [SerializeField] AudioSource audio;
     
 
     Vector3 moveDir;
@@ -110,7 +113,12 @@ public class playerController : MonoBehaviour, IDamage
     IEnumerator shoot()
     {
         isShooting = true;
+
+        audio.PlayOneShot(gunList[selectedGun].shootSound, gunList[selectedGun].shootVol);
         gunList[selectedGun].magAmmount--;
+
+        StartCoroutine(FlashMuzzle());
+
         RaycastHit hit;
         if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, shootDist))
         {
@@ -165,12 +173,16 @@ public class playerController : MonoBehaviour, IDamage
     public void getGunStats(GunStats gun)
     {
         gunList.Add(gun);
+
         selectedGun = gunList.Count - 1;
+
         shootDamage = gun.shootDamage;
         shootRate = gun.shootRate;
         shootDist = gun.shootDistance;
+
         gameManager.Instance.magAmmoText.text = gun.magMax.ToString("F0");
         gameManager.Instance.reserverAmmoText.text = gun.ammoCurrent.ToString("F0");
+
         gunModel.GetComponent<MeshFilter>().sharedMesh = gun.gunModel.GetComponent<MeshFilter>().sharedMesh;
         gunModel.GetComponent<MeshRenderer>().sharedMaterial = gun.gunModel.GetComponent<MeshRenderer>().sharedMaterial;
     }
@@ -228,5 +240,12 @@ public class playerController : MonoBehaviour, IDamage
     public void RestoreHealth(int amount)
     {
         HP += amount;
+    }
+
+    IEnumerator FlashMuzzle()
+    {
+        muzzleFlash.SetActive(true);
+        yield return new WaitForSeconds(0.05f);
+        muzzleFlash.SetActive(false);
     }
 }

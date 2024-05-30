@@ -16,7 +16,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     [SerializeField] FloatingHealthbar healthbar;
 
     [SerializeField] GameObject bullet;
-    [SerializeField] int enemyHP;
+    [SerializeField] float enemyHP, enemyMHP = 3f;
     [SerializeField] int enemySpeed;
     [SerializeField] int enemyShootingDMG;
     [SerializeField] float enemyShooingRate;
@@ -26,6 +26,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     [SerializeField] int roamingDistance;
     [SerializeField] int roamTimer;
     [SerializeField] int animationSpeedTrans;
+
 
     Vector3 playerDirection;
     Vector3 startingPos;
@@ -38,11 +39,16 @@ public class EnemyAI : MonoBehaviour, IDamage
     bool destinationChoosen;
 
 
+    private void Awake()
+    {
+        healthbar = GetComponentInChildren<FloatingHealthbar>();
+    }
     // Start is called before the first frame update
     void Start()
     {
+        enemyHP = enemyMHP;
         gameManager.Instance.updateGameGoal(1);
-        healthbar.UpdateHealthBar(enemyHP);
+        healthbar.UpdateHealthBar(enemyHP, enemyMHP);
 
         startingPos = transform.position;
         stoppingDistanceOrig = agent.stoppingDistance;
@@ -129,7 +135,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     public void TakeDamage(int amount)
     {
         enemyHP -= amount;
-        healthbar.UpdateHealthBar(enemyHP);
+        healthbar.UpdateHealthBar(enemyHP, enemyMHP);
         agent.SetDestination(gameManager.Instance.Player.transform.position);
         StartCoroutine(FlashingRed());
 

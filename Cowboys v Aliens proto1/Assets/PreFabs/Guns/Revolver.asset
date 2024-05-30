@@ -12,14 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40b6f1b47a5dd4443a57baa413588e88, type: 3}
   m_Name: Revolver
   m_EditorClassIdentifier: 
-  gunModel: {fileID: 5884405469530735240, guid: 3d6c7430bd21a564489df266ea8864e1, type: 3}
-  shootDamage: 35
+  gunModel: {fileID: 7055669345451170858, guid: 20556134e1eed6947a46a0ee89d57d8f, type: 3}
+  shootDamage: 1
   shootDistance: 421
   shootRate: 1
   reloadTime: 1.5
   projAmmount: 1
   ammoMax: 100
-  magAmmount: 6
+  magAmmount: 0
   magMax: 6
   ammoCurrent: 100
   hitEffect: {fileID: 0}

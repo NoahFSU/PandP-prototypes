@@ -15,7 +15,7 @@ public class FriendlyAI : MonoBehaviour, IDamage
     [SerializeField] FloatingHealthbar healthbar;
 
     [SerializeField] GameObject bullet;
-    [SerializeField] int friendlyHP;
+    [SerializeField] float friendlyHP, friendlyMHP;
     [SerializeField] int friendlySpeed;
     [SerializeField] int friendlyShootingDMG;
     [SerializeField] float friendlyShooingRate;
@@ -39,7 +39,7 @@ public class FriendlyAI : MonoBehaviour, IDamage
     // Start is called before the first frame update
     void Start()
     {
-        healthbar.UpdateHealthBar(friendlyHP);
+        healthbar.UpdateHealthBar(friendlyHP, friendlyHP);
 
         startingPos = transform.position;
         stoppingDistanceOrig = agent.stoppingDistance;
@@ -121,7 +121,7 @@ public class FriendlyAI : MonoBehaviour, IDamage
     public void TakeDamage(int amount)
     {
         friendlyHP -= amount;
-        healthbar.UpdateHealthBar(friendlyHP);
+        healthbar.UpdateHealthBar(friendlyHP, friendlyMHP);
         agent.SetDestination(gameManager.Instance.Enemy.transform.position);
         StartCoroutine(FlashingRed());
 
