@@ -12,16 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40b6f1b47a5dd4443a57baa413588e88, type: 3}
   m_Name: LeverRifle
   m_EditorClassIdentifier: 
-  gunModel: {fileID: 0}
+  gunModel: {fileID: 5884322393017213235, guid: 2a23ad109c3b3ae43a414b5d209b915d, type: 3}
   shootDamage: 72
   shootDistance: 644
   shootRate: 1.65
   reloadTime: 0.5
   projAmmount: 1
   ammoMax: 100
-  magAmmount: 0
-  magMax: 8
-  ammoCurrent: 0
+  magAmmount: 3
+  magMax: 5
+  ammoCurrent: 99
   hitEffect: {fileID: 0}
-  shootSound: {fileID: 0}
-  shootVol: 0
+  shootSound: {fileID: 8300000, guid: bd83c36222ec1c0448601661f1573860, type: 3}
+  reloadSound: {fileID: 8300000, guid: af63539a5e39c99489395bdea2471f60, type: 3}
+  shootVol: 1
+  reloadVol: 1
