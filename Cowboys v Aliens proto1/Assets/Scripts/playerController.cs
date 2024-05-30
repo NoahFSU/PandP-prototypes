@@ -246,8 +246,11 @@ public class playerController : MonoBehaviour, IDamage
 
     public void AddAmmo(int amount)
     {
-        gunList[selectedGun].ammoCurrent += amount;
+        if(gunList.Count > 0)
+        {
+            gunList[selectedGun].ammoCurrent += amount;
 
-        gameManager.Instance.reserverAmmoText.text = gunList[selectedGun].ammoCurrent.ToString("F0");
+            gameManager.Instance.reserverAmmoText.text = gunList[selectedGun].ammoCurrent.ToString("F0");
+        }
     }
 }
