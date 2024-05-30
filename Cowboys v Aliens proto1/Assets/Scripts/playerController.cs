@@ -119,7 +119,7 @@ public class playerController : MonoBehaviour, IDamage
     {
         isShooting = true;
 
-        audio.PlayOneShot(gunList[selectedGun].shootSound, gunList[selectedGun].shootVol);
+        GetComponent<AudioSource>().PlayOneShot(gunList[selectedGun].shootSound, gunList[selectedGun].shootVol);
         gunList[selectedGun].magAmmount--;
 
         StartCoroutine(FlashMuzzle());
