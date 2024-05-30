@@ -8,6 +8,10 @@ public class TeleportFunction : MonoBehaviour
 
     //set a location.
     [SerializeField] Transform toLocation;
+    [SerializeField] AudioSource aud;
+    public AudioClip playerTp;
+    [Range(0, 1)][SerializeField] float audPlayerTPVol;
+
     //set player (for Now).
     public GameObject thePlayer;
     public bool touched;
@@ -15,7 +19,9 @@ public class TeleportFunction : MonoBehaviour
 
     void OnTriggerEnter(Collider Col)
     {
+        
         gameManager.Instance.Player.GetComponent<CharacterController>().enabled = false;
+        aud.PlayOneShot(playerTp, audPlayerTPVol);
         Col.transform.position = toLocation.transform.position;
         gameManager.Instance.Player.GetComponent<CharacterController>().enabled = true;
     }
