@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Revolver
   m_EditorClassIdentifier: 
   gunModel: {fileID: 7055669345451170858, guid: 20556134e1eed6947a46a0ee89d57d8f, type: 3}
-  shootDamage: 1
+  shootDamage: 32
   shootDistance: 421
   shootRate: 1
   reloadTime: 1.5
