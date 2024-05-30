@@ -47,7 +47,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     void Start()
     {
         enemyHP = enemyMHP;
-        gameManager.Instance.updateGameGoal(1);
+       
         healthbar.UpdateHealthBar(enemyHP, enemyMHP);
 
         startingPos = transform.position;
