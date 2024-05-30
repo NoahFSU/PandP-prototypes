@@ -109,6 +109,7 @@ public class playerController : MonoBehaviour, IDamage
     IEnumerator reload()
     {
         gameManager.Instance.reloadUI.SetActive(true);
+        GetComponent<AudioSource>().PlayOneShot(gunList[selectedGun].reloadSound, gunList[selectedGun].reloadVol);
         yield return new WaitForSeconds(gunList[selectedGun].reloadTime);
         gunList[selectedGun].ammoCurrent -= (gunList[selectedGun].magMax - gunList[selectedGun].magAmmount);
         gunList[selectedGun].magAmmount += gunList[selectedGun].magMax - gunList[selectedGun].magAmmount;
@@ -256,12 +257,9 @@ public class playerController : MonoBehaviour, IDamage
 
     public void AddAmmo(int amount)
     {
-        if(gunList.Count > 0)
-        {
-            gunList[selectedGun].ammoCurrent += amount;
+        gunList[selectedGun].ammoCurrent += amount;
 
-            gameManager.Instance.reserverAmmoText.text = gunList[selectedGun].ammoCurrent.ToString("F0");
-        }
+        gameManager.Instance.reserverAmmoText.text = gunList[selectedGun].ammoCurrent.ToString("F0");
     }
 
     IEnumerator FlashMuzzle()
