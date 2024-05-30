@@ -1,6 +1,10 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Cowboys v Aliens proto1/Assets/ProBuilder Data.meta
 guid: 406658e53395f7c418a269f1a4d751fc
 folderAsset: yes
+========
+guid: 2a295ce5688a47742b2a76addef843bf
+>>>>>>>> 0537ddf3b9e1bd239539ff583c8736037f80bf24:Cowboys v Aliens proto1/Assets/Unity_Store_Downloads/AmmoBox/AmmoBox.unity.meta
 DefaultImporter:
   externalObjects: {}
   userData: 
