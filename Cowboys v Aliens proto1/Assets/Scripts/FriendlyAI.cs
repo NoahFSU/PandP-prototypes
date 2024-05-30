@@ -1,172 +1,114 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.Timeline;
 using UnityEngine;
-using UnityEngine.AI;
+using System.Collections;
 
 public class FriendlyAI : MonoBehaviour, IDamage
 {
-    [SerializeField] Renderer model;
-    [SerializeField] NavMeshAgent agent;
+    [SerializeField] int turretHP;
     [SerializeField] Transform shootingPos;
-
-    //uncomment when the model is fully implemented
-    //[SerializeField] Transform headPos; 
-    [SerializeField] FloatingHealthbar healthbar;
-
     [SerializeField] GameObject bullet;
-    [SerializeField] float friendlyHP, friendlyMHP;
-    [SerializeField] int friendlySpeed;
-    [SerializeField] int friendlyShootingDMG;
-    [SerializeField] float friendlyShooingRate;
-
-    [SerializeField] int viewAngle;
-    [SerializeField] int faceTargetSpeed;
-    [SerializeField] int roamingDistance;
-    [SerializeField] int roamTimer;
-
-    Vector3 enemyDirection;
-    Vector3 startingPos;
-
-    float angleToTarget;
-    float stoppingDistanceOrig;
+    [SerializeField] int shootingDamage;
+    [SerializeField] float shootingRate;
+    [SerializeField] float rotationSpeed;
+    [SerializeField] float shootingRange;
 
     bool isShooting;
-    bool isEnemyInRange;
-    bool destinationChoosen;
-
+    Transform target; // Target to shoot at
 
     // Start is called before the first frame update
     void Start()
     {
-        healthbar.UpdateHealthBar(friendlyHP, friendlyHP);
-
-        startingPos = transform.position;
-        stoppingDistanceOrig = agent.stoppingDistance;
-
-        agent.speed = friendlySpeed;
+        if (shootingPos == null)
+        {
+            Debug.LogError("Shooting position not assigned for FriendlyAI: " + gameObject.name);
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (isEnemyInRange && !CanSeeEnemy())
+        // Find nearest enemy within shooting range
+        FindNearestEnemy();
+
+        if (target != null)
         {
-            StartCoroutine(Roaming());
-        }
-        else if (!isEnemyInRange)
-        {
-            StartCoroutine(Roaming());
-        }
-    }
+            // Rotate towards the target
+            Vector3 targetDir = target.position - transform.position;
+            Quaternion targetRotation = Quaternion.LookRotation(targetDir);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
 
-    IEnumerator Roaming()
-    {
-        if (!destinationChoosen && agent.remainingDistance < 0.05f)
-        {
-            destinationChoosen = true;
-            agent.stoppingDistance = 0;
-
-            yield return new WaitForSeconds(roamTimer);
-
-            Vector3 randPos = Random.insideUnitSphere * roamingDistance;
-            randPos += startingPos;
-
-            NavMeshHit hit;
-            NavMesh.SamplePosition(randPos, out hit, roamingDistance, 1);
-            agent.SetDestination(hit.position);
-
-            destinationChoosen = false;
-        }
-    }
-
-    bool CanSeeEnemy()
-    {
-        enemyDirection = gameManager.Instance.Enemy.transform.position - transform.position;//headPos.position;
-        angleToTarget = Vector3.Angle(new Vector3(enemyDirection.x, enemyDirection.y + 1, enemyDirection.z), transform.forward);
-
-        //comment out when everything is working perfectly fine
-        Debug.Log(angleToTarget);
-        Debug.DrawRay(/*headPos.position*/ transform.position, enemyDirection);
-
-        RaycastHit hit;
-        if (Physics.Raycast(/*headPos.position*/ transform.position, enemyDirection, out hit))
-        {
-            if (hit.collider.CompareTag("Enemy") && angleToTarget <= viewAngle)
+            // Check if the target is within shooting range and line of sight
+            if (!isShooting && CanSeeTarget())
             {
-                agent.stoppingDistance = stoppingDistanceOrig;
-                agent.SetDestination(gameManager.Instance.Enemy.transform.position);
-                if (!isShooting)
-                {
-                    StartCoroutine(Shoot());
-                }
-
-                if (agent.remainingDistance <= agent.stoppingDistance)
-                {
-                    FaceTarget();
-                }
-                return true;
+                StartCoroutine(Shoot());
             }
-        }
-        agent.stoppingDistance = 0;
-        return false;
-    }
-
-    void FaceTarget()
-    {
-        Quaternion rot = Quaternion.LookRotation(new Vector3(enemyDirection.x, enemyDirection.y, enemyDirection.z));
-        transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * faceTargetSpeed);
-    }
-
-    public void TakeDamage(int amount)
-    {
-        friendlyHP -= amount;
-        healthbar.UpdateHealthBar(friendlyHP, friendlyMHP);
-        agent.SetDestination(gameManager.Instance.Enemy.transform.position);
-        StartCoroutine(FlashingRed());
-
-        if (friendlyHP <= 0)
-        {
-            Destroy(gameObject);
         }
     }
 
     IEnumerator Shoot()
     {
         isShooting = true;
-        GameObject newBullet = Instantiate(bullet, shootingPos.position, transform.rotation);
-        IDamage enemyDmg = newBullet.GetComponent<IDamage>();
-        if (enemyDmg != null)
-        {
-            enemyDmg.TakeDamage(friendlyShootingDMG);
-        }
 
-        yield return new WaitForSeconds(friendlyShooingRate);
+        Instantiate(bullet, shootingPos.position, transform.rotation);
+
+        yield return new WaitForSeconds(shootingRate);
+
         isShooting = false;
     }
 
-    IEnumerator FlashingRed()
+    void FindNearestEnemy()
     {
-        Color temp = model.material.color;
-        model.material.color = Color.red;
-        yield return new WaitForSeconds(0.1f);
-        model.material.color = temp;
-    }
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        float closestDistance = Mathf.Infinity;
+        Transform nearestEnemy = null;
 
-    void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Enemy"))
+        foreach (GameObject enemy in enemies)
         {
-            isEnemyInRange = true;
+            float distance = Vector3.Distance(transform.position, enemy.transform.position);
+            if (distance < closestDistance && distance <= shootingRange)
+            {
+                closestDistance = distance;
+                nearestEnemy = enemy.transform;
+            }
         }
+
+        target = nearestEnemy;
     }
 
-    void OnTriggerExit(Collider other)
+   
+
+    bool CanSeeTarget()
     {
-        if (other.CompareTag("Enemy"))
+        if (target == null)
+            return false;
+
+        Vector3 directionToTarget = target.position - shootingPos.position;
+        directionToTarget.y = directionToTarget.y + 1;
+        RaycastHit hit;
+        Debug.DrawRay(transform.position, directionToTarget);
+
+        if (Physics.Raycast(transform.position, directionToTarget, out hit))
         {
-            isEnemyInRange = false;
-            agent.stoppingDistance = 0;
+            if (hit.collider.CompareTag("Enemy"))
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public void SetTarget(Transform newTarget)
+    {
+        target = newTarget;
+    }
+
+    public void TakeDamage(int amount)
+    {
+        turretHP -= amount;
+
+        if (turretHP <= 0)
+        {
+            Destroy(gameObject);
         }
     }
 }

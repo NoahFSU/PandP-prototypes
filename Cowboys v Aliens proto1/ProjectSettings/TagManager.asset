@@ -5,13 +5,12 @@ TagManager:
   serializedVersion: 2
   tags:
   - Enemy
-  tags:
   - Player Spawn Pos
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Enemy
   - Water
   - UI
   - 
