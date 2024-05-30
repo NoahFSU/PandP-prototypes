@@ -19,9 +19,9 @@ MonoBehaviour:
   reloadTime: 1
   projAmmount: 1
   ammoMax: 100
-  magAmmount: 0
+  magAmmount: 12
   magMax: 15
-  ammoCurrent: 0
+  ammoCurrent: 190
   hitEffect: {fileID: 0}
   shootSound: {fileID: 0}
   shootVol: 0
