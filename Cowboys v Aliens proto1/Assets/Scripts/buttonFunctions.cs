@@ -35,4 +35,5 @@ public class buttonFunctions : MonoBehaviour
         SceneManager.LoadScene(level);
         gameManager.Instance.stateUnPaused();
     }
+
 }
