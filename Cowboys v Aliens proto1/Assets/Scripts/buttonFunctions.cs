@@ -23,11 +23,7 @@ public class buttonFunctions : MonoBehaviour
 
     public void Quit()
     {
-    #if UNITY_EDITOR
-        UnityEditor.EditorApplication.isPlaying = false;
-     #else
-        Application.Quit();
-    #endif
+        SceneManager.LoadScene("MainMenu");
     }
 
     public void LoadLevel(int level)
