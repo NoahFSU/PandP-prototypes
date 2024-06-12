@@ -7,18 +7,18 @@ using UnityEngine.UI;
 public class GunStats : ScriptableObject
 {
     public GameObject gunModel;
+    [Header("Gun Settings")]
     [Range(1, 100)] public int shootDamage;
     [Range(25, 1000)] public int shootDistance;
     [Range(0.1f, 6)] public float shootRate;
     [Range(0.1f, 6)] public float reloadTime;
     [Range(1, 9)] public int projAmmount;
-
     public int ammoMax;
     public int magAmmount;
     public int magMax;
     public int ammoCurrent;
 
-
+    [Header("Dependiceies")]
     public ParticleSystem hitEffect;
     public AudioClip shootSound;
     public AudioClip reloadSound;
