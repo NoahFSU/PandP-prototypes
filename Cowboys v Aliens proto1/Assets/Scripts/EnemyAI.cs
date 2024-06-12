@@ -6,21 +6,19 @@ using UnityEngine.AI;
 
 public class EnemyAI : MonoBehaviour, IDamage, IGetLassoed
 {
+    [Header("Dependencies")]
     [SerializeField] Animator anima;
     [SerializeField] Renderer model;
     [SerializeField] NavMeshAgent agent;
     [SerializeField] Transform shootingPos;
-
-    //uncomment when the model is fully implemented
-    [SerializeField] Transform headPos; 
+    [SerializeField] Transform headPos;
     [SerializeField] FloatingHealthbar healthbar;
-
     [SerializeField] GameObject bullet;
+    [Header("Enemy Values")]
     [SerializeField] float enemyHP, enemyMHP = 3f;
     [SerializeField] int enemySpeed;
     [SerializeField] int enemyShootingDMG;
     [SerializeField] float enemyShooingRate;
-
     [SerializeField] int viewAngle;
     [SerializeField] int faceTargetSpeed;
     [SerializeField] int roamingDistance;
@@ -49,7 +47,7 @@ public class EnemyAI : MonoBehaviour, IDamage, IGetLassoed
     void Start()
     {
         enemyHP = enemyMHP;
-       
+
         healthbar.UpdateHealthBar(enemyHP, enemyMHP);
 
         startingPos = transform.position;
@@ -64,7 +62,7 @@ public class EnemyAI : MonoBehaviour, IDamage, IGetLassoed
         float animationSpeed = agent.velocity.normalized.magnitude;
 
         anima.SetFloat("Speed", Mathf.Lerp(anima.GetFloat("Speed"), animationSpeed, Time.deltaTime * animationSpeedTrans));
-       
+
 
         if (isPlayerInRange && !CanSeePlayer())
         {
@@ -117,7 +115,7 @@ public class EnemyAI : MonoBehaviour, IDamage, IGetLassoed
                     StartCoroutine(Shoot());
                 }
 
-                if(agent.remainingDistance <= agent.stoppingDistance)
+                if (agent.remainingDistance <= agent.stoppingDistance)
                 {
                     FaceTarget();
                 }
@@ -141,7 +139,7 @@ public class EnemyAI : MonoBehaviour, IDamage, IGetLassoed
         agent.SetDestination(gameManager.Instance.Player.transform.position);
         StartCoroutine(FlashingRed());
 
-        if(enemyHP <= 0)
+        if (enemyHP <= 0)
         {
             gameManager.Instance.updateGameGoal(-1);
             Destroy(gameObject);
