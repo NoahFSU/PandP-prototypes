@@ -21,8 +21,12 @@ public class GunStats : ScriptableObject
     [Header("Dependiceies")]
     public ParticleSystem hitEffect;
     public AudioClip shootSound;
+    public AudioClip emptySound;
+    public AudioClip equipSound;
     public AudioClip reloadSound;
     [Range(0, 1)] public float shootVol;
+    [Range(0, 1)] public float emptyVol;
+    [Range(0, 1)] public float equipVol;
     [Range(0, 1)] public float reloadVol;
     public Image Icon;
 }

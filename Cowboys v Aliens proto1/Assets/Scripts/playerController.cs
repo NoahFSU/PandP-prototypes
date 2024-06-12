@@ -103,6 +103,10 @@ public class playerController : MonoBehaviour, IDamage
         {
             StartCoroutine(shoot());
         }
+        else if(Input.GetButton("Fire1") && gunList.Count > 0 && gunList[selectedGun].magAmmount <= 0 && !isShooting)
+        {
+            GetComponent<AudioSource>().PlayOneShot(gunList[selectedGun].emptySound, gunList[selectedGun].emptyVol);
+        }
         if (Input.GetButtonDown("Reload"))
         {
             if (gunList[selectedGun].ammoCurrent > 0)
@@ -246,6 +250,7 @@ public class playerController : MonoBehaviour, IDamage
 
         gunModel.GetComponent<MeshFilter>().sharedMesh = gunList[selectedGun].gunModel.GetComponent<MeshFilter>().sharedMesh;
         gunModel.GetComponent<MeshRenderer>().sharedMaterial = gunList[selectedGun].gunModel.GetComponent<MeshRenderer>().sharedMaterial;
+        GetComponent<AudioSource>().PlayOneShot(gunList[selectedGun].equipSound, gunList[selectedGun].equipVol);
     }
 
     public void SpawnPlayer()

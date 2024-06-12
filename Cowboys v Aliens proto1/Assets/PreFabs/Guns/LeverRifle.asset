@@ -19,12 +19,16 @@ MonoBehaviour:
   reloadTime: 2.56
   projAmmount: 1
   ammoMax: 100
-  magAmmount: 5
+  magAmmount: 0
   magMax: 5
-  ammoCurrent: 94
+  ammoCurrent: 100
   hitEffect: {fileID: 6683926199875988124, guid: 7ea08586186f4b443891498329fac0ba, type: 3}
   shootSound: {fileID: 8300000, guid: 982b1896316155b4fbd2cc5cef6d79a6, type: 3}
+  emptySound: {fileID: 8300000, guid: 68c7a8ab22fbd234bb937077132f6453, type: 3}
+  equipSound: {fileID: 0}
   reloadSound: {fileID: 8300000, guid: af63539a5e39c99489395bdea2471f60, type: 3}
-  shootVol: 1
+  shootVol: 0.74
+  emptyVol: 0.55
+  equipVol: 0
   reloadVol: 1
   Icon: {fileID: 0}
