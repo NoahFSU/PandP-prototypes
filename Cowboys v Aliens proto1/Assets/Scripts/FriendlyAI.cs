@@ -111,8 +111,4 @@ public class FriendlyAI : MonoBehaviour, IDamage
             Destroy(gameObject);
         }
     }
-    public void Immobilize()
-    {
-
-    }
 }

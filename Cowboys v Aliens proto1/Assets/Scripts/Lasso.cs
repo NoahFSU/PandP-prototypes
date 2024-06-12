@@ -28,12 +28,20 @@ public class Lasso : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        IDamage dmg = other.GetComponent<IDamage>();
-        if (dmg != null)
+        if (other.isTrigger)
         {
-            dmg.Immobilize();
+            return;
+        }
+
+        IGetLassoed gotLassoed = other.gameObject.GetComponent<IGetLassoed>();
+        if (gotLassoed != null)
+        {
+            gotLassoed.GetLassoed();
             Destroy(gameObject);
         }
     }
+
+    
+
 
 }

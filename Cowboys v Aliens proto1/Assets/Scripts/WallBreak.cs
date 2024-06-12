@@ -62,8 +62,4 @@ public class WallBreak : MonoBehaviour, IDamage
         WallModel.material.color = Color.white;
     }
 
-    public void Immobilize()
-    {
-
-    }
 }

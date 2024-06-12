@@ -4,7 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyAI : MonoBehaviour, IDamage
+public class EnemyAI : MonoBehaviour, IDamage, IGetLassoed
 {
     [SerializeField] Animator anima;
     [SerializeField] Renderer model;
@@ -148,7 +148,7 @@ public class EnemyAI : MonoBehaviour, IDamage
         }
     }
 
-    public void Immobilize()
+    public void GetLassoed()
     {
         if (!isImmobilized)
         {

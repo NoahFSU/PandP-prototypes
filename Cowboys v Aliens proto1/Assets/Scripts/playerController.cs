@@ -185,10 +185,7 @@ public class playerController : MonoBehaviour, IDamage
         }
     }
 
-    public void Immobilize()
-    {
-
-    }
+ 
     IEnumerator flashScreenDamage()
     {
         gameManager.Instance.playerFlashDamage.SetActive(true);
