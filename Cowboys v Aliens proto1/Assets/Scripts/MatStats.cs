@@ -2,8 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu]
-public class MatStats : ScriptableObject
+public class MatStats : MonoBehaviour
 {
     public ParticleSystem hitEffect;
     public AudioClip HitSound;
