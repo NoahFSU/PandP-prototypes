@@ -25,6 +25,7 @@ public class playerController : MonoBehaviour, IDamage
     [SerializeField] AudioClip[] audJump;
     [Range(0, 1)][SerializeField] float audJumpVol;
     [SerializeField] Animator ReloadAnim;
+    [SerializeField] GameObject lassoPrefab;
 
 
 
@@ -59,6 +60,10 @@ public class playerController : MonoBehaviour, IDamage
             Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * shootDist, Color.red);
             movement();
             selectGun();
+            if (Input.GetButtonDown("Fire2"))
+            {
+                ThrowLasso();
+            }
         }
     }
     void OnEnable()
@@ -179,6 +184,11 @@ public class playerController : MonoBehaviour, IDamage
             gameManager.Instance.youLose();
         }
     }
+
+    public void Immobilize()
+    {
+
+    }
     IEnumerator flashScreenDamage()
     {
         gameManager.Instance.playerFlashDamage.SetActive(true);
@@ -289,5 +299,13 @@ public class playerController : MonoBehaviour, IDamage
             gameManager.Instance.reserverAmmoText.text = gunList[selectedGun].ammoCurrent.ToString("F0");
         }
 
+    }
+
+    void ThrowLasso()
+    {
+        Vector3 spawnPosition = Camera.main.transform.position + Camera.main.transform.forward;
+        GameObject lassoInstance = Instantiate(lassoPrefab,spawnPosition, Camera.main.transform.rotation);
+        Rigidbody rb = lassoInstance.GetComponent<Rigidbody>();
+        rb.velocity = Camera.main.transform.forward * 10f;
     }
 }

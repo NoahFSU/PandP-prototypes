@@ -26,6 +26,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     [SerializeField] int roamingDistance;
     [SerializeField] int roamTimer;
     [SerializeField] int animationSpeedTrans;
+    [SerializeField] float immobilizeDuration;
 
 
     Vector3 playerDirection;
@@ -37,6 +38,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     bool isShooting;
     bool isPlayerInRange;
     bool destinationChoosen;
+    bool isImmobilized;
 
 
     private void Awake()
@@ -144,6 +146,25 @@ public class EnemyAI : MonoBehaviour, IDamage
             gameManager.Instance.updateGameGoal(-1);
             Destroy(gameObject);
         }
+    }
+
+    public void Immobilize()
+    {
+        if (!isImmobilized)
+        {
+            StartCoroutine(ImmobilizeCoroutine());
+        }
+    }
+
+    IEnumerator ImmobilizeCoroutine()
+    {
+        isImmobilized = true;
+        agent.isStopped = true;
+        anima.enabled = false;
+        yield return new WaitForSeconds(immobilizeDuration);
+        agent.isStopped = false;
+        anima.enabled = true;
+        isImmobilized = false;
     }
 
     IEnumerator Shoot()
