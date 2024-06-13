@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1382608810301389757}
+  - component: {fileID: -1951425463262386031}
   - component: {fileID: 204568216373573091}
   - component: {fileID: 7993900550073978690}
   - component: {fileID: 6105215905432716765}
@@ -35,6 +36,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-1951425463262386031
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5741670199458396445}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 674f4a120a78e024f99c576533de5ed9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitEffect: {fileID: 2429347885775842310, guid: 46da30f49eead4f409132d0730019dca, type: 3}
+  HitSound: {fileID: 0}
+  WalkSound: {fileID: 0}
+  hitVol: 0
+  WalkVol: 0
 --- !u!33 &204568216373573091
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -120,3 +138,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WallHP: 5
   WallModel: {fileID: 7993900550073978690}
+  drops: []

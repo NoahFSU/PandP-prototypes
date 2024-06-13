@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1590500665851320911}
   - component: {fileID: 3832993139287037552}
+  - component: {fileID: 1780380573488719382}
   - component: {fileID: 4582927004456153866}
   - component: {fileID: 9014063932982460326}
   m_Layer: 0
@@ -42,6 +43,23 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8246236096732785068}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1780380573488719382
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8246236096732785068}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 674f4a120a78e024f99c576533de5ed9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitEffect: {fileID: 1236369013634729013, guid: edcb4dc54f5be05499900925cd0a00c4, type: 3}
+  HitSound: {fileID: 0}
+  WalkSound: {fileID: 0}
+  hitVol: 0
+  WalkVol: 0
 --- !u!23 &4582927004456153866
 MeshRenderer:
   m_ObjectHideFlags: 0
