@@ -23,7 +23,7 @@ public class buttonFunctions : MonoBehaviour
 
     public void Quit()
     {
-        SceneManager.LoadScene("MainMenu");
+        SceneManager.LoadScene("Main Menu");
     }
 
     public void LoadLevel(int level)
