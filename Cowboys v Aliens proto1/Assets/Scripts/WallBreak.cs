@@ -61,4 +61,5 @@ public class WallBreak : MonoBehaviour, IDamage
         yield return new WaitForSeconds(0.1f);
         WallModel.material.color = Color.white;
     }
+
 }
