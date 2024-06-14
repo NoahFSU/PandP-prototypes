@@ -378,7 +378,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 07f0aedbb0bc79a4d967d29970c39b25, type: 3}
   audJumpVol: 0.5
   ReloadAnim: {fileID: 6407794684003176153}
-  lassoPrefab: {fileID: 2798189744090629190, guid: 65a7f47786b9f6a4d80c98116179b49a, type: 3}
+  lassoPrefab: {fileID: 6222415628160380770, guid: 70524405de903944e846106e3ecb6545, type: 3}
 --- !u!33 &236753657962487452
 MeshFilter:
   m_ObjectHideFlags: 0
