@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7402483000694864897}
   - component: {fileID: 6640555252949852279}
   - component: {fileID: -3698530751847217856}
+  - component: {fileID: -1529134919174051194}
   m_Layer: 0
   m_Name: Teleport pad
   m_TagString: Untagged
@@ -223,3 +224,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &-1529134919174051194
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8411698294095888239}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 674f4a120a78e024f99c576533de5ed9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitEffect: {fileID: 2429347885775842310, guid: 46da30f49eead4f409132d0730019dca, type: 3}
+  HitSound: {fileID: 0}
+  WalkSound: {fileID: 0}
+  hitVol: 0
+  WalkVol: 0

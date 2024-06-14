@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class playerController : MonoBehaviour, IDamage
@@ -103,6 +104,10 @@ public class playerController : MonoBehaviour, IDamage
         {
             StartCoroutine(shoot());
         }
+        else if (Input.GetButton("Fire1") && gunList.Count > 0 && gunList[selectedGun].magAmmount <= 0 && !isShooting)
+        {
+            GetComponent<AudioSource>().PlayOneShot(gunList[selectedGun].emptySound, gunList[selectedGun].emptyVol);
+        }
         if (Input.GetButtonDown("Reload"))
         {
             if (gunList[selectedGun].ammoCurrent > 0)
@@ -159,8 +164,11 @@ public class playerController : MonoBehaviour, IDamage
                 dmg.TakeDamage(shootDamage);
             }
         }
+        if (hit.collider.gameObject.GetComponent<MatStats>() != null)
+        {
+            Instantiate(hit.collider.gameObject.GetComponent<MatStats>().hitEffect, hit.point, Quaternion.identity);
+        }
 
-        Instantiate(gunList[selectedGun].hitEffect, hit.point, Quaternion.identity);
 
         UpdateAmmoUi();
         yield return new WaitForSeconds(shootRate);
@@ -185,7 +193,7 @@ public class playerController : MonoBehaviour, IDamage
         }
     }
 
- 
+
     IEnumerator flashScreenDamage()
     {
         gameManager.Instance.playerFlashDamage.SetActive(true);
@@ -200,10 +208,10 @@ public class playerController : MonoBehaviour, IDamage
     void UpdateAmmoUi()
     {
 
-            gameManager.Instance.magAmmoText.text = gunList[selectedGun].magAmmount.ToString("F0");
+        gameManager.Instance.magAmmoText.text = gunList[selectedGun].magAmmount.ToString("F0");
 
-            gameManager.Instance.reserverAmmoText.text = gunList[selectedGun].ammoCurrent.ToString("F0");
-        
+        gameManager.Instance.reserverAmmoText.text = gunList[selectedGun].ammoCurrent.ToString("F0");
+
 
     }
     public void getGunStats(GunStats gun)
@@ -246,6 +254,7 @@ public class playerController : MonoBehaviour, IDamage
 
         gunModel.GetComponent<MeshFilter>().sharedMesh = gunList[selectedGun].gunModel.GetComponent<MeshFilter>().sharedMesh;
         gunModel.GetComponent<MeshRenderer>().sharedMaterial = gunList[selectedGun].gunModel.GetComponent<MeshRenderer>().sharedMaterial;
+        GetComponent<AudioSource>().PlayOneShot(gunList[selectedGun].equipSound, gunList[selectedGun].equipVol);
     }
 
     public void SpawnPlayer()
@@ -301,7 +310,7 @@ public class playerController : MonoBehaviour, IDamage
     void ThrowLasso()
     {
         Vector3 spawnPosition = Camera.main.transform.position + Camera.main.transform.forward;
-        GameObject lassoInstance = Instantiate(lassoPrefab,spawnPosition, Camera.main.transform.rotation);
+        GameObject lassoInstance = Instantiate(lassoPrefab, spawnPosition, Camera.main.transform.rotation);
         Rigidbody rb = lassoInstance.GetComponent<Rigidbody>();
         rb.velocity = Camera.main.transform.forward * 10f;
     }

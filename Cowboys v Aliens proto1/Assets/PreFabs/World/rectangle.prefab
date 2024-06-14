@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7655294904157288995}
+  - component: {fileID: 8097064722383991155}
   - component: {fileID: 4644357246779091442}
   - component: {fileID: 2515801317226789803}
   - component: {fileID: 2217363478968425093}
@@ -36,6 +37,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8097064722383991155
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1253850121634298003}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 674f4a120a78e024f99c576533de5ed9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitEffect: {fileID: 3162065273893055206, guid: 96c8cb99a0fdc91478fa1c944991c786, type: 3}
+  HitSound: {fileID: 0}
+  WalkSound: {fileID: 0}
+  hitVol: 0
+  WalkVol: 0
 --- !u!114 &4644357246779091442
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -248,7 +266,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 277
+  m_VersionIndex: 286
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []

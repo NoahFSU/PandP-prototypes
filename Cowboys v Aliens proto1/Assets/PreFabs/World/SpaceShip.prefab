@@ -5648,6 +5648,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 625670517377619455}
+  - component: {fileID: 4996304346852500771}
   m_Layer: 0
   m_Name: SpaceShip
   m_TagString: Untagged
@@ -5683,6 +5684,23 @@ Transform:
   - {fileID: 6076896522634827127}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4996304346852500771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1652561108263293342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 674f4a120a78e024f99c576533de5ed9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitEffect: {fileID: 2429347885775842310, guid: 46da30f49eead4f409132d0730019dca, type: 3}
+  HitSound: {fileID: 0}
+  WalkSound: {fileID: 0}
+  hitVol: 0
+  WalkVol: 0
 --- !u!1 &2009867604051082398
 GameObject:
   m_ObjectHideFlags: 0
