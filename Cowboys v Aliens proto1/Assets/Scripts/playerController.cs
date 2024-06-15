@@ -25,7 +25,7 @@ public class playerController : MonoBehaviour, IDamage
     [Range(0, 1)][SerializeField] float audPlayerHitVol;
     [SerializeField] AudioClip[] audJump;
     [Range(0, 1)][SerializeField] float audJumpVol;
-    [SerializeField] Animator ReloadAnim;
+    [SerializeField] Animator GunAnim;
     [SerializeField] GameObject lassoPrefab;
 
 
@@ -71,7 +71,7 @@ public class playerController : MonoBehaviour, IDamage
     {
 
         isReloading = false;
-        ReloadAnim.SetBool("Reloading", false);
+        GunAnim.SetBool("Reloading", false);
 
     }
     void movement()
@@ -129,13 +129,13 @@ public class playerController : MonoBehaviour, IDamage
     }
     IEnumerator reload()
     {
-        ReloadAnim.SetBool("Reloading", true);
+        GunAnim.SetBool("Reloading", true);
         isReloading = true;
         //  gameManager.Instance.reloadUI.SetActive(true);
 
         GetComponent<AudioSource>().PlayOneShot(gunList[selectedGun].reloadSound, gunList[selectedGun].reloadVol);
         yield return new WaitForSeconds(gunList[selectedGun].reloadTime - .25f);
-        ReloadAnim.SetBool("Reloading", false);
+        GunAnim.SetBool("Reloading", false);
         yield return new WaitForSeconds(.25f);
         gunList[selectedGun].ammoCurrent -= (gunList[selectedGun].magMax - gunList[selectedGun].magAmmount);
         gunList[selectedGun].magAmmount += gunList[selectedGun].magMax - gunList[selectedGun].magAmmount;
@@ -146,6 +146,7 @@ public class playerController : MonoBehaviour, IDamage
     }
     IEnumerator shoot()
     {
+        GunAnim.SetTrigger("Shooting");
         isShooting = true;
 
         GetComponent<AudioSource>().PlayOneShot(gunList[selectedGun].shootSound, gunList[selectedGun].shootVol);
@@ -153,26 +154,40 @@ public class playerController : MonoBehaviour, IDamage
 
         StartCoroutine(FlashMuzzle());
 
-        RaycastHit hit;
-        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, shootDist))
+        for (int i = 0; i < gunList[selectedGun].projAmmount; i++)
         {
-            Debug.Log(hit.transform.name);
-            IDamage dmg = hit.collider.GetComponent<IDamage>();
-
-            if (hit.transform != transform && dmg != null)
+            RaycastHit hit;
+            if (Physics.Raycast(Camera.main.transform.position, Accuracy(), out hit, shootDist))
             {
-                dmg.TakeDamage(shootDamage);
+                Debug.Log(hit.transform.position);
+                IDamage dmg = hit.collider.GetComponent<IDamage>();
+                if (hit.transform != transform && dmg != null)
+                {
+                    dmg.TakeDamage(shootDamage);
+
+                }
+                if (hit.collider.gameObject.GetComponent<MatStats>() != null && hit.transform != transform)
+                {
+                    Instantiate(hit.collider.gameObject.GetComponent<MatStats>().hitEffect, hit.point, Quaternion.identity);
+                }
             }
-        }
-        if (hit.collider.gameObject.GetComponent<MatStats>() != null)
-        {
-            Instantiate(hit.collider.gameObject.GetComponent<MatStats>().hitEffect, hit.point, Quaternion.identity);
-        }
 
-
+        }
         UpdateAmmoUi();
+
         yield return new WaitForSeconds(shootRate);
         isShooting = false;
+    }
+    Vector3 Accuracy()
+    {
+        Vector3 targetPos = Camera.main.transform.position + Camera.main.transform.forward * shootDist;
+        targetPos = new Vector3(
+            targetPos.x + Random.Range(-gunList[selectedGun].inaccuracyDistance, gunList[selectedGun].inaccuracyDistance),
+            targetPos.y + Random.Range(-gunList[selectedGun].inaccuracyDistance, gunList[selectedGun].inaccuracyDistance),
+            targetPos.z + Random.Range(-gunList[selectedGun].inaccuracyDistance, gunList[selectedGun].inaccuracyDistance)
+            );
+        Vector3 direction = targetPos - Camera.main.transform.position;
+        return direction.normalized;
     }
     IEnumerator FlashMuzzle()
     {
