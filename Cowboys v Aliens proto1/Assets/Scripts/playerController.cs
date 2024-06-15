@@ -153,26 +153,39 @@ public class playerController : MonoBehaviour, IDamage
 
         StartCoroutine(FlashMuzzle());
 
-        RaycastHit hit;
-        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, shootDist))
+        for (int i = 0; i < gunList[selectedGun].projAmmount; i++)
         {
-            Debug.Log(hit.transform.name);
-            IDamage dmg = hit.collider.GetComponent<IDamage>();
-
-            if (hit.transform != transform && dmg != null)
+            RaycastHit hit;
+            if (Physics.Raycast(Camera.main.transform.position, Accuracy(), out hit, shootDist))
             {
-                dmg.TakeDamage(shootDamage);
+                Debug.Log(hit.transform.position);
+                IDamage dmg = hit.collider.GetComponent<IDamage>();
+                if (hit.transform != transform && dmg != null)
+                {
+                    dmg.TakeDamage(shootDamage);
+                
+                } 
+                if (hit.collider.gameObject.GetComponent<MatStats>() != null && hit.transform != transform)
+                    {
+                        Instantiate(hit.collider.gameObject.GetComponent<MatStats>().hitEffect, hit.point, Quaternion.identity);
+                    }
             }
-        }
-        if (hit.collider.gameObject.GetComponent<MatStats>() != null)
-        {
-            Instantiate(hit.collider.gameObject.GetComponent<MatStats>().hitEffect, hit.point, Quaternion.identity);
-        }
 
-
+        }
         UpdateAmmoUi();
         yield return new WaitForSeconds(shootRate);
         isShooting = false;
+    }
+    Vector3 Accuracy()
+    {
+        Vector3 targetPos = Camera.main.transform.position + Camera.main.transform.forward * shootDist;
+        targetPos = new Vector3(
+            targetPos.x + Random.Range(-gunList[selectedGun].inaccuracyDistance, gunList[selectedGun].inaccuracyDistance),
+            targetPos.y + Random.Range(-gunList[selectedGun].inaccuracyDistance, gunList[selectedGun].inaccuracyDistance),
+            targetPos.z + Random.Range(-gunList[selectedGun].inaccuracyDistance, gunList[selectedGun].inaccuracyDistance)
+            );
+        Vector3 direction = targetPos - Camera.main.transform.position;
+        return direction.normalized;
     }
     IEnumerator FlashMuzzle()
     {
