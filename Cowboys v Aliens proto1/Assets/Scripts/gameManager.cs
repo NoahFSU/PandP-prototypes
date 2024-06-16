@@ -9,7 +9,7 @@ using TMPro;
 public class gameManager : MonoBehaviour
 {
     public static gameManager Instance;
-
+    [Header("UI Dependencies")]
     [SerializeField] GameObject menuActive;
     [SerializeField] GameObject menuPause;
     [SerializeField] GameObject menuWin;
@@ -18,12 +18,15 @@ public class gameManager : MonoBehaviour
     [SerializeField] TMP_Text enemyCountText;
     [SerializeField] public TMP_Text magAmmoText;
     [SerializeField] public TMP_Text reserverAmmoText;
-
+    public Image playerHPBar;
+    public Image playerHPBarCombo;
+    public Image StaminaBar;
+    public Image StaminaBarCombo;
+    public Image reload;
+    [Header("GamePlay Dependencies")]
     public GameObject playerSpawnPos;
     public GameObject playerFlashDamage;
     public GameObject attackWarning;
-    public Image playerHPBar;
-    public Image reload;
     public GameObject Player;
     public GameObject Enemy;
     public playerController playerscript;
@@ -53,7 +56,7 @@ public class gameManager : MonoBehaviour
                 menuActive = menuPause;
                 menuActive.SetActive(isPaused);
             }
-            else if (menuActive == menuPause) 
+            else if (menuActive == menuPause)
             {
                 stateUnPaused();
             }
@@ -82,7 +85,7 @@ public class gameManager : MonoBehaviour
         enemyCount += amount;
         enemyCountText.text = enemyCount.ToString("F0");
 
-        if(enemyCount <= 0)
+        if (enemyCount <= 0)
         {
             statePause();
             menuActive = menuWin;
@@ -92,7 +95,7 @@ public class gameManager : MonoBehaviour
 
     public void youLose()
     {
-        statePause();   
+        statePause();
         menuActive = menuLose;
         menuActive.SetActive(isPaused);
     }

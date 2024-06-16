@@ -5,28 +5,41 @@ using UnityEngine;
 
 public class playerController : MonoBehaviour, IDamage
 {
-    [SerializeField] int HP;
     [SerializeField] CharacterController controller;
+
+    [Header("Player Values")]
+    [SerializeField] int HP;
+
     [SerializeField] int speed;
     [SerializeField] int sprintMod;
+    int maxStamina;
+    [SerializeField] int regenSTimer;
+    [SerializeField] int currentStamina;
+    [SerializeField] float regenTickSpeed = 0.1f;
+    [SerializeField] float drainTickSpeed = 1f;
     [SerializeField] int jumpMax;
     [SerializeField] int jumpSpeed;
     [SerializeField] int gravity;
     [SerializeField] float crouchSpeedMod = 0.5f;
 
+
+    [Header("Gun Settings")]
     [SerializeField] GameObject muzzleFlash;
     [SerializeField] GameObject gunModel;
     [SerializeField] int shootDamage;
     [SerializeField] int shootDist;
     [SerializeField] float shootRate;
     [SerializeReference] List<GunStats> gunList = new List<GunStats>();
+    [SerializeField] Animator GunAnim;
+    [SerializeField] GameObject lassoPrefab;
+
+    [Header("Audio Settings")]
     [SerializeField] AudioSource aud;
     [SerializeField] AudioClip[] audPlayerHit;
     [Range(0, 1)][SerializeField] float audPlayerHitVol;
     [SerializeField] AudioClip[] audJump;
     [Range(0, 1)][SerializeField] float audJumpVol;
-    [SerializeField] Animator GunAnim;
-    [SerializeField] GameObject lassoPrefab;
+
 
 
 
@@ -41,6 +54,11 @@ public class playerController : MonoBehaviour, IDamage
     bool isCrouching = false;
     float origHeight;
     int origSpeed;
+    WaitForSeconds regenTick;
+    WaitForSeconds drainTick;
+    Coroutine regen;
+    Coroutine comboRegen;
+    bool sprinting;
 
     // Start is called before the first frame update
     void Start()
@@ -48,6 +66,9 @@ public class playerController : MonoBehaviour, IDamage
         HPOrig = HP;
         origHeight = controller.height;
         origSpeed = speed;
+        maxStamina = currentStamina;
+        regenTick = new WaitForSeconds(regenTickSpeed);
+        drainTick = new WaitForSeconds(drainTickSpeed);
         SpawnPlayer();
 
     }
@@ -118,14 +139,52 @@ public class playerController : MonoBehaviour, IDamage
     }
     void Sprint()
     {
-        if (Input.GetButtonDown("Sprint"))
+        if (Input.GetButtonDown("Sprint") && currentStamina >= 0)
         {
             speed *= sprintMod;
+            sprinting = true;
+            if (regen != null)
+                StopCoroutine(regen);
+            StartCoroutine(StaminaLoss());
         }
-        else if (Input.GetButtonUp("Sprint"))
+        else if (Input.GetButtonUp("Sprint") || (sprinting && currentStamina == 0))
         {
-            speed /= sprintMod;
+
+            if (sprinting)
+                speed /= sprintMod;
+            sprinting = false;
+            gameManager.Instance.StaminaBarCombo.fillAmount = (float)currentStamina / maxStamina;
+            regen = StartCoroutine(StaminaRegen());
         }
+
+    }
+    IEnumerator StaminaLoss()
+    {
+        while (sprinting && currentStamina - 1 >= 0)
+        {
+
+
+            --currentStamina;
+            gameManager.Instance.StaminaBar.fillAmount = (float)currentStamina / maxStamina;
+            yield return drainTick;
+
+        }
+    }
+    IEnumerator StaminaRegen()
+    {
+
+        yield return new WaitForSeconds(regenSTimer);
+        while (currentStamina < maxStamina)
+        {
+            ++currentStamina;
+            gameManager.Instance.StaminaBar.fillAmount = (float)currentStamina / maxStamina;
+            if (gameManager.Instance.StaminaBarCombo.fillAmount <= gameManager.Instance.StaminaBar.fillAmount)
+            {
+                gameManager.Instance.StaminaBarCombo.fillAmount = gameManager.Instance.StaminaBar.fillAmount;
+            }
+            yield return regenTick;
+        }
+        regen = null;
     }
     IEnumerator reload()
     {
@@ -199,6 +258,8 @@ public class playerController : MonoBehaviour, IDamage
     {
         aud.PlayOneShot(audPlayerHit[Random.Range(0, audPlayerHit.Length)], audPlayerHitVol);
         HP -= amount;
+        if (comboRegen != null)
+            StopCoroutine(comboRegen);
         UpdatePlayerUI();
         StartCoroutine(flashScreenDamage());
 
@@ -219,7 +280,21 @@ public class playerController : MonoBehaviour, IDamage
 
     void UpdatePlayerUI()
     {
+
         gameManager.Instance.playerHPBar.fillAmount = (float)HP / HPOrig;
+        if (gameManager.Instance.playerHPBarCombo.fillAmount < gameManager.Instance.playerHPBar.fillAmount)
+            gameManager.Instance.playerHPBarCombo.fillAmount = gameManager.Instance.playerHPBar.fillAmount;
+        else
+            comboRegen = StartCoroutine(comboHealth());
+    }
+    IEnumerator comboHealth()
+    {
+
+        yield return new WaitForSeconds(1);
+        if (gameManager.Instance.playerHPBarCombo.fillAmount > gameManager.Instance.playerHPBar.fillAmount)
+            gameManager.Instance.playerHPBarCombo.fillAmount = gameManager.Instance.playerHPBar.fillAmount;
+
+        comboRegen = null;
     }
     void UpdateAmmoUi()
     {
@@ -300,7 +375,6 @@ public class playerController : MonoBehaviour, IDamage
         }
 
     }
-
     //methods for item pickups
     public void RestoreHealth(int amount)
     {
