@@ -1325,7 +1325,7 @@ MonoBehaviour:
   roamingDistance: 15
   roamTimer: 3
   animationSpeedTrans: 5
-  immobilizeDuration: 0
+  immobilizeDuration: 5
   drops:
   - {fileID: 6665366572707584610, guid: 18de78356f892984baa022e443a76e9b, type: 3}
   - {fileID: 6665366572707584610, guid: 18de78356f892984baa022e443a76e9b, type: 3}
