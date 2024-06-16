@@ -27,6 +27,7 @@ public class EnemyAI : MonoBehaviour, IDamage, IGetLassoed
     [SerializeField] float immobilizeDuration;
     [SerializeField] List<GameObject> drops = new List<GameObject>();
     [Range(0,100)] [SerializeField] int dropRate;
+    //[SerializeField] GameObject head;
 
 
     Vector3 playerDirection;
@@ -137,6 +138,7 @@ public class EnemyAI : MonoBehaviour, IDamage, IGetLassoed
 
     public void TakeDamage(int amount)
     {
+        
         enemyHP -= amount;
         healthbar.UpdateHealthBar(enemyHP, enemyMHP);
         agent.SetDestination(gameManager.Instance.Player.transform.position);

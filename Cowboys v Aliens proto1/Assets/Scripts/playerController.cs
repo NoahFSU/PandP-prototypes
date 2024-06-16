@@ -87,7 +87,7 @@ public class playerController : MonoBehaviour, IDamage
             {
                 ThrowLasso();
             }
-            if (Input.GetButton("Pull") && gameManager.Instance.GetLassoedEnemy() != null) 
+            if (Input.GetButton("Pull") && gameManager.Instance.GetLassoedEnemy() != null)
             {
                 PullEnemy();
             }
@@ -221,14 +221,23 @@ public class playerController : MonoBehaviour, IDamage
 
         for (int i = 0; i < gunList[selectedGun].projAmmount; i++)
         {
+            IDamage dmg;
+           int  totaldamage = shootDamage;
             RaycastHit hit;
             if (Physics.Raycast(Camera.main.transform.position, Accuracy(), out hit, shootDist))
             {
-                Debug.Log(hit.transform.position);
-                IDamage dmg = hit.collider.GetComponent<IDamage>();
+                Debug.Log(hit.transform.name);
+                if (hit.transform.CompareTag("Head"))
+                {
+                     dmg = hit.collider.gameObject.GetComponentInParent<IDamage>();
+                    totaldamage = (int)(totaldamage * gunList[selectedGun].headShotMultiplier);
+                }
+                else
+                     dmg = hit.collider.GetComponent<IDamage>();
                 if (hit.transform != transform && dmg != null)
                 {
-                    dmg.TakeDamage(shootDamage);
+
+                    dmg.TakeDamage(totaldamage);
 
                 }
                 if (hit.collider.gameObject.GetComponent<MatStats>() != null && hit.transform != transform)
@@ -405,7 +414,7 @@ public class playerController : MonoBehaviour, IDamage
 
     void ThrowLasso()
     {
-        if (gameManager.Instance.IsLassoBeingThrown()|| gameManager.Instance.GetLassoedEnemy() != null)
+        if (gameManager.Instance.IsLassoBeingThrown() || gameManager.Instance.GetLassoedEnemy() != null)
             return;
 
         Vector3 spawnPosition = Camera.main.transform.position + Camera.main.transform.forward;
@@ -437,7 +446,7 @@ public class playerController : MonoBehaviour, IDamage
             }
         }
     }
-    
+
     public void LassoDestroyed()
     {
         gameManager.Instance.SetLassoBeingThrown(false);
@@ -448,7 +457,7 @@ public class playerController : MonoBehaviour, IDamage
     void PullEnemy()
     {
         GameObject lassoedEnemy = gameManager.Instance.GetLassoedEnemy();
-        if(lassoedEnemy != null)
+        if (lassoedEnemy != null)
         {
             float distanceToPlayer = Vector3.Distance(transform.position, lassoedEnemy.transform.position);
             float stopDistance = 1.5f;

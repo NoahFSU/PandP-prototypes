@@ -19,9 +19,10 @@ MonoBehaviour:
   reloadTime: 0.63
   projAmmount: 9
   ammoMax: 100
-  magAmmount: 5
+  magAmmount: 6
   magMax: 6
-  ammoCurrent: 95
+  ammoCurrent: 100
+  headShotMultiplier: 1.2
   inaccuracyDistance: 5.71
   hitEffect: {fileID: 6683926199875988124, guid: 48a997d79e5bfe844b097d165417ce38, type: 3}
   shootSound: {fileID: 8300000, guid: 1df1429981f76644097c7fd47fc5f239, type: 3}
