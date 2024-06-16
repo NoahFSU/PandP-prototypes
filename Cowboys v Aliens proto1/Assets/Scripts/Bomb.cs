@@ -28,6 +28,10 @@ public class Bomb : MonoBehaviour
         {
             Explode();
         }
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            Explode();
+        }
     }
 
     void Explode()
