@@ -5,19 +5,19 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    public void MenuPlay()
+    public void ExitButton()
     {
-        SceneManager.LoadScene("C_V_A_V1.0.0");
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+        SceneManager.LoadScene("MainMenu");
+#else
+        Application.Quit();
+#endif
+        Debug.Log("Game Closed");
     }
 
-
-
-    public void MenuQuit()
+    public void StartGame()
     {
-    #if UNITY_EDITOR
-        UnityEditor.EditorApplication.isPlaying = false;
-    #else
-        Application.Quit();
-    #endif
+        SceneManager.LoadScene("C_V_A_V1.0.0");
     }
 }

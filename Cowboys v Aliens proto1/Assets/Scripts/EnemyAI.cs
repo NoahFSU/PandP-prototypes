@@ -53,6 +53,7 @@ public class EnemyAI : MonoBehaviour, IDamage, IGetLassoed
         startingPos = transform.position;
         stoppingDistanceOrig = agent.stoppingDistance;
 
+        agent.enabled = true;
         agent.speed = enemySpeed;
     }
 
@@ -100,7 +101,7 @@ public class EnemyAI : MonoBehaviour, IDamage, IGetLassoed
         angleToTarget = Vector3.Angle(new Vector3(playerDirection.x, playerDirection.y + 1, playerDirection.z), transform.forward);
 
         //comment out when everything is working perfectly fine
-        Debug.Log(angleToTarget);
+        //Debug.Log(angleToTarget);
         Debug.DrawRay(headPos.position, playerDirection);
 
         RaycastHit hit;

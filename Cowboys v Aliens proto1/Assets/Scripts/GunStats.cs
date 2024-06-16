@@ -17,6 +17,7 @@ public class GunStats : ScriptableObject
     public int magAmmount;
     public int magMax;
     public int ammoCurrent;
+    [Range(0, 10f)] public float inaccuracyDistance;
 
     [Header("Dependiceies")]
     public ParticleSystem hitEffect;

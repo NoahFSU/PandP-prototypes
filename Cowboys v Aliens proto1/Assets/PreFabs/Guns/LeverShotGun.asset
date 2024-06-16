@@ -13,18 +13,23 @@ MonoBehaviour:
   m_Name: LeverShotGun
   m_EditorClassIdentifier: 
   gunModel: {fileID: 8423649168272083945, guid: edb5ceb75dec3ae42b11d1a5f604b600, type: 3}
-  shootDamage: 50
+  shootDamage: 17
   shootDistance: 168
   shootRate: 0.52
   reloadTime: 0.63
   projAmmount: 9
   ammoMax: 100
-  magAmmount: 3
+  magAmmount: 5
   magMax: 6
-  ammoCurrent: 84
+  ammoCurrent: 95
+  inaccuracyDistance: 5.71
   hitEffect: {fileID: 6683926199875988124, guid: 48a997d79e5bfe844b097d165417ce38, type: 3}
   shootSound: {fileID: 8300000, guid: 1df1429981f76644097c7fd47fc5f239, type: 3}
+  emptySound: {fileID: 0}
+  equipSound: {fileID: 0}
   reloadSound: {fileID: 8300000, guid: af63539a5e39c99489395bdea2471f60, type: 3}
   shootVol: 1
+  emptyVol: 0
+  equipVol: 0
   reloadVol: 1
   Icon: {fileID: 0}

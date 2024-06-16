@@ -64,7 +64,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a80cba0b70f7fdf44bf59432586865fc, type: 2}
+  - {fileID: 2100000, guid: 9a1ca268280c39f469a56b9834a82991, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -146,8 +146,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2eeb850e13ac6f4c8bf49c052c0ddcb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fallSpeed: 5
+  fallSpeed: 2
   bombRadius: 10
   bombDMG: 5
   explosions: {fileID: 7028336377088985925, guid: f7cfa9d1c87b9f24ebbf1137c255003a, type: 3}
-  rb: {fileID: 0}
+  rb: {fileID: 8510902772565938217}
