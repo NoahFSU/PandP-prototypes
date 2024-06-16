@@ -1219,6 +1219,13 @@ MonoBehaviour:
   roamingDistance: 15
   roamTimer: 3
   animationSpeedTrans: 5
+  immobilizeDuration: 0
+  drops:
+  - {fileID: 6665366572707584610, guid: 18de78356f892984baa022e443a76e9b, type: 3}
+  - {fileID: 6665366572707584610, guid: 18de78356f892984baa022e443a76e9b, type: 3}
+  - {fileID: 6665366572707584610, guid: 18de78356f892984baa022e443a76e9b, type: 3}
+  - {fileID: 5339882028878924471, guid: af94e97d72df3b84480eea4e549f061c, type: 3}
+  dropRate: 10
 --- !u!95 &8504507717007710667
 Animator:
   serializedVersion: 5
