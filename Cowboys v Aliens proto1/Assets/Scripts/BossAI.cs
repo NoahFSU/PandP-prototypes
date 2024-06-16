@@ -127,6 +127,7 @@ public class BossAI : MonoBehaviour, IDamage
 
     IEnumerator DropBombPattern()
     {
+        StartCoroutine(BossAttackWarning());
         Debug.Log("Bomb method is activated");
         //setting the pattern for the dropping bomb pattern and turns it off after its done
         isAttacking = true;
@@ -146,12 +147,13 @@ public class BossAI : MonoBehaviour, IDamage
 
     IEnumerator SpawnAllies()
     {
+        StartCoroutine(BossAttackWarning());
         Debug.Log("Spawn method is activated");
 
         isAttacking = true;
         spawnCount = 0;
         //spawns a mini boss
-        while (spawnCount < 6)
+        while (spawnCount < 4)
         {
             int arrayPos = Random.Range(0, enemySpawnPos.Length);
             animat.SetTrigger("Attack_Boss");
@@ -188,6 +190,7 @@ public class BossAI : MonoBehaviour, IDamage
 
     IEnumerator CircularShootingPattern()
     {
+        StartCoroutine(BossAttackWarning());
         Debug.Log("Circular method is activated");
         //setting the pattern for the circular shooting and turns it off after its done
         isAttacking = true;
@@ -212,6 +215,13 @@ public class BossAI : MonoBehaviour, IDamage
         isAttacking = false;
     }
 
+    IEnumerator BossAttackWarning()
+    {
+        gameManager.Instance.attackWarning.SetActive(true);
+        yield return new WaitForSeconds(.75f);
+        gameManager.Instance.attackWarning.SetActive(false);
+
+    }
 
     //IEnumerator HealPassive()
     //{

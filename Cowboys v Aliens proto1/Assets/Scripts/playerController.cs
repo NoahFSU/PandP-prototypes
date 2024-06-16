@@ -216,6 +216,7 @@ public class playerController : MonoBehaviour, IDamage
         gameManager.Instance.playerFlashDamage.SetActive(false);
 
     }
+
     void UpdatePlayerUI()
     {
         gameManager.Instance.playerHPBar.fillAmount = (float)HP / HPOrig;
