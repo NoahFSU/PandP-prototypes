@@ -159,10 +159,12 @@ public class EnemyAI : MonoBehaviour, IDamage, IGetLassoed
         isImmobilized = true;
         agent.isStopped = true;
         anima.enabled = false;
+        gameManager.Instance.SetLassoedEnemy(gameObject);
         yield return new WaitForSeconds(immobilizeDuration);
         agent.isStopped = false;
         anima.enabled = true;
         isImmobilized = false;
+        gameManager.Instance.SetLassoedEnemy(null);
     }
 
     IEnumerator Shoot()

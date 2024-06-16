@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class lever : MonoBehaviour, IGetLassoed
 {
-    [SerializeField] Animator anima;
-    //create a serialize field for an event to trigger. Trigger that event in the GetLassoed function
+    [SerializeField] Animator leverAnimator;
+    [SerializeField] Animator doorAnimator;
+    [SerializeField] AudioSource aud;
     [SerializeField] AudioClip pullLeverSound;
+    [SerializeField] string leverTrigger = "Turn On";
+    [SerializeField] string doorTrigger = "Open";
 
     bool on = false;
 
@@ -26,9 +29,18 @@ public class lever : MonoBehaviour, IGetLassoed
     {
         if (!on)
         {
-            anima.SetBool("Turning On", true);
+            on = true;
+            leverAnimator.SetTrigger(leverTrigger);
+            aud.PlayOneShot(pullLeverSound);
         }
-        
+      
+    }
 
+    public void TriggerOpenDoor()
+    {
+        if (doorAnimator != null)
+        {
+            doorAnimator.SetTrigger(doorTrigger);
+        }
     }
 }

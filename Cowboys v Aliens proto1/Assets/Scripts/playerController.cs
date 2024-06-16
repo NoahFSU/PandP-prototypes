@@ -27,6 +27,8 @@ public class playerController : MonoBehaviour, IDamage
     [Range(0, 1)][SerializeField] float audJumpVol;
     [SerializeField] Animator ReloadAnim;
     [SerializeField] GameObject lassoPrefab;
+    private GameObject currentLasso;
+    private bool lassoBeingThrown;
 
 
 
@@ -41,6 +43,7 @@ public class playerController : MonoBehaviour, IDamage
     bool isCrouching = false;
     float origHeight;
     int origSpeed;
+   
 
     // Start is called before the first frame update
     void Start()
@@ -65,6 +68,11 @@ public class playerController : MonoBehaviour, IDamage
             {
                 ThrowLasso();
             }
+            if (Input.GetButton("Pull") && gameManager.Instance.GetLassoedEnemy() != null) 
+            {
+                PullEnemy();
+            }
+            DrawLassoLine();
         }
     }
     void OnEnable()
@@ -309,9 +317,58 @@ public class playerController : MonoBehaviour, IDamage
 
     void ThrowLasso()
     {
+        if (gameManager.Instance.IsLassoBeingThrown()|| gameManager.Instance.GetLassoedEnemy() != null)
+            return;
+
         Vector3 spawnPosition = Camera.main.transform.position + Camera.main.transform.forward;
-        GameObject lassoInstance = Instantiate(lassoPrefab, spawnPosition, Camera.main.transform.rotation);
-        Rigidbody rb = lassoInstance.GetComponent<Rigidbody>();
+        currentLasso = Instantiate(lassoPrefab, spawnPosition, Camera.main.transform.rotation);
+        Rigidbody rb = currentLasso.GetComponent<Rigidbody>();
         rb.velocity = Camera.main.transform.forward * 10f;
+        gameManager.Instance.SetLassoBeingThrown(true);
+    }
+
+    void DrawLassoLine()
+    {
+        if (currentLasso != null)
+        {
+            LineRenderer lineRenderer = currentLasso.GetComponent<LineRenderer>();
+            if (lineRenderer != null)
+            {
+                lineRenderer.SetPosition(0, transform.position);
+                lineRenderer.SetPosition(1, currentLasso.transform.position);
+            }
+        }
+        GameObject lassoedObj = gameManager.Instance.GetLassoedEnemy();
+        if (lassoedObj != null)
+        {
+            LineRenderer objLassoLine = lassoedObj.GetComponent<LineRenderer>();
+            if (objLassoLine != null)
+            {
+                objLassoLine.SetPosition(0, transform.position);
+                objLassoLine.SetPosition(1, lassoedObj.transform.position);
+            }
+        }
+    }
+    
+    public void LassoDestroyed()
+    {
+        gameManager.Instance.SetLassoBeingThrown(false);
+        //gameManager.Instance.SetLassoedEnemy(null);
+        currentLasso = null;
+    }
+
+    void PullEnemy()
+    {
+        GameObject lassoedEnemy = gameManager.Instance.GetLassoedEnemy();
+        if(lassoedEnemy != null)
+        {
+            float distanceToPlayer = Vector3.Distance(transform.position, lassoedEnemy.transform.position);
+            float stopDistance = 1.5f;
+            if (distanceToPlayer > stopDistance)
+            {
+                Vector3 direction = (transform.position - lassoedEnemy.transform.position).normalized;
+                lassoedEnemy.transform.position = Vector3.MoveTowards(lassoedEnemy.transform.position, transform.position, Time.deltaTime * 5f);
+            }
+        }
     }
 }
