@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AmmoPickup : MonoBehaviour
+public class AmmoPickup : MonoBehaviour, IGetLassoed
 {
     [SerializeField] int ammoAmount;
 
@@ -13,5 +13,10 @@ public class AmmoPickup : MonoBehaviour
             gameManager.Instance.playerscript.AddAmmo(ammoAmount);
             Destroy(gameObject);
         }
+    }
+
+    public void GetLassoed()
+    {
+       
     }
 }

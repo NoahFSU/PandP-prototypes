@@ -40,6 +40,11 @@ public class playerController : MonoBehaviour, IDamage
     [SerializeField] AudioClip[] audJump;
     [Range(0, 1)][SerializeField] float audJumpVol;
     private GameObject currentLasso;
+    private Rigidbody rb;
+    private bool isSwinging = false;
+    private Vector3 swingingPoint;
+    private SpringJoint springJnt;
+    private LineRenderer lineRenderer;
     private bool lassoBeingThrown;
 
 
@@ -70,6 +75,12 @@ public class playerController : MonoBehaviour, IDamage
         maxStamina = currentStamina;
         regenTick = new WaitForSeconds(regenTickSpeed);
         drainTick = new WaitForSeconds(drainTickSpeed);
+        rb = GetComponent<Rigidbody>();
+        lineRenderer = GetComponent<LineRenderer>();
+        if (lineRenderer != null )
+        {
+            lineRenderer.positionCount = 2;
+        }
         SpawnPlayer();
 
     }
@@ -91,7 +102,17 @@ public class playerController : MonoBehaviour, IDamage
             {
                 PullEnemy();
             }
+            if(Input.GetButtonDown("Jump") && isSwinging)
+            {
+                StopSwinging();
+            }
+            if (isSwinging)
+            {
+                Swing();
+            }
             DrawLassoLine();
+            UpdateLassoLine();
+
         }
     }
     void OnEnable()
@@ -456,6 +477,65 @@ public class playerController : MonoBehaviour, IDamage
             {
                 Vector3 direction = (transform.position - lassoedEnemy.transform.position).normalized;
                 lassoedEnemy.transform.position = Vector3.MoveTowards(lassoedEnemy.transform.position, transform.position, Time.deltaTime * 5f);
+            }
+        }
+    }
+
+    public void StartSwinging(Vector3 swingPt)
+    {
+        isSwinging = true;
+        this.swingingPoint = swingPt;
+        springJnt = gameObject.AddComponent<SpringJoint>();
+        springJnt.autoConfigureConnectedAnchor = false;
+        springJnt.connectedAnchor = swingPt;
+        springJnt.spring = 10f;
+        springJnt.damper = 5f;
+        springJnt.massScale = 1f;
+        rb.useGravity = false;
+        lineRenderer.enabled = true;
+    }
+
+    public void StopSwinging()
+    {
+        isSwinging=false;
+        rb.useGravity = true;
+        if(springJnt != null)
+        {
+            Destroy(springJnt);
+        }
+        lineRenderer.enabled=false;
+    }
+
+    private void Swing()
+    {
+        Vector3 direction = swingingPoint - transform.position;
+        Vector3 perpendicularDir = Vector3.Cross(direction, Vector3.up);
+        Vector3 swingForce = perpendicularDir * speed;
+
+        rb.velocity = swingForce;
+        lineRenderer.SetPosition(0, transform.position);
+        lineRenderer.SetPosition(1, swingingPoint);
+    }
+
+    void UpdateLassoLine()
+    {
+        if(currentLasso != null)
+        {
+            LineRenderer lRenderer = currentLasso.GetComponent<LineRenderer>();
+            if(lRenderer != null)
+            {
+                lRenderer.SetPosition(0,transform.position);
+                lRenderer.SetPosition(1, currentLasso.transform.position);
+            }
+        }
+        GameObject lassoedEnemy = gameManager.Instance.GetLassoedEnemy();
+        if (lassoedEnemy != null )
+        {
+            LineRenderer enemyLassoLine = lassoedEnemy.GetComponent<LineRenderer>();
+            if (enemyLassoLine != null)
+            {
+                enemyLassoLine.SetPosition(0, transform.position);
+                enemyLassoLine.SetPosition(1,lassoedEnemy.transform.position);
             }
         }
     }

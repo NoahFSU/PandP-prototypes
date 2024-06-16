@@ -4,6 +4,6 @@ using UnityEngine;
 
 public interface IGetLassoed
 {
-    void GetLassoed();
+    public void GetLassoed();
 }
 

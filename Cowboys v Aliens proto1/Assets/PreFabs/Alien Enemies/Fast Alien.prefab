@@ -566,6 +566,7 @@ MonoBehaviour:
   roamingDistance: 15
   roamTimer: 3
   animationSpeedTrans: 5
+  immobilizeDuration: 5
 --- !u!95 &6286930472614636714
 Animator:
   serializedVersion: 5

@@ -58,6 +58,10 @@ public class Lasso : MonoBehaviour
             gotLassoed.GetLassoed();
             DestroyLasso();
             InstantiateLassoAroundObject(other.gameObject);
+            if(other.gameObject.GetComponent<SwingableObject>() != null)
+            {
+                player.StartSwinging(other.transform.position);
+            }
         }
     }
 

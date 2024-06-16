@@ -4,7 +4,7 @@ using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class WallBreak : MonoBehaviour, IDamage
+public class WallBreak : MonoBehaviour, IDamage, IGetLassoed
 {
 
     [SerializeField] int WallHP;
@@ -62,4 +62,8 @@ public class WallBreak : MonoBehaviour, IDamage
         WallModel.material.color = Color.white;
     }
 
+    public void GetLassoed()
+    {
+        TakeDamage(1);
+    }
 }
