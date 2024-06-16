@@ -205,6 +205,7 @@ public class BossAI : MonoBehaviour, IDamage
             Quaternion rotation = Quaternion.Euler(0, rapidFireCount * angleStep, 0);
             GameObject newBullet = Instantiate(bullet, shootingPos.position, rotation);
             IDamage _bossDmg = newBullet.GetComponent<IDamage>();
+            Physics.IgnoreCollision(newBullet.GetComponent<Collider>(), GetComponent<Collider>());
             if (_bossDmg != null)
             {
                 _bossDmg.TakeDamage(bossDMG);
