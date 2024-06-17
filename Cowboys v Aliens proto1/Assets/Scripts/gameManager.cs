@@ -29,9 +29,13 @@ public class gameManager : MonoBehaviour
     public GameObject attackWarning;
     public GameObject Player;
     public GameObject Enemy;
-    public playerController playerscript;
     public GameObject checkpointPopup;
-
+    public GameObject reticleUI;
+    public GameObject hpBarUI;
+    public GameObject staminaUI;
+    public GameObject enemyUI;
+    public GameObject ammoUI;
+    public playerController playerscript;
     public bool isPaused;
     int enemyCount;
 
@@ -41,6 +45,7 @@ public class gameManager : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+        StartCoroutine(StartUIDelay());
         Instance = this;
         Player = GameObject.FindWithTag("Player");
         Enemy = GameObject.FindWithTag("Enemy");
@@ -125,5 +130,20 @@ public class gameManager : MonoBehaviour
     public void ClearLassoedEnemy()
     {
         lassoedEnemy = null;
+    }
+
+    IEnumerator StartUIDelay()
+    {
+        hpBarUI.SetActive(false);
+        staminaUI.SetActive(false);
+        reticleUI.SetActive(false);
+        enemyUI.SetActive(false);
+        ammoUI.SetActive(false);
+        yield return new WaitForSeconds(5);
+        hpBarUI.SetActive(true);
+        staminaUI.SetActive(true);
+        reticleUI.SetActive(true);
+        enemyUI.SetActive(true);
+        ammoUI.SetActive(true);
     }
 }

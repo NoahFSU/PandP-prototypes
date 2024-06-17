@@ -1,61 +1,38 @@
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class LoadingScreen : MonoBehaviour
 {
-    public static LoadingScreen instance;
     public GameObject loadingScreen;
     public Slider slider;
 
-    private void Awake()
+    public void LoadScene(int sceneId)
     {
-        instance = this;
-
-        SceneManager.LoadSceneAsync((int)SceneIndexes.TITLE_SCREEN, LoadSceneMode.Additive);
-
-
+        StartCoroutine(LoadSceneAsync(sceneId));
     }
 
-    List<AsyncOperation> scenesLoading = new List<AsyncOperation>();
-
-    public void LoadGame()
+    IEnumerator LoadSceneAsync(int sceneId)
     {
-        loadingScreen.gameObject.SetActive(true);
+        AsyncOperation operation = SceneManager.LoadSceneAsync(sceneId);
 
-        scenesLoading.Add(SceneManager.UnloadSceneAsync((int)SceneIndexes.TITLE_SCREEN));
-        scenesLoading.Add(SceneManager.LoadSceneAsync((int)SceneIndexes.LEVEL1, LoadSceneMode.Additive));
+        DontDestroyOnLoad(loadingScreen);
+        DontDestroyOnLoad(this.gameObject);
+        loadingScreen.SetActive(true);
 
-        StartCoroutine(GetSceneLoadProgress());
-
-    }
-
-    float totalSceneProgress;
-    public IEnumerator GetSceneLoadProgress()
-    {
-        for (int i = 0; i <scenesLoading.Count; i++)
+        while (!operation.isDone)
         {
-            while (!scenesLoading[i].isDone)
-            {
-                totalSceneProgress = 0;
+            float progressValue = Mathf.Clamp01(operation.progress / 0.9f);
 
-                foreach (AsyncOperation operation in scenesLoading)
-                {
-                    totalSceneProgress += operation.progress;
-                }
+            slider.value = progressValue;
 
-                totalSceneProgress = (totalSceneProgress / scenesLoading.Count) * 100f;
-
-                slider.value = Mathf.RoundToInt(totalSceneProgress);
-
-                yield return null;
-            }
+            yield return null;
         }
-
-        loadingScreen.gameObject.SetActive(false);
-
+        yield return new WaitForSeconds(5);
+        loadingScreen.SetActive(false);
+        Destroy(loadingScreen);
+        Destroy(this.gameObject);
     }
 }
