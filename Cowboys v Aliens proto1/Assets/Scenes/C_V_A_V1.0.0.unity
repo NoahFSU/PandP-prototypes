@@ -8855,14 +8855,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 860354210387225939, guid: 09eda9905c7119a4892aee5fd8a9b8a8, type: 3}
-      propertyPath: m_FillAmount
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1009185982047789182, guid: 09eda9905c7119a4892aee5fd8a9b8a8, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 29.100098
-      objectReference: {fileID: 0}
     - target: {fileID: 4786961970422821755, guid: 09eda9905c7119a4892aee5fd8a9b8a8, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -8870,10 +8862,6 @@ PrefabInstance:
     - target: {fileID: 4786961970422821755, guid: 09eda9905c7119a4892aee5fd8a9b8a8, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: RespawnPlayer
-      objectReference: {fileID: 0}
-    - target: {fileID: 4931610670683169259, guid: 09eda9905c7119a4892aee5fd8a9b8a8, type: 3}
-      propertyPath: m_FillAmount
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6262128795507317775, guid: 09eda9905c7119a4892aee5fd8a9b8a8, type: 3}
       propertyPath: m_SizeDelta.x
@@ -8891,21 +8879,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI with Respawn
       objectReference: {fileID: 0}
-    - target: {fileID: 7007135997609259404, guid: 09eda9905c7119a4892aee5fd8a9b8a8, type: 3}
-      propertyPath: m_FillAmount
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7046708787887617806, guid: 09eda9905c7119a4892aee5fd8a9b8a8, type: 3}
-      propertyPath: m_Name
-      value: PlayerAmmo
-      objectReference: {fileID: 0}
     - target: {fileID: 7401992245908936310, guid: 09eda9905c7119a4892aee5fd8a9b8a8, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -25.110016
-      objectReference: {fileID: 0}
-    - target: {fileID: 7872989165743064765, guid: 09eda9905c7119a4892aee5fd8a9b8a8, type: 3}
-      propertyPath: m_FillAmount
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7957089248463561036, guid: 09eda9905c7119a4892aee5fd8a9b8a8, type: 3}
       propertyPath: m_text
@@ -8913,7 +8889,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8607548399691318176, guid: 09eda9905c7119a4892aee5fd8a9b8a8, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

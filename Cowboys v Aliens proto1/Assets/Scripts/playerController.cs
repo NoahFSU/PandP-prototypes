@@ -44,7 +44,6 @@ public class playerController : MonoBehaviour, IDamage
     private bool isSwinging = false;
     private Vector3 swingingPoint;
     private SpringJoint springJnt;
-    private LineRenderer lineRenderer;
     private bool lassoBeingThrown;
 
 
@@ -76,11 +75,6 @@ public class playerController : MonoBehaviour, IDamage
         regenTick = new WaitForSeconds(regenTickSpeed);
         drainTick = new WaitForSeconds(drainTickSpeed);
         rb = GetComponent<Rigidbody>();
-        lineRenderer = GetComponent<LineRenderer>();
-        if (lineRenderer != null )
-        {
-            lineRenderer.positionCount = 2;
-        }
         SpawnPlayer();
 
     }
@@ -110,7 +104,7 @@ public class playerController : MonoBehaviour, IDamage
             {
                 Swing();
             }
-            DrawLassoLine();
+            //DrawLassoLine();
             UpdateLassoLine();
 
         }
@@ -445,34 +439,11 @@ public class playerController : MonoBehaviour, IDamage
         gameManager.Instance.SetLassoBeingThrown(true);
     }
 
-    void DrawLassoLine()
-    {
-        if (currentLasso != null)
-        {
-            LineRenderer lineRenderer = currentLasso.GetComponent<LineRenderer>();
-            if (lineRenderer != null)
-            {
-                lineRenderer.SetPosition(0, transform.position);
-                lineRenderer.SetPosition(1, currentLasso.transform.position);
-            }
-        }
-        GameObject lassoedObj = gameManager.Instance.GetLassoedEnemy();
-        if (lassoedObj != null)
-        {
-            LineRenderer objLassoLine = lassoedObj.GetComponent<LineRenderer>();
-            if (objLassoLine != null)
-            {
-                objLassoLine.SetPosition(0, transform.position);
-                objLassoLine.SetPosition(1, lassoedObj.transform.position);
-            }
-        }
-    }
-
     public void LassoDestroyed()
     {
         gameManager.Instance.SetLassoBeingThrown(false);
-        //gameManager.Instance.SetLassoedEnemy(null);
         currentLasso = null;
+        //gameManager.Instance.ClearLassoedEnemy();
     }
 
     void PullEnemy()
@@ -501,7 +472,12 @@ public class playerController : MonoBehaviour, IDamage
         springJnt.damper = 5f;
         springJnt.massScale = 1f;
         rb.useGravity = false;
-        lineRenderer.enabled = true;
+        LineRenderer lRenderer = currentLasso.GetComponent<LineRenderer>(); 
+        if (lRenderer != null )
+        {
+            lRenderer.enabled = true;
+        }
+        
     }
 
     public void StopSwinging()
@@ -512,7 +488,11 @@ public class playerController : MonoBehaviour, IDamage
         {
             Destroy(springJnt);
         }
-        lineRenderer.enabled=false;
+        LineRenderer lRenderer = currentLasso.GetComponent<LineRenderer>();
+        if (lRenderer != null )
+        {
+            lRenderer.enabled = false; 
+        }
     }
 
     private void Swing()
@@ -522,8 +502,12 @@ public class playerController : MonoBehaviour, IDamage
         Vector3 swingForce = perpendicularDir * speed;
 
         rb.velocity = swingForce;
-        lineRenderer.SetPosition(0, transform.position);
-        lineRenderer.SetPosition(1, swingingPoint);
+        LineRenderer lRenderer = currentLasso.GetComponent<LineRenderer>();
+        if (lRenderer != null)
+        {
+            lRenderer.SetPosition(0, transform.position);
+            lRenderer.SetPosition(1, swingingPoint);
+        }
     }
 
     void UpdateLassoLine()
@@ -548,4 +532,18 @@ public class playerController : MonoBehaviour, IDamage
             }
         }
     }
+    public void DestroyCurrentLasso()
+    {
+        if (currentLasso != null)
+        {
+            Lasso lassoScript = currentLasso.GetComponent<Lasso>();
+            if (lassoScript != null)
+            {
+                lassoScript.DestroyLasso();
+            }
+            currentLasso = null;
+        }
+        
+    }
+    
 }

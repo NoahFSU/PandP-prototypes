@@ -173,7 +173,7 @@ public class EnemyAI : MonoBehaviour, IDamage, IGetLassoed
         agent.isStopped = false;
         anima.enabled = true;
         isImmobilized = false;
-        gameManager.Instance.SetLassoedEnemy(null);
+        gameManager.Instance.ClearLassoedEnemy();
     }
 
     IEnumerator Shoot()

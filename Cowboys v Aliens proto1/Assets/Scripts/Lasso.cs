@@ -6,7 +6,6 @@ public class Lasso : MonoBehaviour
 {
     [SerializeField] float lassoSpeed;
     [SerializeField] float lassoDistance;
-    [SerializeField] GameObject lassoAroundObjectPrefab;
 
     private Rigidbody rb;
     private Vector3 startPosition;
@@ -57,7 +56,6 @@ public class Lasso : MonoBehaviour
         {
             gotLassoed.GetLassoed();
             DestroyLasso();
-            InstantiateLassoAroundObject(other.gameObject);
             if(other.gameObject.GetComponent<SwingableObject>() != null)
             {
                 player.StartSwinging(other.transform.position);
@@ -65,7 +63,7 @@ public class Lasso : MonoBehaviour
         }
     }
 
-    private void DestroyLasso()
+    public void DestroyLasso()
     {
         if (player != null)
         {
@@ -73,17 +71,5 @@ public class Lasso : MonoBehaviour
         }
         Destroy(gameObject);
     }
-
-    private void InstantiateLassoAroundObject(GameObject obj)
-    {
-        GameObject lassoAroundObject = Instantiate(lassoAroundObjectPrefab, obj.transform.position, Quaternion.identity);
-        lassoAroundObject.transform.SetParent(obj.transform);
-        lassoAroundObject.GetComponent<LineRenderer>().SetPosition(0, player.transform.position);
-        lassoAroundObject.GetComponent<LineRenderer>().SetPosition(1, obj.transform.position);
-        gameManager.Instance.SetLassoedEnemy(obj);
-    }
-
-    
-
 
 }

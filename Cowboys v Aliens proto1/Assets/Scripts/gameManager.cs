@@ -35,8 +35,8 @@ public class gameManager : MonoBehaviour
     public bool isPaused;
     int enemyCount;
 
-    private GameObject lassoedEnemy;
-    private bool lassoBeingThrown;
+    private GameObject lassoedEnemy = null;
+    private bool lassoBeingThrown = false;
 
     // Start is called before the first frame update
     void Awake()
@@ -121,5 +121,9 @@ public class gameManager : MonoBehaviour
     public bool IsLassoBeingThrown()
     {
         return lassoBeingThrown;
+    }
+    public void ClearLassoedEnemy()
+    {
+        lassoedEnemy = null;
     }
 }
