@@ -139,7 +139,7 @@ public class gameManager : MonoBehaviour
         reticleUI.SetActive(false);
         enemyUI.SetActive(false);
         ammoUI.SetActive(false);
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(2);
         hpBarUI.SetActive(true);
         staminaUI.SetActive(true);
         reticleUI.SetActive(true);
