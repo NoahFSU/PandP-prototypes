@@ -31,5 +31,10 @@ public class buttonFunctions : MonoBehaviour
         SceneManager.LoadScene(level);
         gameManager.Instance.stateUnPaused();
     }
-
+    public void LoadNextLevelInGame()
+    {
+        int currentLvl = SceneManager.GetActiveScene().buildIndex;
+        int nextlvl = currentLvl + 1;
+        LoadLevel(nextlvl);
+    }
 }
