@@ -9,6 +9,7 @@ public class playerController : MonoBehaviour, IDamage
 
     [Header("Player Values")]
     [SerializeField] int HP;
+    [SerializeField] int wallet;
 
     [SerializeField] int speed;
     [SerializeField] int sprintMod;
@@ -55,6 +56,7 @@ public class playerController : MonoBehaviour, IDamage
     bool isReloading = false;
     int jumpCount;
     int HPOrig;
+    int walletOrig;
     bool isShooting;
     int selectedGun;
     bool isCrouching = false;
@@ -69,6 +71,7 @@ public class playerController : MonoBehaviour, IDamage
     void Start()
     {
         HPOrig = HP;
+        walletOrig = wallet;
         origHeight = controller.height;
         origSpeed = speed;
         maxStamina = currentStamina;
@@ -76,7 +79,7 @@ public class playerController : MonoBehaviour, IDamage
         drainTick = new WaitForSeconds(drainTickSpeed);
         rb = GetComponent<Rigidbody>();
         SpawnPlayer();
-
+        UpdateWalletUI();
     }
 
 
@@ -207,6 +210,65 @@ public class playerController : MonoBehaviour, IDamage
         }
         regen = null;
     }
+    public void TakeDamage(int amount)
+    {
+        aud.PlayOneShot(audPlayerHit[Random.Range(0, audPlayerHit.Length)], audPlayerHitVol);
+        HP -= amount;
+        if (comboRegen != null)
+            StopCoroutine(comboRegen);
+        UpdatePlayerUI();
+        StartCoroutine(flashScreenDamage());
+
+        if (HP <= 0)
+        {
+            gameManager.Instance.youLose();
+        }
+    }
+    IEnumerator flashScreenDamage()
+    {
+        gameManager.Instance.playerFlashDamage.SetActive(true);
+        yield return new WaitForSeconds(0.1f);
+        gameManager.Instance.playerFlashDamage.SetActive(false);
+
+    }
+    IEnumerator comboHealth()
+    {
+
+        yield return new WaitForSeconds(1);
+        if (gameManager.Instance.playerHPBarCombo.fillAmount > gameManager.Instance.playerHPBar.fillAmount)
+            gameManager.Instance.playerHPBarCombo.fillAmount = gameManager.Instance.playerHPBar.fillAmount;
+
+        comboRegen = null;
+    }
+    public void SpawnPlayer()
+    {
+        HP = HPOrig;
+        UpdatePlayerUI();
+
+        controller.enabled = false;
+        transform.position = gameManager.Instance.playerSpawnPos.transform.position;
+        controller.enabled = true;
+    }
+    void Crouch()
+    {
+        if (Input.GetButtonDown("Crouch"))
+        {
+            isCrouching = !isCrouching;
+            if (isCrouching)
+            {
+                controller.height = origHeight / 2;
+                speed = (int)(speed * crouchSpeedMod);
+            }
+            else
+            {
+                controller.height = origHeight;
+                speed = (int)(speed / crouchSpeedMod);
+            }
+        }
+
+    }
+
+    //methods for guns
     IEnumerator reload()
     {
         GunAnim.SetBool("Reloading", true);
@@ -284,57 +346,6 @@ public class playerController : MonoBehaviour, IDamage
         yield return new WaitForSeconds(0.05f);
         muzzleFlash.SetActive(false);
     }
-    public void TakeDamage(int amount)
-    {
-        aud.PlayOneShot(audPlayerHit[Random.Range(0, audPlayerHit.Length)], audPlayerHitVol);
-        HP -= amount;
-        if (comboRegen != null)
-            StopCoroutine(comboRegen);
-        UpdatePlayerUI();
-        StartCoroutine(flashScreenDamage());
-
-        if (HP <= 0)
-        {
-            gameManager.Instance.youLose();
-        }
-    }
-
-
-    IEnumerator flashScreenDamage()
-    {
-        gameManager.Instance.playerFlashDamage.SetActive(true);
-        yield return new WaitForSeconds(0.1f);
-        gameManager.Instance.playerFlashDamage.SetActive(false);
-
-    }
-
-    void UpdatePlayerUI()
-    {
-
-        gameManager.Instance.playerHPBar.fillAmount = (float)HP / HPOrig;
-        if (gameManager.Instance.playerHPBarCombo.fillAmount < gameManager.Instance.playerHPBar.fillAmount)
-            gameManager.Instance.playerHPBarCombo.fillAmount = gameManager.Instance.playerHPBar.fillAmount;
-        else
-            comboRegen = StartCoroutine(comboHealth());
-    }
-    IEnumerator comboHealth()
-    {
-
-        yield return new WaitForSeconds(1);
-        if (gameManager.Instance.playerHPBarCombo.fillAmount > gameManager.Instance.playerHPBar.fillAmount)
-            gameManager.Instance.playerHPBarCombo.fillAmount = gameManager.Instance.playerHPBar.fillAmount;
-
-        comboRegen = null;
-    }
-    void UpdateAmmoUi()
-    {
-
-        gameManager.Instance.magAmmoText.text = gunList[selectedGun].magAmmount.ToString("F0");
-
-        gameManager.Instance.reserverAmmoText.text = gunList[selectedGun].ammoCurrent.ToString("F0");
-
-
-    }
     public void getGunStats(GunStats gun)
     {
         gunList.Add(gun);
@@ -378,33 +389,33 @@ public class playerController : MonoBehaviour, IDamage
         GetComponent<AudioSource>().PlayOneShot(gunList[selectedGun].equipSound, gunList[selectedGun].equipVol);
     }
 
-    public void SpawnPlayer()
+    //Methods to Update UIs
+    void UpdateAmmoUi()
     {
-        HP = HPOrig;
-        UpdatePlayerUI();
 
-        controller.enabled = false;
-        transform.position = gameManager.Instance.playerSpawnPos.transform.position;
-        controller.enabled = true;
+        gameManager.Instance.magAmmoText.text = gunList[selectedGun].magAmmount.ToString("F0");
+
+        gameManager.Instance.reserverAmmoText.text = gunList[selectedGun].ammoCurrent.ToString("F0");
+
+
     }
-    void Crouch()
+    void UpdatePlayerUI()
     {
-        if (Input.GetButtonDown("Crouch"))
+
+        gameManager.Instance.playerHPBar.fillAmount = (float)HP / HPOrig;
+        if (gameManager.Instance.playerHPBarCombo.fillAmount < gameManager.Instance.playerHPBar.fillAmount)
+            gameManager.Instance.playerHPBarCombo.fillAmount = gameManager.Instance.playerHPBar.fillAmount;
+        else
+            comboRegen = StartCoroutine(comboHealth());
+    }
+    void UpdateWalletUI()
+    {
+        if (gameManager.Instance != null && gameManager.Instance.walletAmtText != null)
         {
-            isCrouching = !isCrouching;
-            if (isCrouching)
-            {
-                controller.height = origHeight / 2;
-                speed = (int)(speed * crouchSpeedMod);
-            }
-            else
-            {
-                controller.height = origHeight;
-                speed = (int)(speed / crouchSpeedMod);
-            }
+            gameManager.Instance.walletAmtText.text = wallet.ToString("F0");  // Update UI text with wallet amount
         }
-
     }
+
     //methods for item pickups
     public void RestoreHealth(int amount)
     {
@@ -427,6 +438,17 @@ public class playerController : MonoBehaviour, IDamage
 
     }
 
+    public void AddCurrency(int amount)
+    {
+        wallet += amount;
+        if(wallet < walletOrig)
+        {
+            wallet = walletOrig; ;
+        }
+        UpdateWalletUI();
+    }
+
+    //Methods for Lasso
     void ThrowLasso()
     {
         if (gameManager.Instance.IsLassoBeingThrown() || gameManager.Instance.GetLassoedEnemy() != null)
