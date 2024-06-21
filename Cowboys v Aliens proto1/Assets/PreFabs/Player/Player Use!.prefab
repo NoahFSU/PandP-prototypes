@@ -152,7 +152,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 10000
+  far clip plane: 1000
   field of view: 60
   orthographic: 0
   orthographic size: 5
@@ -399,7 +399,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 8405796622683333572}
   HP: 10
-  wallet: 0
   speed: 5
   sprintMod: 3
   regenSTimer: 2
@@ -418,10 +417,6 @@ MonoBehaviour:
   gunList: []
   GunAnim: {fileID: 6407794684003176153}
   lassoPrefab: {fileID: 6222415628160380770, guid: 70524405de903944e846106e3ecb6545, type: 3}
-  throwForce: 40
-  grenadePrefab: {fileID: 4110555909484853903, guid: c91f3c2bfa399694eba1027d49d52ed0, type: 3}
-  grenadeAmount: 0
-  maxGrenadeAmount: 3
   aud: {fileID: 5302779979951808894}
   audPlayerHit:
   - {fileID: 8300000, guid: 130952c66ea7ffb45b7cad4894fe700b, type: 3}

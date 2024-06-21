@@ -32,9 +32,6 @@ public class gameManager : MonoBehaviour
 
 
     [Header("----- Player UI -----")]
-
-    [SerializeField] public TMP_Text walletAmtText;
-
     public Image playerHPBar;
     public Image playerHPBarCombo;
     public Image StaminaBar;
@@ -51,9 +48,6 @@ public class gameManager : MonoBehaviour
     public GameObject playerUI;
     public GameObject enemyUI;
     public GameObject ammoUI;
-
-    public GameObject walletUI;
-
     public playerController playerscript;
     public bool isPaused;
     int enemyCount;
@@ -165,7 +159,5 @@ public class gameManager : MonoBehaviour
         reticleUI.SetActive(true);
         enemyUI.SetActive(true);
         ammoUI.SetActive(true);
-
-        walletUI.SetActive(true);
     }
 }

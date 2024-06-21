@@ -676,7 +676,6 @@ MonoBehaviour:
   enemyCountText: {fileID: 7185386236055516854}
   magAmmoText: {fileID: 0}
   reserverAmmoText: {fileID: 0}
-  walletAmtText: {fileID: 0}
   playerHPBar: {fileID: 3218838463816386940}
   playerHPBarCombo: {fileID: 0}
   StaminaBar: {fileID: 0}
@@ -684,17 +683,10 @@ MonoBehaviour:
   reload: {fileID: 0}
   playerSpawnPos: {fileID: 0}
   playerFlashDamage: {fileID: 4088808941267050446}
-  attackWarning: {fileID: 0}
   Player: {fileID: 0}
   Enemy: {fileID: 0}
-  checkpointPopup: {fileID: 0}
-  reticleUI: {fileID: 0}
-  hpBarUI: {fileID: 0}
-  staminaUI: {fileID: 0}
-  enemyUI: {fileID: 0}
-  ammoUI: {fileID: 0}
-  walletUI: {fileID: 0}
   playerscript: {fileID: 0}
+  checkpointPopup: {fileID: 0}
   isPaused: 0
 --- !u!114 &4930719615129019931
 MonoBehaviour:
