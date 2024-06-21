@@ -8,6 +8,7 @@ public class GunPickUp : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        gun.totalAmmo = gun.ammoCurrent + gun.magAmmount;
         gun.ammoCurrent = gun.ammoMax + gun.magMax;
         gun.ammoCurrent -= gun.magMax;
         gun.magAmmount = gun.magMax;

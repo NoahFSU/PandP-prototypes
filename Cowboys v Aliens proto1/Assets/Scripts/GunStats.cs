@@ -17,7 +17,8 @@ public class GunStats : ScriptableObject
     public int magAmmount;
     public int magMax;
     public int ammoCurrent;
-  public  float headShotMultiplier = 1;
+    public int totalAmmo;
+    public  float headShotMultiplier = 1;
     [Range(0, 10f)] public float inaccuracyDistance;
 
     [Header("Dependiceies")]

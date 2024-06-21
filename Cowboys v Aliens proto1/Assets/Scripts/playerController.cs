@@ -328,8 +328,12 @@ public class playerController : MonoBehaviour, IDamage
     }
     void UpdateAmmoUi()
     {
+        
 
         gameManager.Instance.magAmmoText.text = gunList[selectedGun].magAmmount.ToString("F0");
+
+       // gameManager.Instance.totalAmmoText.text = (gunList[selectedGun].magAmmount + gunList[selectedGun].ammoCurrent).ToString("F0");       
+
 
         gameManager.Instance.reserverAmmoText.text = gunList[selectedGun].ammoCurrent.ToString("F0");
 
@@ -337,19 +341,28 @@ public class playerController : MonoBehaviour, IDamage
     }
     public void getGunStats(GunStats gun)
     {
-        gunList.Add(gun);
+        if (gunList.Count < 2)
+        {
+            gunList.Add(gun);
 
-        selectedGun = gunList.Count - 1;
+            selectedGun = gunList.Count - 1;
 
-        shootDamage = gun.shootDamage;
-        shootRate = gun.shootRate;
-        shootDist = gun.shootDistance;
+            shootDamage = gun.shootDamage;
+            shootRate = gun.shootRate;
+            shootDist = gun.shootDistance;
 
-        gameManager.Instance.magAmmoText.text = gun.magMax.ToString("F0");
-        gameManager.Instance.reserverAmmoText.text = gun.ammoCurrent.ToString("F0");
+            
 
-        gunModel.GetComponent<MeshFilter>().sharedMesh = gun.gunModel.GetComponent<MeshFilter>().sharedMesh;
-        gunModel.GetComponent<MeshRenderer>().sharedMaterial = gun.gunModel.GetComponent<MeshRenderer>().sharedMaterial;
+           // gameManager.Instance.totalAmmoText.text = gun.totalAmmo.ToString("F0");
+            
+
+            gameManager.Instance.magAmmoText.text = gun.magMax.ToString("F0");
+            gameManager.Instance.reserverAmmoText.text = gun.ammoCurrent.ToString("F0");
+
+            gunModel.GetComponent<MeshFilter>().sharedMesh = gun.gunModel.GetComponent<MeshFilter>().sharedMesh;
+            gunModel.GetComponent<MeshRenderer>().sharedMaterial = gun.gunModel.GetComponent<MeshRenderer>().sharedMaterial;
+        }
+        
     }
     void selectGun()
     {

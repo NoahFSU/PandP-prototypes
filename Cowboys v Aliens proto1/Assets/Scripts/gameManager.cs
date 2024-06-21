@@ -16,8 +16,22 @@ public class gameManager : MonoBehaviour
     [SerializeField] GameObject menuLose;
     [SerializeField] public GameObject reloadUI;
     [SerializeField] TMP_Text enemyCountText;
+    [Header("----- Gun UI -----")]
     [SerializeField] public TMP_Text magAmmoText;
     [SerializeField] public TMP_Text reserverAmmoText;
+    //[SerializeField] public TMP_Text totalAmmoText;
+    /*public GameObject pistol;
+    public GameObject shotgun;
+    public GameObject rifle;*/
+    //[SerializeField] public TMP_Text totalAmmoText1;
+    /*[SerializeField] public TMP_Text totalAmmoText2;
+    [SerializeField] public TMP_Text totalAmmoText3;*/
+    /*[SerializeField] public TMP_Text totalAmmoText4;
+    [SerializeField] public TMP_Text totalAmmoText5;
+    [SerializeField] public TMP_Text totalAmmoText6;*/
+
+
+    [Header("----- Player UI -----")]
     public Image playerHPBar;
     public Image playerHPBarCombo;
     public Image StaminaBar;
@@ -31,8 +45,7 @@ public class gameManager : MonoBehaviour
     public GameObject Enemy;
     public GameObject checkpointPopup;
     public GameObject reticleUI;
-    public GameObject hpBarUI;
-    public GameObject staminaUI;
+    public GameObject playerUI;
     public GameObject enemyUI;
     public GameObject ammoUI;
     public playerController playerscript;
@@ -47,6 +60,9 @@ public class gameManager : MonoBehaviour
     {
         StartCoroutine(StartUIDelay());
         Instance = this;
+       /* pistol = GameObject.FindWithTag("Pistol");
+        shotgun = GameObject.FindWithTag("Shotgun");
+        rifle = GameObject.FindWithTag("Rifle");*/
         Player = GameObject.FindWithTag("Player");
         Enemy = GameObject.FindWithTag("Enemy");
         playerscript = Player.GetComponent<playerController>();
@@ -134,14 +150,12 @@ public class gameManager : MonoBehaviour
 
     IEnumerator StartUIDelay()
     {
-        hpBarUI.SetActive(false);
-        staminaUI.SetActive(false);
+        playerUI.SetActive(false);
         reticleUI.SetActive(false);
         enemyUI.SetActive(false);
         ammoUI.SetActive(false);
-        yield return new WaitForSeconds(2);
-        hpBarUI.SetActive(true);
-        staminaUI.SetActive(true);
+        yield return new WaitForSeconds(3);
+        playerUI.SetActive(true);
         reticleUI.SetActive(true);
         enemyUI.SetActive(true);
         ammoUI.SetActive(true);

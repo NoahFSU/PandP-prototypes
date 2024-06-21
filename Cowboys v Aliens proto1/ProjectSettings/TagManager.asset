@@ -8,6 +8,15 @@ TagManager:
   - Player Spawn Pos
   - Floor
   - Head
+  - Pistol1
+  - Shotgun1
+  - Rifle1
+  - Pistol2
+  - Shotgun2
+  - Rifle2
+  - Pistol
+  - Shotgun
+  - Rifle
   layers:
   - Default
   - TransparentFX

@@ -30,7 +30,7 @@ public class LoadingScreen : MonoBehaviour
 
             yield return null;
         }
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(3);
         loadingScreen.SetActive(false);
         Destroy(loadingScreen);
         Destroy(this.gameObject);
