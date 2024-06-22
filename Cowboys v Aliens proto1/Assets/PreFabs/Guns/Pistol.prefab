@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1746906162797828834}
   m_Layer: 0
   m_Name: Pistol
-  m_TagString: Pistol
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7055669345451170858}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0.00000058114523}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: -1.1184459, y: 0.63, z: -3.31}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -47,6 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 650fb4baea17f7444968f6fd7eb1200c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gunSprite: {fileID: 21300014, guid: 6674e8c43c63e4f4184cbd009379498d, type: 3}
   gun: {fileID: 11400000, guid: f41672b2a6d8fb349ad8dffeedcc86c3, type: 2}
 --- !u!33 &5459802452467207781
 MeshFilter:

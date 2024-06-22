@@ -176,8 +176,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   musicSource: {fileID: 1484516936731503373}
   SFXSource: {fileID: 1181100026370942596}
-  menuMusic: {fileID: 8300000, guid: a5667d21c4dc43c4bac0bd7a7d83aec5, type: 3}
-  menuShoot: {fileID: 8300000, guid: 79ee7751ab191f548b7f3232381afa0a, type: 3}
+  menuMusic: {fileID: 0}
+  menuShoot: {fileID: 0}
 --- !u!1 &6254594201253277162
 GameObject:
   m_ObjectHideFlags: 0

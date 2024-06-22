@@ -12,13 +12,14 @@ public class AudioManager : MonoBehaviour
     public AudioClip menuShoot;
 
 
-    private void Start()
+
+    public void PlayMenuMusic()
     {
         musicSource.clip = menuMusic;
         musicSource.Play();
     }
 
-    public void PlayThisSoundEffect()
+    public void PlayButtonShoot()
     {
         SFXSource.clip = menuShoot;
         SFXSource.Play();

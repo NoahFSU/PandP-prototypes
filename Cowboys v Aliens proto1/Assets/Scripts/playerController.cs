@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class playerController : MonoBehaviour, IDamage
 {
@@ -54,7 +56,9 @@ public class playerController : MonoBehaviour, IDamage
     private SpringJoint springJnt;
     private bool lassoBeingThrown;
 
-
+    public Image[] gunSlots;
+    private Sprite[] guns;
+    private playerController playerInventory;
 
 
     Vector3 moveDir;
@@ -77,6 +81,9 @@ public class playerController : MonoBehaviour, IDamage
     // Start is called before the first frame update
     void Start()
     {
+        playerInventory = GetComponent<playerController>();
+        guns = new Sprite[gunSlots.Length];
+        ClearHotbar();
         HPOrig = HP;
         walletOrig = wallet;
         origHeight = controller.height;
@@ -143,7 +150,7 @@ public class playerController : MonoBehaviour, IDamage
 
         if (Input.GetButtonDown("Jump") && jumpCount < jumpMax)
         {
-            aud.PlayOneShot(audJump[Random.Range(0, audJump.Length)], audJumpVol);
+            aud.PlayOneShot(audJump[UnityEngine.Random.Range(0, audJump.Length)], audJumpVol);
             jumpCount++;
             playerVel.y = jumpSpeed;
         }
@@ -325,9 +332,9 @@ public class playerController : MonoBehaviour, IDamage
     {
         Vector3 targetPos = Camera.main.transform.position + Camera.main.transform.forward * shootDist;
         targetPos = new Vector3(
-            targetPos.x + Random.Range(-gunList[selectedGun].inaccuracyDistance, gunList[selectedGun].inaccuracyDistance),
-            targetPos.y + Random.Range(-gunList[selectedGun].inaccuracyDistance, gunList[selectedGun].inaccuracyDistance),
-            targetPos.z + Random.Range(-gunList[selectedGun].inaccuracyDistance, gunList[selectedGun].inaccuracyDistance)
+            targetPos.x + UnityEngine.Random.Range(-gunList[selectedGun].inaccuracyDistance, gunList[selectedGun].inaccuracyDistance),
+            targetPos.y + UnityEngine.Random.Range(-gunList[selectedGun].inaccuracyDistance, gunList[selectedGun].inaccuracyDistance),
+            targetPos.z + UnityEngine.Random.Range(-gunList[selectedGun].inaccuracyDistance, gunList[selectedGun].inaccuracyDistance)
             );
         Vector3 direction = targetPos - Camera.main.transform.position;
         return direction.normalized;
@@ -340,7 +347,7 @@ public class playerController : MonoBehaviour, IDamage
     }
     public void TakeDamage(int amount)
     {
-        aud.PlayOneShot(audPlayerHit[Random.Range(0, audPlayerHit.Length)], audPlayerHitVol);
+        aud.PlayOneShot(audPlayerHit[UnityEngine.Random.Range(0, audPlayerHit.Length)], audPlayerHitVol);
         HP -= amount;
         if (comboRegen != null)
             StopCoroutine(comboRegen);
@@ -374,8 +381,6 @@ public class playerController : MonoBehaviour, IDamage
     }
     public void getGunStats(GunStats gun)
     {
-        if (gunList.Count < 2)
-        {
             gunList.Add(gun);
 
             selectedGun = gunList.Count - 1;
@@ -394,12 +399,20 @@ public class playerController : MonoBehaviour, IDamage
 
             gunModel.GetComponent<MeshFilter>().sharedMesh = gun.gunModel.GetComponent<MeshFilter>().sharedMesh;
             gunModel.GetComponent<MeshRenderer>().sharedMaterial = gun.gunModel.GetComponent<MeshRenderer>().sharedMaterial;
-        }
+        
         
     }
-    void selectGun()
+    public void selectGun()
     {
+        /*if (Input.GetKeyDown(KeyCode.Alpha1)) 
+        {
 
+            playerInventory.changeGun(0);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2)) { playerInventory.changeGun(1); }
+        if (Input.GetKeyDown(KeyCode.Alpha3)) { playerInventory.changeGun(2); }
+        if (Input.GetKeyDown(KeyCode.Alpha4)) { playerInventory.changeGun(3); }
+        if (Input.GetKeyDown(KeyCode.Alpha5)) { playerInventory.changeGun(4); }*/
         if (Input.GetAxis("Mouse ScrollWheel") > 0 && selectedGun < gunList.Count - 1)
         {
             selectedGun++;
@@ -413,15 +426,42 @@ public class playerController : MonoBehaviour, IDamage
             UpdateAmmoUi();
         }
     }
+
+    public void PickupGun(Sprite gunSprite)
+    {
+        for (int i = 0; i < guns.Length; i++)
+        {
+            if (guns[i] == null)
+            {
+                guns[i] = gunSprite;
+                gunSlots[i].sprite = gunSprite;
+                gunSlots[i].enabled = true;
+                return;
+            }
+        }
+    }
+
+    void ClearHotbar()
+    {
+        foreach (var slot in gunSlots)
+        {
+            slot.enabled = false;
+        }
+    }
+
     void changeGun()
     {
-        shootDamage = gunList[selectedGun].shootDamage;
-        shootRate = gunList[selectedGun].shootRate;
-        shootDist = gunList[selectedGun].shootDistance;
+        
+            shootDamage = gunList[selectedGun].shootDamage;
+            shootRate = gunList[selectedGun].shootRate;
+            shootDist = gunList[selectedGun].shootDistance;
 
-        gunModel.GetComponent<MeshFilter>().sharedMesh = gunList[selectedGun].gunModel.GetComponent<MeshFilter>().sharedMesh;
-        gunModel.GetComponent<MeshRenderer>().sharedMaterial = gunList[selectedGun].gunModel.GetComponent<MeshRenderer>().sharedMaterial;
-        GetComponent<AudioSource>().PlayOneShot(gunList[selectedGun].equipSound, gunList[selectedGun].equipVol);
+            gunModel.GetComponent<MeshFilter>().sharedMesh = gunList[selectedGun].gunModel.GetComponent<MeshFilter>().sharedMesh;
+            gunModel.GetComponent<MeshRenderer>().sharedMaterial = gunList[selectedGun].gunModel.GetComponent<MeshRenderer>().sharedMaterial;
+            GetComponent<AudioSource>().PlayOneShot(gunList[selectedGun].equipSound, gunList[selectedGun].equipVol);
+            // Logic to switch to the selected gun
+            
+        
     }
 
     //Methods to Update UIs

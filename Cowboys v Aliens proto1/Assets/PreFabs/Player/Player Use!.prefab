@@ -377,7 +377,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7363748561833304087}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0.9999938, z: -0, w: -0.0035281177}
+  m_LocalRotation: {x: 0, y: 0.9999938, z: -0, w: -0.0035256017}
   m_LocalPosition: {x: 1.4799995, y: 1.0799866, z: -172.74}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -435,6 +435,10 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 02dddddb62d9e764a9c44b08eaa26af6, type: 3}
   - {fileID: 8300000, guid: 07f0aedbb0bc79a4d967d29970c39b25, type: 3}
   audJumpVol: 0.5
+  gunSlots:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!33 &236753657962487452
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -463,7 +467,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

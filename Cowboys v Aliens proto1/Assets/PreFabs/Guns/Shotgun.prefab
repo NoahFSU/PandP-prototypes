@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7877284693055680465}
   m_Layer: 0
   m_Name: Shotgun
-  m_TagString: Shotgun
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -47,6 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 650fb4baea17f7444968f6fd7eb1200c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gunSprite: {fileID: 21300012, guid: 6674e8c43c63e4f4184cbd009379498d, type: 3}
   gun: {fileID: 11400000, guid: 14ced853358a8fb45bb2f3fb73b74ba7, type: 2}
 --- !u!33 &2650427206614385288
 MeshFilter:

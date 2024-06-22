@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class GunPickUp : MonoBehaviour
 {
+    public Sprite gunSprite;
+    private bool isPickedUp = false;
     [SerializeField] GunStats gun;
     // Start is called before the first frame update
     void Start()
@@ -13,12 +15,19 @@ public class GunPickUp : MonoBehaviour
         gun.ammoCurrent -= gun.magMax;
         gun.magAmmount = gun.magMax;
     }
-    private void OnTriggerEnter(Collider other)
+    void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && !isPickedUp)
         {
-            gameManager.Instance.playerscript.getGunStats(gun);
-            Destroy(gameObject);
+            isPickedUp = true;
+            playerController playerInventory = other.GetComponent<playerController>();
+            if (playerInventory != null )
+            {
+                playerInventory.PickupGun(gunSprite);
+                gameManager.Instance.playerscript.getGunStats(gun);
+                Destroy(gameObject);
+
+            }
         }
     }
 }
