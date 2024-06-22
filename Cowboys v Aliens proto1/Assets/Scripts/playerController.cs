@@ -9,6 +9,7 @@ public class playerController : MonoBehaviour, IDamage
 
     [Header("Player Values")]
     [SerializeField] int HP;
+    [SerializeField] int wallet;
 
     [SerializeField] int speed;
     [SerializeField] int sprintMod;
@@ -33,6 +34,13 @@ public class playerController : MonoBehaviour, IDamage
     [SerializeField] Animator GunAnim;
     [SerializeField] GameObject lassoPrefab;
 
+    [Header("Grenade Settings")]
+    [SerializeField] float throwForce = 40f;
+    [SerializeField] GameObject grenadePrefab;
+    [SerializeField] int grenadeAmount;
+    [SerializeField] int maxGrenadeAmount = 3;
+
+
     [Header("Audio Settings")]
     [SerializeField] AudioSource aud;
     [SerializeField] AudioClip[] audPlayerHit;
@@ -55,6 +63,7 @@ public class playerController : MonoBehaviour, IDamage
     bool isReloading = false;
     int jumpCount;
     int HPOrig;
+    int walletOrig;
     bool isShooting;
     int selectedGun;
     bool isCrouching = false;
@@ -69,6 +78,7 @@ public class playerController : MonoBehaviour, IDamage
     void Start()
     {
         HPOrig = HP;
+        walletOrig = wallet;
         origHeight = controller.height;
         origSpeed = speed;
         maxStamina = currentStamina;
@@ -76,7 +86,7 @@ public class playerController : MonoBehaviour, IDamage
         drainTick = new WaitForSeconds(drainTickSpeed);
         rb = GetComponent<Rigidbody>();
         SpawnPlayer();
-
+        UpdateWalletUI();
     }
 
 
@@ -96,7 +106,7 @@ public class playerController : MonoBehaviour, IDamage
             {
                 PullEnemy();
             }
-            if(Input.GetButtonDown("Jump") && isSwinging)
+            if (Input.GetButtonDown("Jump") && isSwinging)
             {
                 StopSwinging();
             }
@@ -157,6 +167,13 @@ public class playerController : MonoBehaviour, IDamage
                 StartCoroutine(reload());
             }
         }
+        if (Input.GetButtonDown("Grenade"))
+        {
+            if (grenadeAmount > 0)
+            {
+                ThrowGrenade();
+            }
+        }
     }
     void Sprint()
     {
@@ -207,6 +224,36 @@ public class playerController : MonoBehaviour, IDamage
         }
         regen = null;
     }
+  
+    public void SpawnPlayer()
+    {
+        HP = HPOrig;
+        UpdatePlayerUI();
+
+        controller.enabled = false;
+        transform.position = gameManager.Instance.playerSpawnPos.transform.position;
+        controller.enabled = true;
+    }
+    void Crouch()
+    {
+        if (Input.GetButtonDown("Crouch"))
+        {
+            isCrouching = !isCrouching;
+            if (isCrouching)
+            {
+                controller.height = origHeight / 2;
+                speed = (int)(speed * crouchSpeedMod);
+            }
+            else
+            {
+                controller.height = origHeight;
+                speed = (int)(speed / crouchSpeedMod);
+            }
+        }
+
+    }
+
+    //methods for guns
     IEnumerator reload()
     {
         GunAnim.SetBool("Reloading", true);
@@ -224,6 +271,13 @@ public class playerController : MonoBehaviour, IDamage
 
         // gameManager.Instance.reloadUI.SetActive(false);
     }
+    void ThrowGrenade()
+    {
+        --grenadeAmount;
+        GameObject grenade = Instantiate(grenadePrefab, transform.position, transform.rotation);
+        Rigidbody rb = grenade.GetComponent<Rigidbody>();
+        rb.AddForce(transform.forward * throwForce, ForceMode.VelocityChange);
+    }
     IEnumerator shoot()
     {
         GunAnim.SetTrigger("Shooting");
@@ -237,18 +291,18 @@ public class playerController : MonoBehaviour, IDamage
         for (int i = 0; i < gunList[selectedGun].projAmmount; i++)
         {
             IDamage dmg;
-           int  totaldamage = shootDamage;
+            int totaldamage = shootDamage;
             RaycastHit hit;
             if (Physics.Raycast(Camera.main.transform.position, Accuracy(), out hit, shootDist))
             {
                 Debug.Log(hit.transform.name);
                 if (hit.transform.CompareTag("Head"))
                 {
-                     dmg = hit.collider.gameObject.GetComponentInParent<IDamage>();
+                    dmg = hit.collider.gameObject.GetComponentInParent<IDamage>();
                     totaldamage = (int)(totaldamage * gunList[selectedGun].headShotMultiplier);
                 }
                 else
-                     dmg = hit.collider.GetComponent<IDamage>();
+                    dmg = hit.collider.GetComponent<IDamage>();
                 if (hit.transform != transform && dmg != null)
                 {
 
@@ -308,15 +362,7 @@ public class playerController : MonoBehaviour, IDamage
 
     }
 
-    void UpdatePlayerUI()
-    {
 
-        gameManager.Instance.playerHPBar.fillAmount = (float)HP / HPOrig;
-        if (gameManager.Instance.playerHPBarCombo.fillAmount < gameManager.Instance.playerHPBar.fillAmount)
-            gameManager.Instance.playerHPBarCombo.fillAmount = gameManager.Instance.playerHPBar.fillAmount;
-        else
-            comboRegen = StartCoroutine(comboHealth());
-    }
     IEnumerator comboHealth()
     {
 
@@ -325,19 +371,6 @@ public class playerController : MonoBehaviour, IDamage
             gameManager.Instance.playerHPBarCombo.fillAmount = gameManager.Instance.playerHPBar.fillAmount;
 
         comboRegen = null;
-    }
-    void UpdateAmmoUi()
-    {
-        
-
-        gameManager.Instance.magAmmoText.text = gunList[selectedGun].magAmmount.ToString("F0");
-
-       // gameManager.Instance.totalAmmoText.text = (gunList[selectedGun].magAmmount + gunList[selectedGun].ammoCurrent).ToString("F0");       
-
-
-        gameManager.Instance.reserverAmmoText.text = gunList[selectedGun].ammoCurrent.ToString("F0");
-
-
     }
     public void getGunStats(GunStats gun)
     {
@@ -391,33 +424,33 @@ public class playerController : MonoBehaviour, IDamage
         GetComponent<AudioSource>().PlayOneShot(gunList[selectedGun].equipSound, gunList[selectedGun].equipVol);
     }
 
-    public void SpawnPlayer()
+    //Methods to Update UIs
+    void UpdateAmmoUi()
     {
-        HP = HPOrig;
-        UpdatePlayerUI();
 
-        controller.enabled = false;
-        transform.position = gameManager.Instance.playerSpawnPos.transform.position;
-        controller.enabled = true;
+        gameManager.Instance.magAmmoText.text = gunList[selectedGun].magAmmount.ToString("F0");
+
+        gameManager.Instance.reserverAmmoText.text = gunList[selectedGun].ammoCurrent.ToString("F0");
+
+
     }
-    void Crouch()
+    void UpdatePlayerUI()
     {
-        if (Input.GetButtonDown("Crouch"))
+
+        gameManager.Instance.playerHPBar.fillAmount = (float)HP / HPOrig;
+        if (gameManager.Instance.playerHPBarCombo.fillAmount < gameManager.Instance.playerHPBar.fillAmount)
+            gameManager.Instance.playerHPBarCombo.fillAmount = gameManager.Instance.playerHPBar.fillAmount;
+        else
+            comboRegen = StartCoroutine(comboHealth());
+    }
+    void UpdateWalletUI()
+    {
+        if (gameManager.Instance != null && gameManager.Instance.walletAmtText != null)
         {
-            isCrouching = !isCrouching;
-            if (isCrouching)
-            {
-                controller.height = origHeight / 2;
-                speed = (int)(speed * crouchSpeedMod);
-            }
-            else
-            {
-                controller.height = origHeight;
-                speed = (int)(speed / crouchSpeedMod);
-            }
+            gameManager.Instance.walletAmtText.text = wallet.ToString("F0");  // Update UI text with wallet amount
         }
-
     }
+
     //methods for item pickups
     public void RestoreHealth(int amount)
     {
@@ -437,9 +470,23 @@ public class playerController : MonoBehaviour, IDamage
 
             gameManager.Instance.reserverAmmoText.text = gunList[selectedGun].ammoCurrent.ToString("F0");
         }
+        if (grenadeAmount < maxGrenadeAmount)
+            ++grenadeAmount;
+
 
     }
 
+    public void AddCurrency(int amount)
+    {
+        wallet += amount;
+        if (wallet < walletOrig)
+        {
+            wallet = walletOrig; ;
+        }
+        UpdateWalletUI();
+    }
+
+    //Methods for Lasso
     void ThrowLasso()
     {
         if (gameManager.Instance.IsLassoBeingThrown() || gameManager.Instance.GetLassoedEnemy() != null)
@@ -485,26 +532,26 @@ public class playerController : MonoBehaviour, IDamage
         springJnt.damper = 5f;
         springJnt.massScale = 1f;
         rb.useGravity = false;
-        LineRenderer lRenderer = currentLasso.GetComponent<LineRenderer>(); 
-        if (lRenderer != null )
+        LineRenderer lRenderer = currentLasso.GetComponent<LineRenderer>();
+        if (lRenderer != null)
         {
             lRenderer.enabled = true;
         }
-        
+
     }
 
     public void StopSwinging()
     {
-        isSwinging=false;
+        isSwinging = false;
         rb.useGravity = true;
-        if(springJnt != null)
+        if (springJnt != null)
         {
             Destroy(springJnt);
         }
         LineRenderer lRenderer = currentLasso.GetComponent<LineRenderer>();
-        if (lRenderer != null )
+        if (lRenderer != null)
         {
-            lRenderer.enabled = false; 
+            lRenderer.enabled = false;
         }
     }
 
@@ -525,23 +572,23 @@ public class playerController : MonoBehaviour, IDamage
 
     void UpdateLassoLine()
     {
-        if(currentLasso != null)
+        if (currentLasso != null)
         {
             LineRenderer lRenderer = currentLasso.GetComponent<LineRenderer>();
-            if(lRenderer != null)
+            if (lRenderer != null)
             {
-                lRenderer.SetPosition(0,transform.position);
+                lRenderer.SetPosition(0, transform.position);
                 lRenderer.SetPosition(1, currentLasso.transform.position);
             }
         }
         GameObject lassoedEnemy = gameManager.Instance.GetLassoedEnemy();
-        if (lassoedEnemy != null )
+        if (lassoedEnemy != null)
         {
             LineRenderer enemyLassoLine = lassoedEnemy.GetComponent<LineRenderer>();
             if (enemyLassoLine != null)
             {
                 enemyLassoLine.SetPosition(0, transform.position);
-                enemyLassoLine.SetPosition(1,lassoedEnemy.transform.position);
+                enemyLassoLine.SetPosition(1, lassoedEnemy.transform.position);
             }
         }
     }
@@ -556,7 +603,7 @@ public class playerController : MonoBehaviour, IDamage
             }
             currentLasso = null;
         }
-        
+
     }
-    
+
 }
