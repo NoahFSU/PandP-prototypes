@@ -224,36 +224,7 @@ public class playerController : MonoBehaviour, IDamage
         }
         regen = null;
     }
-    public void TakeDamage(int amount)
-    {
-        aud.PlayOneShot(audPlayerHit[Random.Range(0, audPlayerHit.Length)], audPlayerHitVol);
-        HP -= amount;
-        if (comboRegen != null)
-            StopCoroutine(comboRegen);
-        UpdatePlayerUI();
-        StartCoroutine(flashScreenDamage());
-
-        if (HP <= 0)
-        {
-            gameManager.Instance.youLose();
-        }
-    }
-    IEnumerator flashScreenDamage()
-    {
-        gameManager.Instance.playerFlashDamage.SetActive(true);
-        yield return new WaitForSeconds(0.1f);
-        gameManager.Instance.playerFlashDamage.SetActive(false);
-
-    }
-    IEnumerator comboHealth()
-    {
-
-        yield return new WaitForSeconds(1);
-        if (gameManager.Instance.playerHPBarCombo.fillAmount > gameManager.Instance.playerHPBar.fillAmount)
-            gameManager.Instance.playerHPBarCombo.fillAmount = gameManager.Instance.playerHPBar.fillAmount;
-
-        comboRegen = null;
-    }
+  
     public void SpawnPlayer()
     {
         HP = HPOrig;
@@ -391,15 +362,7 @@ public class playerController : MonoBehaviour, IDamage
 
     }
 
-    void UpdatePlayerUI()
-    {
 
-        gameManager.Instance.playerHPBar.fillAmount = (float)HP / HPOrig;
-        if (gameManager.Instance.playerHPBarCombo.fillAmount < gameManager.Instance.playerHPBar.fillAmount)
-            gameManager.Instance.playerHPBarCombo.fillAmount = gameManager.Instance.playerHPBar.fillAmount;
-        else
-            comboRegen = StartCoroutine(comboHealth());
-    }
     IEnumerator comboHealth()
     {
 
@@ -408,19 +371,6 @@ public class playerController : MonoBehaviour, IDamage
             gameManager.Instance.playerHPBarCombo.fillAmount = gameManager.Instance.playerHPBar.fillAmount;
 
         comboRegen = null;
-    }
-    void UpdateAmmoUi()
-    {
-        
-
-        gameManager.Instance.magAmmoText.text = gunList[selectedGun].magAmmount.ToString("F0");
-
-       // gameManager.Instance.totalAmmoText.text = (gunList[selectedGun].magAmmount + gunList[selectedGun].ammoCurrent).ToString("F0");       
-
-
-        gameManager.Instance.reserverAmmoText.text = gunList[selectedGun].ammoCurrent.ToString("F0");
-
-
     }
     public void getGunStats(GunStats gun)
     {

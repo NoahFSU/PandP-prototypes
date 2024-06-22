@@ -69041,6 +69041,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI with Respawn
       objectReference: {fileID: 0}
+    - target: {fileID: 8607548399691318176, guid: 09eda9905c7119a4892aee5fd8a9b8a8, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
