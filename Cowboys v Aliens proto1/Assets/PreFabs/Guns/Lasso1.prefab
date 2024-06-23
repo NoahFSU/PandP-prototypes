@@ -13270,9 +13270,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 752cd3a2a9929184390e94d03ffc0f04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lassoSpeed: 10
-  lassoDistance: 15
-  lassoAroundObjectPrefab: {fileID: 598796301383916538, guid: 36df6ae4d89b50842a4eaf1916924890, type: 3}
+  lassoSpeed: 15
+  lassoDistance: 20
 --- !u!54 &3861565331200907174
 Rigidbody:
   m_ObjectHideFlags: 0
