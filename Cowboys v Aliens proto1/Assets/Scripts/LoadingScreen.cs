@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class LoadingScreen : MonoBehaviour
 {
+    private const string TutorialCompletedKey = "TutorialCompleted";
+
     public GameObject loadingScreen;
     public Slider slider;
 
@@ -34,5 +36,22 @@ public class LoadingScreen : MonoBehaviour
         loadingScreen.SetActive(false);
         Destroy(loadingScreen);
         Destroy(this.gameObject);
+    }
+
+    public void PlayGame()
+    {
+        if (PlayerPrefs.GetInt(TutorialCompletedKey, 0) == 1)
+        {
+            SceneManager.LoadScene("Hub Level 2 Unlock");
+        }
+        else
+        {
+            SceneManager.LoadScene("Tutorial");
+        }
+    }
+
+    public void CompleteTutorial()
+    {
+        PlayerPrefs.SetInt(TutorialCompletedKey, 1);
     }
 }
