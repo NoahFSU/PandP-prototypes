@@ -3041,6 +3041,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 650fb4baea17f7444968f6fd7eb1200c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gunSprite: {fileID: 0}
   gun: {fileID: 11400000, guid: 17328b645ff37ae43996267614dea2d5, type: 2}
 --- !u!135 &1698300945
 SphereCollider:
@@ -9476,6 +9477,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 02dddddb62d9e764a9c44b08eaa26af6, type: 3}
   - {fileID: 8300000, guid: 07f0aedbb0bc79a4d967d29970c39b25, type: 3}
   audJumpVol: 0.5
+  gunSlots: []
 --- !u!4 &7540400106018503737
 Transform:
   m_ObjectHideFlags: 0

@@ -689,8 +689,7 @@ MonoBehaviour:
   Enemy: {fileID: 0}
   checkpointPopup: {fileID: 0}
   reticleUI: {fileID: 0}
-  hpBarUI: {fileID: 0}
-  staminaUI: {fileID: 0}
+  playerUI: {fileID: 0}
   enemyUI: {fileID: 0}
   ammoUI: {fileID: 0}
   walletUI: {fileID: 0}

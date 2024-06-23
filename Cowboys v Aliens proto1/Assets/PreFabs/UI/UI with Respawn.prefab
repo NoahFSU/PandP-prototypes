@@ -2294,7 +2294,7 @@ PrefabInstance:
     - target: {fileID: 1095745707154864671, guid: 8a602c74337c88f439e04424acbc61a8, type: 3}
       propertyPath: playerSpawnPos
       value: 
-      objectReference: {fileID: 2256310503244140463, guid: 08e9c16c89e0ff444b90631bb1980757, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 1095745707154864671, guid: 8a602c74337c88f439e04424acbc61a8, type: 3}
       propertyPath: StaminaBarCombo
       value: 
@@ -3305,7 +3305,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8682137994655362498, guid: d3200eccc419e3f4299cddcc5ca9b512, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -0.000061035156
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8682137994655362498, guid: d3200eccc419e3f4299cddcc5ca9b512, type: 3}
       propertyPath: m_AnchoredPosition.y
