@@ -16,6 +16,7 @@ public class BossAI : MonoBehaviour, IDamage
     [SerializeField] GameObject bomb;
     [SerializeField] GameObject enemiesToSpawn;
     [SerializeField] Transform[] enemySpawnPos;
+    [SerializeField] ParticleSystem spawnEffect;
 
     [Header("Enemy Values")]
     [SerializeField] float bossHP;
@@ -156,9 +157,17 @@ public class BossAI : MonoBehaviour, IDamage
         while (spawnCount < 4)
         {
             int arrayPos = Random.Range(0, enemySpawnPos.Length);
+            Vector3 spawnPos = enemySpawnPos[arrayPos].position;
+            Quaternion spawnRotation = enemySpawnPos[arrayPos].rotation;
+
+            ParticleSystem effect = Instantiate(spawnEffect, spawnPos, spawnRotation);
+            effect.Play();
             animat.SetTrigger("Attack_Boss");
-            Instantiate(enemiesToSpawn, enemySpawnPos[arrayPos].position, enemySpawnPos[arrayPos].rotation);
+            yield return new WaitForSeconds(effect.main.duration);
+
+            Instantiate(enemiesToSpawn, spawnPos, spawnRotation);
             gameManager.Instance.updateGameGoal(1);
+
             yield return new WaitForSeconds(spawnAllyRate);
             spawnCount++;
 
