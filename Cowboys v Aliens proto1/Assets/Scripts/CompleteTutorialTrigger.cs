@@ -12,7 +12,7 @@ public class CompleteTutorialTrigger : MonoBehaviour
         loadingScreen = FindObjectOfType<LoadingScreen>();
     }
 
-    private void OnTriggerEnter(Collider other)
+    void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
