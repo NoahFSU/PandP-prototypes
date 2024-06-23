@@ -13,9 +13,6 @@ public class Gernade : MonoBehaviour
     bool hasExploded = false;
 
     public GameObject explosionEffect;
-    public AudioSource aud;
-    public AudioClip[] explosionSound;
-    [Range(0, 1)][SerializeField] float explosionVol;
     // Start is called before the first frame update
     void Start()
     {
@@ -35,7 +32,6 @@ public class Gernade : MonoBehaviour
     void Explode()
     {
         Instantiate(explosionEffect, transform.position, transform.rotation);
-        aud.PlayOneShot(explosionSound[Random.Range(0, explosionSound.Length)], explosionVol);
         Collider[] collidersToDamage = Physics.OverlapSphere(transform.position, radius);
         foreach(Collider nearbyObject in collidersToDamage)
         {

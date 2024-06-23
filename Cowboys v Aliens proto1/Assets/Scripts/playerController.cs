@@ -272,9 +272,9 @@ public class playerController : MonoBehaviour, IDamage
     void ThrowGrenade()
     {
         --grenadeAmount;
-        GameObject grenade = Instantiate(grenadePrefab, transform.position, transform.rotation);
+        GameObject grenade = Instantiate(grenadePrefab, Camera.main.transform.position, Camera.main.transform.rotation);
         Rigidbody rb = grenade.GetComponent<Rigidbody>();
-        rb.AddForce(transform.forward * throwForce, ForceMode.VelocityChange);
+        rb.AddForce(Camera.main.transform.forward * throwForce, ForceMode.VelocityChange);
     }
     IEnumerator shoot()
     {
