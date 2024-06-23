@@ -21,7 +21,8 @@ MonoBehaviour:
   ammoMax: 100
   magAmmount: 6
   magMax: 6
-  ammoCurrent: 100
+  ammoCurrent: 99
+  totalAmmo: 95
   headShotMultiplier: 1.5
   inaccuracyDistance: 0
   hitEffect: {fileID: 6683926199875988124, guid: 2b4a6a9e9d15abc4d8fa029c7389f796, type: 3}
@@ -34,3 +35,6 @@ MonoBehaviour:
   equipVol: 0
   reloadVol: 1
   Icon: {fileID: 0}
+  recoilX: -2
+  recoilY: 2
+  recoilZ: 0.35
