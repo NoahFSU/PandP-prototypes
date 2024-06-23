@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -451,6 +451,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &296368023 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1791335901508562921, guid: 09eda9905c7119a4892aee5fd8a9b8a8, type: 3}
+  m_PrefabInstance: {fileID: 2021469203}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &362231882
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -508,6 +519,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2a23ad109c3b3ae43a414b5d209b915d, type: 3}
+--- !u!114 &398133446 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3780453036899977034, guid: 09eda9905c7119a4892aee5fd8a9b8a8, type: 3}
+  m_PrefabInstance: {fileID: 2021469203}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &410244239
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -911,6 +933,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &747212916 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8883728855197837550, guid: 09eda9905c7119a4892aee5fd8a9b8a8, type: 3}
+  m_PrefabInstance: {fileID: 2021469203}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &854561978 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3900434504065931206, guid: 09eda9905c7119a4892aee5fd8a9b8a8, type: 3}
@@ -1232,6 +1265,30 @@ PrefabInstance:
       propertyPath: wallet
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 2590846314593933838, guid: d2e75689c9f82e745839995025ba1405, type: 3}
+      propertyPath: snappiness
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2590846314593933838, guid: d2e75689c9f82e745839995025ba1405, type: 3}
+      propertyPath: returnSpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2590846314593933838, guid: d2e75689c9f82e745839995025ba1405, type: 3}
+      propertyPath: gunList.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2590846314593933838, guid: d2e75689c9f82e745839995025ba1405, type: 3}
+      propertyPath: gunSlots.Array.data[0]
+      value: 
+      objectReference: {fileID: 296368023}
+    - target: {fileID: 2590846314593933838, guid: d2e75689c9f82e745839995025ba1405, type: 3}
+      propertyPath: gunSlots.Array.data[1]
+      value: 
+      objectReference: {fileID: 398133446}
+    - target: {fileID: 2590846314593933838, guid: d2e75689c9f82e745839995025ba1405, type: 3}
+      propertyPath: gunSlots.Array.data[2]
+      value: 
+      objectReference: {fileID: 747212916}
     - target: {fileID: 3092325363557502660, guid: d2e75689c9f82e745839995025ba1405, type: 3}
       propertyPath: m_BackGroundColor.a
       value: 1
@@ -1796,6 +1853,22 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 29.099976
       objectReference: {fileID: 0}
+    - target: {fileID: 2412185620278264858, guid: 09eda9905c7119a4892aee5fd8a9b8a8, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2412185620278264858, guid: 09eda9905c7119a4892aee5fd8a9b8a8, type: 3}
+      propertyPath: m_Color.g
+      value: 0.9175284
+      objectReference: {fileID: 0}
+    - target: {fileID: 2412185620278264858, guid: 09eda9905c7119a4892aee5fd8a9b8a8, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2412185620278264858, guid: 09eda9905c7119a4892aee5fd8a9b8a8, type: 3}
+      propertyPath: m_FillAmount
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2757393634607952292, guid: 09eda9905c7119a4892aee5fd8a9b8a8, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -1840,6 +1913,14 @@ PrefabInstance:
       propertyPath: currencyAmtText
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 3738734143251857222, guid: 09eda9905c7119a4892aee5fd8a9b8a8, type: 3}
+      propertyPath: m_FillAmount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4581183863100368076, guid: 09eda9905c7119a4892aee5fd8a9b8a8, type: 3}
+      propertyPath: m_FillAmount
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4966509046259929753, guid: 09eda9905c7119a4892aee5fd8a9b8a8, type: 3}
       propertyPath: m_fontAsset
       value: 
@@ -1855,6 +1936,18 @@ PrefabInstance:
     - target: {fileID: 6709742051513216782, guid: 09eda9905c7119a4892aee5fd8a9b8a8, type: 3}
       propertyPath: m_Name
       value: UI with Respawn
+      objectReference: {fileID: 0}
+    - target: {fileID: 7900145920883305998, guid: 09eda9905c7119a4892aee5fd8a9b8a8, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7900145920883305998, guid: 09eda9905c7119a4892aee5fd8a9b8a8, type: 3}
+      propertyPath: m_Color.g
+      value: 0.8768796
+      objectReference: {fileID: 0}
+    - target: {fileID: 7900145920883305998, guid: 09eda9905c7119a4892aee5fd8a9b8a8, type: 3}
+      propertyPath: m_Color.r
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8607548399691318176, guid: 09eda9905c7119a4892aee5fd8a9b8a8, type: 3}
       propertyPath: m_IsActive

@@ -1,4 +1,4 @@
-using System;
+//using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -123,7 +123,6 @@ public class playerController : MonoBehaviour, IDamage
             }
             //DrawLassoLine();
             UpdateLassoLine();
-
         }
     }
     void OnEnable()
@@ -207,31 +206,23 @@ public class playerController : MonoBehaviour, IDamage
     {
         while (sprinting && currentStamina - 1 >= 0)
         {
-
-
             --currentStamina;
-            gameManager.Instance.StaminaBar.fillAmount = (float)currentStamina / maxStamina;
+            UpdatePlayerUI();
             yield return drainTick;
-
         }
     }
     IEnumerator StaminaRegen()
     {
-
         yield return new WaitForSeconds(regenSTimer);
         while (currentStamina < maxStamina)
         {
             ++currentStamina;
-            gameManager.Instance.StaminaBar.fillAmount = (float)currentStamina / maxStamina;
-            if (gameManager.Instance.StaminaBarCombo.fillAmount <= gameManager.Instance.StaminaBar.fillAmount)
-            {
-                gameManager.Instance.StaminaBarCombo.fillAmount = gameManager.Instance.StaminaBar.fillAmount;
-            }
+            UpdatePlayerUI();
             yield return regenTick;
         }
         regen = null;
     }
-  
+
     public void SpawnPlayer()
     {
         HP = HPOrig;
@@ -381,26 +372,26 @@ public class playerController : MonoBehaviour, IDamage
     }
     public void getGunStats(GunStats gun)
     {
-            gunList.Add(gun);
+        gunList.Add(gun);
 
-            selectedGun = gunList.Count - 1;
+        selectedGun = gunList.Count - 1;
 
-            shootDamage = gun.shootDamage;
-            shootRate = gun.shootRate;
-            shootDist = gun.shootDistance;
+        shootDamage = gun.shootDamage;
+        shootRate = gun.shootRate;
+        shootDist = gun.shootDistance;
 
-            
 
-           // gameManager.Instance.totalAmmoText.text = gun.totalAmmo.ToString("F0");
-            
 
-            gameManager.Instance.magAmmoText.text = gun.magMax.ToString("F0");
-            gameManager.Instance.reserverAmmoText.text = gun.ammoCurrent.ToString("F0");
+        // gameManager.Instance.totalAmmoText.text = gun.totalAmmo.ToString("F0");
 
-            gunModel.GetComponent<MeshFilter>().sharedMesh = gun.gunModel.GetComponent<MeshFilter>().sharedMesh;
-            gunModel.GetComponent<MeshRenderer>().sharedMaterial = gun.gunModel.GetComponent<MeshRenderer>().sharedMaterial;
-        
-        
+
+        gameManager.Instance.magAmmoText.text = gun.magMax.ToString("F0");
+        gameManager.Instance.reserverAmmoText.text = gun.ammoCurrent.ToString("F0");
+
+        gunModel.GetComponent<MeshFilter>().sharedMesh = gun.gunModel.GetComponent<MeshFilter>().sharedMesh;
+        gunModel.GetComponent<MeshRenderer>().sharedMaterial = gun.gunModel.GetComponent<MeshRenderer>().sharedMaterial;
+
+
     }
     public void selectGun()
     {
@@ -443,25 +434,26 @@ public class playerController : MonoBehaviour, IDamage
 
     void ClearHotbar()
     {
-        foreach (var slot in gunSlots)
-        {
-            slot.enabled = false;
-        }
+            foreach (var slot in gunSlots)
+            {
+                slot.enabled = false;
+            }
+
     }
 
     void changeGun()
     {
-        
-            shootDamage = gunList[selectedGun].shootDamage;
-            shootRate = gunList[selectedGun].shootRate;
-            shootDist = gunList[selectedGun].shootDistance;
 
-            gunModel.GetComponent<MeshFilter>().sharedMesh = gunList[selectedGun].gunModel.GetComponent<MeshFilter>().sharedMesh;
-            gunModel.GetComponent<MeshRenderer>().sharedMaterial = gunList[selectedGun].gunModel.GetComponent<MeshRenderer>().sharedMaterial;
-            GetComponent<AudioSource>().PlayOneShot(gunList[selectedGun].equipSound, gunList[selectedGun].equipVol);
-            // Logic to switch to the selected gun
-            
-        
+        shootDamage = gunList[selectedGun].shootDamage;
+        shootRate = gunList[selectedGun].shootRate;
+        shootDist = gunList[selectedGun].shootDistance;
+
+        gunModel.GetComponent<MeshFilter>().sharedMesh = gunList[selectedGun].gunModel.GetComponent<MeshFilter>().sharedMesh;
+        gunModel.GetComponent<MeshRenderer>().sharedMaterial = gunList[selectedGun].gunModel.GetComponent<MeshRenderer>().sharedMaterial;
+        GetComponent<AudioSource>().PlayOneShot(gunList[selectedGun].equipSound, gunList[selectedGun].equipVol);
+        // Logic to switch to the selected gun
+
+
     }
 
     //Methods to Update UIs
@@ -478,6 +470,11 @@ public class playerController : MonoBehaviour, IDamage
     {
 
         gameManager.Instance.playerHPBar.fillAmount = (float)HP / HPOrig;
+
+        gameManager.Instance.StaminaBar.fillAmount = (float)currentStamina / maxStamina;
+        if (gameManager.Instance.StaminaBarCombo.fillAmount < gameManager.Instance.StaminaBar.fillAmount)
+            gameManager.Instance.StaminaBarCombo.fillAmount = gameManager.Instance.StaminaBar.fillAmount;
+
         if (gameManager.Instance.playerHPBarCombo.fillAmount < gameManager.Instance.playerHPBar.fillAmount)
             gameManager.Instance.playerHPBarCombo.fillAmount = gameManager.Instance.playerHPBar.fillAmount;
         else

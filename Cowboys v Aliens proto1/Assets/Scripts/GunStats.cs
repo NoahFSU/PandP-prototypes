@@ -32,4 +32,8 @@ public class GunStats : ScriptableObject
     [Range(0, 1)] public float equipVol;
     [Range(0, 1)] public float reloadVol;
     public Image Icon;
+
+    public float recoilX;
+    public float recoilY;
+    public float recoilZ;
 }
