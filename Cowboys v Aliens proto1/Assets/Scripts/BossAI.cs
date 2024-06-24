@@ -120,9 +120,8 @@ public class BossAI : MonoBehaviour, IDamage
     {
         //will activate the boss and start the pattern
         isActive = true;
-        agent.enabled = true;   
+        agent.enabled = true;
         agent.speed = bossSpeed;
-        gameManager.Instance.updateGameGoal(1);
         StartCoroutine(BossPattern());
     }
 
@@ -240,6 +239,7 @@ public class BossAI : MonoBehaviour, IDamage
         {
             gameManager.Instance.updateGameGoal(-1);
             Destroy(gameObject);
+            
         }
     }
 
