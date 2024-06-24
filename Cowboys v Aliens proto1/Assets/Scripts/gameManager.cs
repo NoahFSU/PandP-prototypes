@@ -166,6 +166,6 @@ public class gameManager : MonoBehaviour
         enemyUI.SetActive(true);
         ammoUI.SetActive(true);
 
-        walletUI.SetActive(true);
+       // walletUI.SetActive(true);
     }
 }
