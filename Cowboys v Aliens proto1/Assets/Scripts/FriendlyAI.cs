@@ -17,10 +17,6 @@ public class FriendlyAI : MonoBehaviour, IDamage
     // Start is called before the first frame update
     void Start()
     {
-        if (shootingPos == null)
-        {
-            Debug.LogError("Shooting position not assigned for FriendlyAI: " + gameObject.name);
-        }
     }
 
     // Update is called once per frame
@@ -84,7 +80,6 @@ public class FriendlyAI : MonoBehaviour, IDamage
         Vector3 directionToTarget = target.position - shootingPos.position;
         directionToTarget.y = directionToTarget.y + 1;
         RaycastHit hit;
-        Debug.DrawRay(transform.position, directionToTarget);
 
         if (Physics.Raycast(transform.position, directionToTarget, out hit))
         {

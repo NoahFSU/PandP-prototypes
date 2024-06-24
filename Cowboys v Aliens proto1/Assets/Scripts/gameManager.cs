@@ -19,27 +19,17 @@ public class gameManager : MonoBehaviour
     [Header("----- Gun UI -----")]
     [SerializeField] public TMP_Text magAmmoText;
     [SerializeField] public TMP_Text reserverAmmoText;
-    //[SerializeField] public TMP_Text totalAmmoText;
-    /*public GameObject pistol;
-    public GameObject shotgun;
-    public GameObject rifle;*/
-    //[SerializeField] public TMP_Text totalAmmoText1;
-    /*[SerializeField] public TMP_Text totalAmmoText2;
-    [SerializeField] public TMP_Text totalAmmoText3;*/
-    /*[SerializeField] public TMP_Text totalAmmoText4;
-    [SerializeField] public TMP_Text totalAmmoText5;
-    [SerializeField] public TMP_Text totalAmmoText6;*/
 
 
     [Header("----- Player UI -----")]
 
     [SerializeField] public TMP_Text walletAmtText;
-
     public Image playerHPBar;
     public Image playerHPBarCombo;
     public Image StaminaBar;
     public Image StaminaBarCombo;
     public Image reload;
+
     [Header("GamePlay Dependencies")]
     public GameObject playerSpawnPos;
     public GameObject playerFlashDamage;
@@ -66,9 +56,6 @@ public class gameManager : MonoBehaviour
     {
         StartCoroutine(StartUIDelay());
         Instance = this;
-       /* pistol = GameObject.FindWithTag("Pistol");
-        shotgun = GameObject.FindWithTag("Shotgun");
-        rifle = GameObject.FindWithTag("Rifle");*/
         Player = GameObject.FindWithTag("Player");
         Enemy = GameObject.FindWithTag("Enemy");
         playerscript = Player.GetComponent<playerController>();

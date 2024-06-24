@@ -103,9 +103,4 @@ public class SettingsMenu : MonoBehaviour
         SetMusicVolume();
         SetSFXVolume();
     }
-
-    /*public void PlayThisSoundEffect()
-    {
-        soundPlayer.Play();
-    }*/
 }
