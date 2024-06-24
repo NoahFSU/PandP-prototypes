@@ -7447,6 +7447,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2590846314593933838, guid: d2e75689c9f82e745839995025ba1405, type: 3}
+      propertyPath: 
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2590846314593933838, guid: d2e75689c9f82e745839995025ba1405, type: 3}
       propertyPath: HP
       value: 50
       objectReference: {fileID: 0}
@@ -7459,9 +7463,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8300000, guid: c622938fa2547dc458112530227b5096, type: 3}
     - target: {fileID: 2590846314593933838, guid: d2e75689c9f82e745839995025ba1405, type: 3}
-
-
-
       propertyPath: gunSlots.Array.data[0]
       value: 
       objectReference: {fileID: 2095178055}
