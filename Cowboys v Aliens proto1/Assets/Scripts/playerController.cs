@@ -103,7 +103,6 @@ public class playerController : MonoBehaviour, IDamage
     {
         if (!gameManager.Instance.isPaused)
         {
-            Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * shootDist, Color.red);
             movement();
             selectGun();
             if (Input.GetButtonDown("Fire2"))
@@ -122,7 +121,6 @@ public class playerController : MonoBehaviour, IDamage
             {
                 Swing();
             }
-            //DrawLassoLine();
             UpdateLassoLine();
         }
     }
@@ -167,7 +165,7 @@ public class playerController : MonoBehaviour, IDamage
         {
             GetComponent<AudioSource>().PlayOneShot(gunList[selectedGun].emptySound, gunList[selectedGun].emptyVol);
         }
-        if (Input.GetButtonDown("Reload"))
+        if (Input.GetButtonDown("Reload") && gunList.Count > 0)
         {
             if (gunList[selectedGun].ammoCurrent > 0)
             {
@@ -257,7 +255,6 @@ public class playerController : MonoBehaviour, IDamage
     {
         GunAnim.SetBool("Reloading", true);
         isReloading = true;
-        //  gameManager.Instance.reloadUI.SetActive(true);
 
         GetComponent<AudioSource>().PlayOneShot(gunList[selectedGun].reloadSound, gunList[selectedGun].reloadVol);
         yield return new WaitForSeconds(gunList[selectedGun].reloadTime - .25f);
@@ -268,14 +265,13 @@ public class playerController : MonoBehaviour, IDamage
         isReloading = false;
         UpdateAmmoUi();
 
-        // gameManager.Instance.reloadUI.SetActive(false);
     }
     void ThrowGrenade()
     {
         --grenadeAmount;
-        GameObject grenade = Instantiate(grenadePrefab, transform.position, transform.rotation);
+        GameObject grenade = Instantiate(grenadePrefab, Camera.main.transform.position, Camera.main.transform.rotation);
         Rigidbody rb = grenade.GetComponent<Rigidbody>();
-        rb.AddForce(transform.forward * throwForce, ForceMode.VelocityChange);
+        rb.AddForce(Camera.main.transform.forward * throwForce, ForceMode.VelocityChange);
     }
     IEnumerator shoot()
     {
@@ -294,7 +290,6 @@ public class playerController : MonoBehaviour, IDamage
             RaycastHit hit;
             if (Physics.Raycast(Camera.main.transform.position, Accuracy(), out hit, shootDist))
             {
-                Debug.Log(hit.transform.name);
                 if (hit.transform.CompareTag("Head"))
                 {
                     dmg = hit.collider.gameObject.GetComponentInParent<IDamage>();
@@ -339,17 +334,21 @@ public class playerController : MonoBehaviour, IDamage
     }
     public void TakeDamage(int amount)
     {
-        aud.PlayOneShot(audPlayerHit[UnityEngine.Random.Range(0, audPlayerHit.Length)], audPlayerHitVol);
-        HP -= amount;
-        if (comboRegen != null)
-            StopCoroutine(comboRegen);
-        UpdatePlayerUI();
-        StartCoroutine(flashScreenDamage());
-
-        if (HP <= 0)
+        if (HP > 0)
         {
-            gameManager.Instance.youLose();
+            aud.PlayOneShot(audPlayerHit[UnityEngine.Random.Range(0, audPlayerHit.Length)], audPlayerHitVol);
+            HP -= amount;
+            if (comboRegen != null)
+                StopCoroutine(comboRegen);
+            UpdatePlayerUI();
+            StartCoroutine(flashScreenDamage());
+
+            if (HP <= 0)
+            {
+                gameManager.Instance.youLose();
+            }
         }
+
     }
 
 
@@ -383,7 +382,6 @@ public class playerController : MonoBehaviour, IDamage
 
 
 
-        // gameManager.Instance.totalAmmoText.text = gun.totalAmmo.ToString("F0");
 
 
         gameManager.Instance.magAmmoText.text = gun.magMax.ToString("F0");
@@ -396,15 +394,6 @@ public class playerController : MonoBehaviour, IDamage
     }
     public void selectGun()
     {
-        /*if (Input.GetKeyDown(KeyCode.Alpha1)) 
-        {
-
-            playerInventory.changeGun(0);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha2)) { playerInventory.changeGun(1); }
-        if (Input.GetKeyDown(KeyCode.Alpha3)) { playerInventory.changeGun(2); }
-        if (Input.GetKeyDown(KeyCode.Alpha4)) { playerInventory.changeGun(3); }
-        if (Input.GetKeyDown(KeyCode.Alpha5)) { playerInventory.changeGun(4); }*/
         if (Input.GetAxis("Mouse ScrollWheel") > 0 && selectedGun < gunList.Count - 1)
         {
             selectedGun++;
@@ -435,10 +424,10 @@ public class playerController : MonoBehaviour, IDamage
 
     void ClearHotbar()
     {
-            foreach (var slot in gunSlots)
-            {
-                slot.enabled = false;
-            }
+        foreach (var slot in gunSlots)
+        {
+            slot.enabled = false;
+        }
 
     }
 
@@ -460,6 +449,7 @@ public class playerController : MonoBehaviour, IDamage
     //Methods to Update UIs
     void UpdateAmmoUi()
     {
+        gameManager.Instance.grenadeAmmo.text = grenadeAmount.ToString("F0");
 
         gameManager.Instance.magAmmoText.text = gunList[selectedGun].magAmmount.ToString("F0");
 
@@ -542,7 +532,6 @@ public class playerController : MonoBehaviour, IDamage
     {
         gameManager.Instance.SetLassoBeingThrown(false);
         currentLasso = null;
-        //gameManager.Instance.ClearLassoedEnemy();
     }
 
     void PullEnemy()

@@ -8708,14 +8708,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1554884640342271937, guid: d2e75689c9f82e745839995025ba1405, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
-    - target: {fileID: 2590846314593933838, guid: d2e75689c9f82e745839995025ba1405, type: 3}
-      propertyPath: gunSlots.Array.size
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 2590846314593933838, guid: d2e75689c9f82e745839995025ba1405, type: 3}
       propertyPath: gunSlots.Array.data[0]
       value: 

@@ -26,7 +26,6 @@ public class GunPickUp : MonoBehaviour
                 playerInventory.PickupGun(gunSprite);
                 gameManager.Instance.playerscript.getGunStats(gun);
                 Destroy(gameObject);
-
             }
         }
     }

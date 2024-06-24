@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1622,7 +1622,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1097976097}
         m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
-        m_MethodName: PlayThisSoundEffect
+        m_MethodName: PlayButtonShoot
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2626,7 +2626,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1097976097}
         m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
-        m_MethodName: PlayThisSoundEffect
+        m_MethodName: PlayButtonShoot
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2638,8 +2638,8 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 296178570453839901}
         m_TargetAssemblyTypeName: LoadingScreen, Assembly-CSharp
-        m_MethodName: LoadScene
-        m_Mode: 3
+        m_MethodName: PlayScene
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -6021,6 +6021,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
       objectReference: {fileID: 1097976097}
+    - target: {fileID: 3044469020557847142, guid: f6d37c6b71da5434d864987d2151afbb, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
+      value: PlayButtonShoot
+      objectReference: {fileID: 0}
     - target: {fileID: 8420368948090261482, guid: f6d37c6b71da5434d864987d2151afbb, type: 3}
       propertyPath: m_Name
       value: Options
@@ -7187,7 +7191,7 @@ MonoBehaviour:
         m_CallState: 1
       - m_Target: {fileID: 1097976097}
         m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
-        m_MethodName: PlayThisSoundEffect
+        m_MethodName: PlayButtonShoot
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7702,6 +7706,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 1
+      - m_Target: {fileID: 1097976097}
+        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
+        m_MethodName: PlayButtonShoot
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!222 &7247519930534556900
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7851,7 +7867,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 1097976097}
         m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
-        m_MethodName: PlayThisSoundEffect
+        m_MethodName: PlayButtonShoot
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

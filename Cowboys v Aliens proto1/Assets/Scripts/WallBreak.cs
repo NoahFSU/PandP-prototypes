@@ -8,7 +8,6 @@ public class WallBreak : MonoBehaviour, IDamage, IGetLassoed
 {
 
     [SerializeField] int WallHP;
-    [SerializeField] Renderer WallModel;
     [SerializeField] List<GameObject> drops = new List<GameObject>();
 
 
@@ -21,7 +20,6 @@ public class WallBreak : MonoBehaviour, IDamage, IGetLassoed
     public void TakeDamage(int amount)
     {
         WallHP -= amount;
-        StartCoroutine(FlashingRed());
 
         if (WallHP <= 0)
         {
@@ -55,12 +53,6 @@ public class WallBreak : MonoBehaviour, IDamage, IGetLassoed
         }
     }
 
-    IEnumerator FlashingRed()
-    {
-        WallModel.material.color = Color.red;
-        yield return new WaitForSeconds(0.1f);
-        WallModel.material.color = Color.white;
-    }
 
     public void GetLassoed()
     {

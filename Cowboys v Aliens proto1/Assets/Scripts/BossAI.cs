@@ -16,6 +16,7 @@ public class BossAI : MonoBehaviour, IDamage
     [SerializeField] GameObject bomb;
     [SerializeField] GameObject enemiesToSpawn;
     [SerializeField] Transform[] enemySpawnPos;
+    [SerializeField] ParticleSystem spawnEffect;
 
     [Header("Enemy Values")]
     [SerializeField] float bossHP;
@@ -128,7 +129,6 @@ public class BossAI : MonoBehaviour, IDamage
     IEnumerator DropBombPattern()
     {
         StartCoroutine(BossAttackWarning());
-        Debug.Log("Bomb method is activated");
         //setting the pattern for the dropping bomb pattern and turns it off after its done
         isAttacking = true;
         bombCount = 0;
@@ -148,7 +148,6 @@ public class BossAI : MonoBehaviour, IDamage
     IEnumerator SpawnAllies()
     {
         StartCoroutine(BossAttackWarning());
-        Debug.Log("Spawn method is activated");
 
         isAttacking = true;
         spawnCount = 0;
@@ -156,9 +155,17 @@ public class BossAI : MonoBehaviour, IDamage
         while (spawnCount < 4)
         {
             int arrayPos = Random.Range(0, enemySpawnPos.Length);
+            Vector3 spawnPos = enemySpawnPos[arrayPos].position;
+            Quaternion spawnRotation = enemySpawnPos[arrayPos].rotation;
+
+            ParticleSystem effect = Instantiate(spawnEffect, spawnPos, spawnRotation);
+            effect.Play();
             animat.SetTrigger("Attack_Boss");
-            Instantiate(enemiesToSpawn, enemySpawnPos[arrayPos].position, enemySpawnPos[arrayPos].rotation);
+            yield return new WaitForSeconds(effect.main.duration);
+
+            Instantiate(enemiesToSpawn, spawnPos, spawnRotation);
             gameManager.Instance.updateGameGoal(1);
+
             yield return new WaitForSeconds(spawnAllyRate);
             spawnCount++;
 
@@ -168,7 +175,6 @@ public class BossAI : MonoBehaviour, IDamage
 
     IEnumerator Shoot()
     {
-        Debug.Log("Shoot method is activated");
 
         isAttacking = true;
         shootCount = 0;
@@ -191,7 +197,6 @@ public class BossAI : MonoBehaviour, IDamage
     IEnumerator CircularShootingPattern()
     {
         StartCoroutine(BossAttackWarning());
-        Debug.Log("Circular method is activated");
         //setting the pattern for the circular shooting and turns it off after its done
         isAttacking = true;
         rapidFireCount = 0;
@@ -223,20 +228,6 @@ public class BossAI : MonoBehaviour, IDamage
         gameManager.Instance.attackWarning.SetActive(false);
 
     }
-
-    //IEnumerator HealPassive()
-    //{
-    //    isHealing = true;
-
-    //    while (bossHP < bossMHP)
-    //    {
-    //        bossHP += bossHealAmt;
-    //        healthbar.UpdateHealthBar(bossHP, bossMHP);
-    //        yield return new WaitForSeconds(bossHealInterval);
-    //    }
-    //    isHealing = false;
-    //}
-
 
     //Already made methods
     public void TakeDamage(int amount)
