@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class LoadingScreen : MonoBehaviour
 {
+    private const string TutorialCompletedKey = "TutorialCompleted";
+
     public GameObject loadingScreen;
     public Slider slider;
 
@@ -34,5 +36,37 @@ public class LoadingScreen : MonoBehaviour
         loadingScreen.SetActive(false);
         Destroy(loadingScreen);
         Destroy(this.gameObject);
+    }
+
+    public void PlayGame()
+    {
+
+        if (PlayerPrefs.GetInt(TutorialCompletedKey, 0) == 1)
+        {
+
+            SceneManager.LoadSceneAsync(3);
+        }
+        else
+        {
+            SceneManager.LoadSceneAsync(1);
+
+        }
+    }
+
+    public void CompleteTutorial()
+    {
+        PlayerPrefs.SetInt(TutorialCompletedKey, 1);
+    }
+
+    public void PlayScene()
+    {
+        if (PlayerPrefs.GetInt(TutorialCompletedKey, 0) == 1)
+        {
+            StartCoroutine(LoadSceneAsync(3));
+        }
+        else
+        {
+            StartCoroutine(LoadSceneAsync(1));
+        }
     }
 }
