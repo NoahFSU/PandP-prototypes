@@ -953,6 +953,7 @@ MonoBehaviour:
   - {fileID: 1888072179093827677}
   - {fileID: 4159944930289176995}
   - {fileID: 5010875973057042150}
+  spawnEffect: {fileID: 6780559396596247068, guid: 5fc9aa1550ba3d34daf2ce1d9e46e260, type: 3}
   bossHP: 500
   bossMHP: 500
   bossSpeed: 5
