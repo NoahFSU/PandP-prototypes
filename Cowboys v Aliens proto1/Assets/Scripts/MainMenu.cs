@@ -18,5 +18,8 @@ public class MainMenu : MonoBehaviour
     public void StartGame()
     {
         SceneManager.LoadScene("C_V_A_V1.0.0");
+#if UNITY_WEBGL
+        transform.Find("MainMenu").Find("Quit").gameObject.SetActive(false);
+#endif
     }
 }

@@ -424,10 +424,14 @@ public class playerController : MonoBehaviour, IDamage
 
     void ClearHotbar()
     {
+        if(gunSlots.Length <= 0)
+        {
         foreach (var slot in gunSlots)
         {
             slot.enabled = false;
         }
+        }
+
 
     }
 
@@ -440,7 +444,7 @@ public class playerController : MonoBehaviour, IDamage
 
         gunModel.GetComponent<MeshFilter>().sharedMesh = gunList[selectedGun].gunModel.GetComponent<MeshFilter>().sharedMesh;
         gunModel.GetComponent<MeshRenderer>().sharedMaterial = gunList[selectedGun].gunModel.GetComponent<MeshRenderer>().sharedMaterial;
-        GetComponent<AudioSource>().PlayOneShot(gunList[selectedGun].equipSound, gunList[selectedGun].equipVol);
+       aud.GetComponent<AudioSource>().PlayOneShot(gunList[selectedGun].equipSound, gunList[selectedGun].equipVol);
         // Logic to switch to the selected gun
 
 

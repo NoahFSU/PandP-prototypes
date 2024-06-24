@@ -17,8 +17,7 @@ public class CompleteTutorialTrigger : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             loadingScene.CompleteTutorial();
-           // Debug.Log("Done");
-            //SceneManager.LoadScene("Main Menu");
+      
         }
     }
 }
