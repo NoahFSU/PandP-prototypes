@@ -40,18 +40,33 @@ public class LoadingScreen : MonoBehaviour
 
     public void PlayGame()
     {
+
         if (PlayerPrefs.GetInt(TutorialCompletedKey, 0) == 1)
         {
-            SceneManager.LoadScene("Hub Level 2 Unlock");
+
+            SceneManager.LoadSceneAsync(3);
         }
         else
         {
-            SceneManager.LoadScene("Tutorial");
+            SceneManager.LoadSceneAsync(1);
+
         }
     }
 
     public void CompleteTutorial()
     {
         PlayerPrefs.SetInt(TutorialCompletedKey, 1);
+    }
+
+    public void PlayScene()
+    {
+        if (PlayerPrefs.GetInt(TutorialCompletedKey, 0) == 1)
+        {
+            StartCoroutine(LoadSceneAsync(3));
+        }
+        else
+        {
+            StartCoroutine(LoadSceneAsync(1));
+        }
     }
 }

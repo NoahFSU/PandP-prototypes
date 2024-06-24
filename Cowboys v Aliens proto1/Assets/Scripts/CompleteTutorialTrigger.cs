@@ -5,19 +5,20 @@ using UnityEngine.SceneManagement;
 
 public class CompleteTutorialTrigger : MonoBehaviour
 {
-    private LoadingScreen loadingScreen;
+    private LoadingScreen loadingScene;
 
     void Start()
     {
-        loadingScreen = FindObjectOfType<LoadingScreen>();
+        loadingScene = FindObjectOfType<LoadingScreen>();
     }
 
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            loadingScreen.CompleteTutorial();
-            SceneManager.LoadScene("Hub Level 2 Unlock");
+            loadingScene.CompleteTutorial();
+            Debug.Log("Done");
+            //SceneManager.LoadScene("Main Menu");
         }
     }
 }

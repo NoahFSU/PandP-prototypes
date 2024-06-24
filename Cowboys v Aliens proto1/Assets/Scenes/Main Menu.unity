@@ -2638,7 +2638,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 296178570453839901}
         m_TargetAssemblyTypeName: LoadingScreen, Assembly-CSharp
-        m_MethodName: PlayGame
+        m_MethodName: PlayScene
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
