@@ -343,6 +343,7 @@ MonoBehaviour:
 
 
 
+
     Sound Designers
 
 '
@@ -455,6 +456,7 @@ MonoBehaviour:
   SFXSource: {fileID: 1539139266}
   menuMusic: {fileID: 8300000, guid: a5667d21c4dc43c4bac0bd7a7d83aec5, type: 3}
   menuShoot: {fileID: 8300000, guid: 79ee7751ab191f548b7f3232381afa0a, type: 3}
+  lassoThrow: {fileID: 0}
 --- !u!4 &1097976098
 Transform:
   m_ObjectHideFlags: 0
@@ -529,19 +531,18 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Name
+  m_text: 'Lucas Fuica
 
 
-
-    Name
-
+    Ana Diaz, Lucas Fuica, Jonathan Tarajano, Colin Smith
 
 
-    Name
+    Ana
+    Diaz, Lucas Fuica, Jonathan Tarajano, Colin Smith
 
 
-
-    Name'
+    Ana Diaz, Lucas Fuica,
+    Jonathan Tarajano, Colin Smith'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
