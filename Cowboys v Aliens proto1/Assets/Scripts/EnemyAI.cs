@@ -103,10 +103,6 @@ public class EnemyAI : MonoBehaviour, IDamage, IGetLassoed
         playerDirection = gameManager.Instance.Player.transform.position - headPos.position;
         angleToTarget = Vector3.Angle(new Vector3(playerDirection.x, playerDirection.y + 1, playerDirection.z), transform.forward);
 
-        //comment out when everything is working perfectly fine
-        //Debug.Log(angleToTarget);
-        Debug.DrawRay(headPos.position, playerDirection);
-
         RaycastHit hit;
         if (Physics.Raycast(headPos.position, playerDirection, out hit))
         {
