@@ -27,7 +27,7 @@ public class EnemyAI : MonoBehaviour, IDamage, IGetLassoed
     [SerializeField] float immobilizeDuration;
     [SerializeField] List<GameObject> drops = new List<GameObject>();
     [Range(0,100)] [SerializeField] int dropRate;
-    //[SerializeField] GameObject head;
+    [SerializeField] GameObject head;
 
 
     Vector3 playerDirection;
@@ -142,7 +142,7 @@ public class EnemyAI : MonoBehaviour, IDamage, IGetLassoed
 
         if (enemyHP <= 0)
         {
-            gameManager.Instance.updateGameGoal(-1);
+           // gameManager.Instance.updateGameGoal(-1);
            if( Random.Range(1,100) <= dropRate && drops.Count != 0)
             {
                 GameObject drop = Instantiate(drops[Random.Range(1,drops.Count) - 1], transform.position, transform.rotation);

@@ -10,9 +10,9 @@ public class gameManager : MonoBehaviour
 {
     public static gameManager Instance;
     [Header("UI Dependencies")]
-    [SerializeField] GameObject menuActive;
+    [SerializeField] public GameObject menuActive;
     [SerializeField] GameObject menuPause;
-    [SerializeField] GameObject menuWin;
+    [SerializeField] public GameObject menuWin;
     [SerializeField] GameObject menuLose;
     [SerializeField] public GameObject reloadUI;
     [SerializeField] TMP_Text enemyCountText;

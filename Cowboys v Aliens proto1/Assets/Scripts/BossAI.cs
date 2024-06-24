@@ -237,7 +237,10 @@ public class BossAI : MonoBehaviour, IDamage
 
         if (bossHP <= 0)
         {
-            gameManager.Instance.updateGameGoal(-1);
+            gameManager.Instance.statePause();
+            gameManager.Instance.menuActive = gameManager.Instance.menuWin;
+            gameManager.Instance.menuActive.SetActive(gameManager.Instance.isPaused);
+            // gameManager.Instance.updateGameGoal(-1);
             Destroy(gameObject);
             
         }

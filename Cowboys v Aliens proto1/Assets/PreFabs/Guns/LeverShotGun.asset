@@ -22,15 +22,20 @@ MonoBehaviour:
   magAmmount: 6
   magMax: 6
   ammoCurrent: 100
+  totalAmmo: 0
+  grenade: 0
   headShotMultiplier: 1.2
   inaccuracyDistance: 5.71
   hitEffect: {fileID: 6683926199875988124, guid: 48a997d79e5bfe844b097d165417ce38, type: 3}
   shootSound: {fileID: 8300000, guid: 1df1429981f76644097c7fd47fc5f239, type: 3}
   emptySound: {fileID: 0}
-  equipSound: {fileID: 0}
+  equipSound: {fileID: 8300000, guid: fd3895a2d40b7c0438eb055779a0f92a, type: 3}
   reloadSound: {fileID: 8300000, guid: af63539a5e39c99489395bdea2471f60, type: 3}
   shootVol: 1
   emptyVol: 0
   equipVol: 0
   reloadVol: 1
   Icon: {fileID: 0}
+  recoilX: 0
+  recoilY: 0
+  recoilZ: 0
