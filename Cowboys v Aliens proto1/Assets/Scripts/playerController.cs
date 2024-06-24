@@ -59,6 +59,7 @@ public class playerController : MonoBehaviour, IDamage
     public Image[] gunSlots;
     private Sprite[] guns;
     private playerController playerInventory;
+    [SerializeField] AudioClip audLassoThrow;
 
 
     Vector3 moveDir;
@@ -518,12 +519,13 @@ public class playerController : MonoBehaviour, IDamage
     {
         if (gameManager.Instance.IsLassoBeingThrown() || gameManager.Instance.GetLassoedEnemy() != null)
             return;
-
+        aud.PlayOneShot(audLassoThrow, 0.5f);
         Vector3 spawnPosition = Camera.main.transform.position + Camera.main.transform.forward;
         currentLasso = Instantiate(lassoPrefab, spawnPosition, Camera.main.transform.rotation);
         Rigidbody rb = currentLasso.GetComponent<Rigidbody>();
         rb.velocity = Camera.main.transform.forward * 10f;
         gameManager.Instance.SetLassoBeingThrown(true);
+        
     }
 
     public void LassoDestroyed()

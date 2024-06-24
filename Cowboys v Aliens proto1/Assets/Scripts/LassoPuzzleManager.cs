@@ -9,6 +9,7 @@ public class LassoPuzzleManager : MonoBehaviour
 
     [SerializeField] public List<LassoPuzzleTarget> targets = new List<LassoPuzzleTarget>();
     private int currTargetIndex = 0;
+    [SerializeField] GameObject LoadingDoor;
 
     private void Awake()
     {
@@ -26,7 +27,7 @@ public class LassoPuzzleManager : MonoBehaviour
             currTargetIndex++;
             if (currTargetIndex >= targets.Count)
             {
-                StartCutscene();
+                LoadNextLevel();
             }
         }
         else
@@ -36,9 +37,9 @@ public class LassoPuzzleManager : MonoBehaviour
         }
     }
 
-    private void StartCutscene()
+    private void LoadNextLevel()
     {
-        Debug.Log("Puzzle solved");
+        LoadingDoor.SetActive(true);
     }
 
     private void ResetPuzzle()

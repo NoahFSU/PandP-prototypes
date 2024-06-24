@@ -11,10 +11,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Tutorial.unity
     guid: 9103747b1e9a31643bcb6b0ea2d0e092
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Hub.unity
     guid: cc0795434423c9946bd3a50e7cc198ac
   - enabled: 1
     path: Assets/Scenes/Mine Scene.unity
     guid: 7d9ad6a7184e44544925498e3811dd59
+  - enabled: 1
+    path: Assets/Unity_Store_Downloads/PolygonWestern/Scenes/Hub Post Mine.unity
+    guid: b310161f611dc3344a389c3fe8d00cb0
   m_configObjects: {}
