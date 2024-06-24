@@ -398,9 +398,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 8405796622683333572}
-  HP: 10
+  HP: 50
   wallet: 0
-  speed: 5
+  speed: 6
   sprintMod: 3
   regenSTimer: 2
   currentStamina: 10
@@ -439,6 +439,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  audLassoThrow: {fileID: 8300000, guid: c622938fa2547dc458112530227b5096, type: 3}
 --- !u!33 &236753657962487452
 MeshFilter:
   m_ObjectHideFlags: 0
