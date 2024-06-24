@@ -41538,6 +41538,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4099166277382448, guid: 1c8c6bed3438b9141b6c6e2eb548b815, type: 3}
   m_PrefabInstance: {fileID: 819284774}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1112277384 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7363748561833304087, guid: d2e75689c9f82e745839995025ba1405, type: 3}
+  m_PrefabInstance: {fileID: 619435260}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1112328769 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4341108344977154, guid: 1752bd8d3db82e84596a6ffe10fe4b66, type: 3}
@@ -65455,6 +65460,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2913782734542888496, guid: 09eda9905c7119a4892aee5fd8a9b8a8, type: 3}
+      propertyPath: Player
+      value: 
+      objectReference: {fileID: 1112277384}
     - target: {fileID: 6709742051513216782, guid: 09eda9905c7119a4892aee5fd8a9b8a8, type: 3}
       propertyPath: m_Name
       value: UI with Respawn
