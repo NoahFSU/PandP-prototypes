@@ -448,6 +448,7 @@ public class playerController : MonoBehaviour, IDamage
     //Methods to Update UIs
     void UpdateAmmoUi()
     {
+        gameManager.Instance.grenadeAmmo.text = grenadeAmount.ToString("F0");
 
         gameManager.Instance.magAmmoText.text = gunList[selectedGun].magAmmount.ToString("F0");
 

@@ -19,6 +19,7 @@ public class gameManager : MonoBehaviour
     [Header("----- Gun UI -----")]
     [SerializeField] public TMP_Text magAmmoText;
     [SerializeField] public TMP_Text reserverAmmoText;
+    [SerializeField] public TMP_Text grenadeAmmo;
 
 
     [Header("----- Player UI -----")]
