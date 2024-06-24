@@ -43569,7 +43569,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   loadingScript: {fileID: 1350362320}
-  level: 4
+  level: 3
 --- !u!4 &1153831433 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4315564268866538, guid: e3dc28775b6601d4db8b54c23e2cfcf7, type: 3}
@@ -71993,14 +71993,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1812063094}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0.344162, z: -0, w: -0.93891025}
-  m_LocalPosition: {x: -36.7, y: -5.0821, z: -32.84}
+  m_LocalRotation: {x: 0.06122884, y: -0.34342942, z: -0.022443721, w: -0.9369117}
+  m_LocalPosition: {x: -36.68, y: -7.08, z: -32.81}
   m_LocalScale: {x: 3.5039232, y: 1.6305778, z: 0.1316}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2096275252}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: -1039.739, z: 0}
+  m_LocalEulerAnglesHint: {x: -7.478, y: -1039.739, z: 0}
 --- !u!4 &1812291652 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4707171681930572, guid: 3cce5519d770f1247873704811c16cf0, type: 3}

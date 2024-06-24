@@ -183,17 +183,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ceae46190f3f39c419446f37b30f611a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 40
+  damage: 200
   delay: 3
   radius: 10
   force: 700
   explosionEffect: {fileID: 1121192042590650, guid: e1b08032bec16ba4eb1ae23cbd572664, type: 3}
-  aud: {fileID: 2237085274173396753}
-  explosionSound:
-  - {fileID: 8300000, guid: fecc3e7a0166a104cb810435f6fdf37b, type: 3}
-  - {fileID: 8300000, guid: 5802cc242c56cfa47a4b9ac4bb747662, type: 3}
-  - {fileID: 8300000, guid: 8af9b84117aab4a48ba134e04951246a, type: 3}
-  explosionVol: 1
 --- !u!82 &2237085274173396753
 AudioSource:
   m_ObjectHideFlags: 0

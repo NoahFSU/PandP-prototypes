@@ -33,8 +33,9 @@ public class Gernade : MonoBehaviour
     {
         Instantiate(explosionEffect, transform.position, transform.rotation);
         Collider[] collidersToDamage = Physics.OverlapSphere(transform.position, radius);
-        foreach(Collider nearbyObject in collidersToDamage)
+        foreach(Collider nearbyObject in collidersToDamage )
         {
+            
             IDamage dmg = nearbyObject.GetComponent<IDamage>();
             if(dmg != null)
             {

@@ -338,17 +338,21 @@ public class playerController : MonoBehaviour, IDamage
     }
     public void TakeDamage(int amount)
     {
-        aud.PlayOneShot(audPlayerHit[UnityEngine.Random.Range(0, audPlayerHit.Length)], audPlayerHitVol);
-        HP -= amount;
-        if (comboRegen != null)
-            StopCoroutine(comboRegen);
-        UpdatePlayerUI();
-        StartCoroutine(flashScreenDamage());
-
-        if (HP <= 0)
+        if (HP > 0)
         {
-            gameManager.Instance.youLose();
+            aud.PlayOneShot(audPlayerHit[UnityEngine.Random.Range(0, audPlayerHit.Length)], audPlayerHitVol);
+            HP -= amount;
+            if (comboRegen != null)
+                StopCoroutine(comboRegen);
+            UpdatePlayerUI();
+            StartCoroutine(flashScreenDamage());
+
+            if (HP <= 0)
+            {
+                gameManager.Instance.youLose();
+            }
         }
+
     }
 
 
@@ -434,10 +438,10 @@ public class playerController : MonoBehaviour, IDamage
 
     void ClearHotbar()
     {
-            foreach (var slot in gunSlots)
-            {
-                slot.enabled = false;
-            }
+        foreach (var slot in gunSlots)
+        {
+            slot.enabled = false;
+        }
 
     }
 
