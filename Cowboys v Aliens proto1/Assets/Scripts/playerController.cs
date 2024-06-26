@@ -95,6 +95,12 @@ public class playerController : MonoBehaviour, IDamage
         rb = GetComponent<Rigidbody>();
         SpawnPlayer();
         UpdateWalletUI();
+        UpdateAmmoUi();
+        if(gunList.Count> 0)
+        {
+            selectedGun = 0;
+            changeGun();
+        }
     }
 
 
@@ -272,6 +278,7 @@ public class playerController : MonoBehaviour, IDamage
         GameObject grenade = Instantiate(grenadePrefab, Camera.main.transform.position, Camera.main.transform.rotation);
         Rigidbody rb = grenade.GetComponent<Rigidbody>();
         rb.AddForce(Camera.main.transform.forward * throwForce, ForceMode.VelocityChange);
+        UpdateAmmoUi();
     }
     IEnumerator shoot()
     {
@@ -398,13 +405,13 @@ public class playerController : MonoBehaviour, IDamage
         {
             selectedGun++;
             changeGun();
-            UpdateAmmoUi();
+          
         }
         else if (Input.GetAxis("Mouse ScrollWheel") < 0 && selectedGun > 0)
         {
             selectedGun--;
             changeGun();
-            UpdateAmmoUi();
+            
         }
     }
 
@@ -446,7 +453,7 @@ public class playerController : MonoBehaviour, IDamage
         gunModel.GetComponent<MeshRenderer>().sharedMaterial = gunList[selectedGun].gunModel.GetComponent<MeshRenderer>().sharedMaterial;
         aud.GetComponent<AudioSource>().PlayOneShot(gunList[selectedGun].equipSound, gunList[selectedGun].equipVol);
         // Logic to switch to the selected gun
-
+        UpdateAmmoUi();
 
     }
 
