@@ -223,7 +223,11 @@ public class BossAI : MonoBehaviour, IDamage
     IEnumerator BossAttackWarning()
     {
         gameManager.Instance.attackWarning.SetActive(true);
-        yield return new WaitForSeconds(.75f);
+        yield return new WaitForSeconds(.25f);
+        gameManager.Instance.attackWarning.SetActive(false);
+        yield return new WaitForSeconds(.25f);
+        gameManager.Instance.attackWarning.SetActive(true);
+        yield return new WaitForSeconds(.25f);
         gameManager.Instance.attackWarning.SetActive(false);
 
     }
