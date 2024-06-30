@@ -69,4 +69,9 @@ public class LoadingScreen : MonoBehaviour
             StartCoroutine(LoadSceneAsync(1));
         }
     }
+
+    public void NextLevel()
+    {
+        StartCoroutine(LoadSceneAsync(2));
+    }
 }
