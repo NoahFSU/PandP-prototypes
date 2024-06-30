@@ -46,6 +46,8 @@ public class BossAI : MonoBehaviour, IDamage
     bool isActive;
     bool isHealing;
     bool isAttacking;
+
+    bool isDamaged;
     
     private void Awake()
     {
@@ -264,9 +266,15 @@ public class BossAI : MonoBehaviour, IDamage
 
     IEnumerator FlashingRed()
     {
+        if (isDamaged){
+            yield break;
+        }
+        isDamaged = true;
         Color temp = model.material.color;
         model.material.color = Color.red;
         yield return new WaitForSeconds(0.1f);
         model.material.color = temp;
+
+        isDamaged = false;
     }
 }
