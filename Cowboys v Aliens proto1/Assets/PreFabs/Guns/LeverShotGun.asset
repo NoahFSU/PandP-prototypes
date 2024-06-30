@@ -13,16 +13,16 @@ MonoBehaviour:
   m_Name: LeverShotGun
   m_EditorClassIdentifier: 
   gunModel: {fileID: 8423649168272083945, guid: edb5ceb75dec3ae42b11d1a5f604b600, type: 3}
-  shootDamage: 17
-  shootDistance: 168
+  shootDamage: 14
+  shootDistance: 91
   shootRate: 0.52
-  reloadTime: 0.63
+  reloadTime: 1.38
   projAmmount: 9
   ammoMax: 100
-  magAmmount: 6
+  magAmmount: 5
   magMax: 6
   ammoCurrent: 100
-  totalAmmo: 0
+  totalAmmo: 106
   grenade: 0
   headShotMultiplier: 1.2
   inaccuracyDistance: 5.71

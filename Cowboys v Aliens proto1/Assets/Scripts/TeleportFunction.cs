@@ -19,11 +19,14 @@ public class TeleportFunction : MonoBehaviour
 
     void OnTriggerEnter(Collider Col)
     {
-        
+        if(Col.GetComponent<playerController>() != null)
+        {
         gameManager.Instance.Player.GetComponent<CharacterController>().enabled = false;
         aud.PlayOneShot(playerTp, audPlayerTPVol);
         Col.transform.position = toLocation.transform.position;
         gameManager.Instance.Player.GetComponent<CharacterController>().enabled = true;
+        }
+
     }
 }
 

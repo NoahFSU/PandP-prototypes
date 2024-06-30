@@ -16,13 +16,13 @@ MonoBehaviour:
   shootDamage: 75
   shootDistance: 644
   shootRate: 1
-  reloadTime: 2.56
+  reloadTime: 1.77
   projAmmount: 1
   ammoMax: 100
-  magAmmount: 0
+  magAmmount: 5
   magMax: 5
-  ammoCurrent: 91
-  totalAmmo: 0
+  ammoCurrent: 100
+  totalAmmo: 105
   grenade: 0
   headShotMultiplier: 2
   inaccuracyDistance: 0

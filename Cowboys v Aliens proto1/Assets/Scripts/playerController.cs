@@ -203,6 +203,8 @@ public class playerController : MonoBehaviour, IDamage
                 speed /= sprintMod;
             sprinting = false;
             gameManager.Instance.StaminaBarCombo.fillAmount = (float)currentStamina / maxStamina;
+            if (regen != null)
+                StopCoroutine(regen);
             regen = StartCoroutine(StaminaRegen());
         }
 
@@ -462,7 +464,7 @@ public class playerController : MonoBehaviour, IDamage
     {
 
         gameManager.Instance.grenadeAmmo.text = grenadeAmount.ToString("F0");
-        if (gunList[selectedGun] != null)
+        if (gunList[selectedGun] != null || gunList.Count <= 0)
         {
 
             gameManager.Instance.magAmmoText.text = gunList[selectedGun].magAmmount.ToString("F0");
@@ -510,7 +512,7 @@ public class playerController : MonoBehaviour, IDamage
         {
             gunList[selectedGun].ammoCurrent += amount;
 
-            gameManager.Instance.reserverAmmoText.text = gunList[selectedGun].ammoCurrent.ToString("F0");
+            UpdateAmmoUi();
         }
         if (grenadeAmount < maxGrenadeAmount)
             ++grenadeAmount;
