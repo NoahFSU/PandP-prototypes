@@ -30,6 +30,7 @@ public class gameManager : MonoBehaviour
     public Image StaminaBar;
     public Image StaminaBarCombo;
     public Image reload;
+  
 
     [Header("GamePlay Dependencies")]
     public GameObject playerSpawnPos;
@@ -42,6 +43,8 @@ public class gameManager : MonoBehaviour
     public GameObject playerUI;
     public GameObject enemyUI;
     public GameObject ammoUI;
+    public GameObject grenadeUI;
+    public GameObject gunUI;
 
     public GameObject walletUI;
 
@@ -148,12 +151,17 @@ public class gameManager : MonoBehaviour
         reticleUI.SetActive(false);
         enemyUI.SetActive(false);
         ammoUI.SetActive(false);
+        walletUI.SetActive(false);
+        grenadeUI.SetActive(false);
+        gunUI.SetActive(false);
         yield return new WaitForSeconds(3);
         playerUI.SetActive(true);
         reticleUI.SetActive(true);
         enemyUI.SetActive(true);
         ammoUI.SetActive(true);
+        walletUI.SetActive(true);
+        grenadeUI.SetActive(true);
+        gunUI.SetActive(true);
 
-       // walletUI.SetActive(true);
     }
 }
