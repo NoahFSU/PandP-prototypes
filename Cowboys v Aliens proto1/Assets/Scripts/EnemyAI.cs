@@ -41,6 +41,7 @@ public class EnemyAI : MonoBehaviour, IDamage, IGetLassoed
     bool destinationChoosen;
     bool isImmobilized;
 
+    bool isDamaged;
 
     private void Awake()
     {
@@ -184,7 +185,8 @@ public class EnemyAI : MonoBehaviour, IDamage, IGetLassoed
 
     public void CreateBullet()
     {
-        GameObject newBullet = Instantiate(bullet, shootingPos.position, transform.rotation);
+        Vector3 targetDirec = (gameManager.Instance.Player.transform.position - shootingPos.position).normalized;
+        GameObject newBullet = Instantiate(bullet, shootingPos.position, Quaternion.LookRotation(targetDirec));
         IDamage enemyDmg = newBullet.GetComponent<IDamage>();
 
         if (enemyDmg != null)
@@ -195,10 +197,17 @@ public class EnemyAI : MonoBehaviour, IDamage, IGetLassoed
 
     IEnumerator FlashingRed()
     {
+        if (isDamaged)
+        {
+            yield break;
+        }
+        isDamaged = true;
         Color temp = model.material.color;
         model.material.color = Color.red;
         yield return new WaitForSeconds(0.1f);
         model.material.color = temp;
+
+        isDamaged = false;
     }
 
     void OnTriggerEnter(Collider other)
