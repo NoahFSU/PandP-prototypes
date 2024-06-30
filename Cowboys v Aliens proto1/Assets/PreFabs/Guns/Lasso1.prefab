@@ -13270,7 +13270,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 752cd3a2a9929184390e94d03ffc0f04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lassoSpeed: 15
+  lassoSpeed: 17
   lassoDistance: 20
 --- !u!54 &3861565331200907174
 Rigidbody:
