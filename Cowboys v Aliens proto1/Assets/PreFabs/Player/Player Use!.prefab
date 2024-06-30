@@ -407,7 +407,7 @@ MonoBehaviour:
   regenTickSpeed: 0.1
   drainTickSpeed: 1
   jumpMax: 2
-  jumpSpeed: 12
+  jumpSpeed: 8
   gravity: 25
   crouchSpeedMod: 0.5
   muzzleFlash: {fileID: 1909831344469801894}
@@ -417,8 +417,8 @@ MonoBehaviour:
   shootRate: 0.5
   gunList:
   - {fileID: 11400000, guid: f41672b2a6d8fb349ad8dffeedcc86c3, type: 2}
-  - {fileID: 11400000, guid: 14ced853358a8fb45bb2f3fb73b74ba7, type: 2}
   - {fileID: 11400000, guid: 779a42bb08a876d4893ea79d3357787c, type: 2}
+  - {fileID: 11400000, guid: 14ced853358a8fb45bb2f3fb73b74ba7, type: 2}
   GunAnim: {fileID: 6407794684003176153}
   lassoPrefab: {fileID: 6222415628160380770, guid: 70524405de903944e846106e3ecb6545, type: 3}
   throwForce: 20
