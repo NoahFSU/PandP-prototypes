@@ -10,6 +10,7 @@ public class LassoPuzzleManager : MonoBehaviour
     [SerializeField] public List<LassoPuzzleTarget> targets = new List<LassoPuzzleTarget>();
     private int currTargetIndex = 0;
     [SerializeField] GameObject LoadingDoor;
+    [SerializeField] AudioClip doorAppearClip;
 
     private void Awake()
     {
@@ -40,6 +41,11 @@ public class LassoPuzzleManager : MonoBehaviour
     private void LoadNextLevel()
     {
         LoadingDoor.SetActive(true);
+        AudioSource doorAudSource = LoadingDoor.GetComponent<AudioSource>();
+        if (doorAudSource != null)
+        {
+            doorAudSource.PlayOneShot(doorAppearClip);
+        }
     }
 
     private void ResetPuzzle()
