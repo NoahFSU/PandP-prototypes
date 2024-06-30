@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class buttonFunctions : MonoBehaviour
 {
+
     public void Resume()
     {
         gameManager.Instance.stateUnPaused();
@@ -36,5 +37,7 @@ public class buttonFunctions : MonoBehaviour
         int currentLvl = SceneManager.GetActiveScene().buildIndex;
         int nextlvl = currentLvl + 1;
         LoadLevel(nextlvl);
+
+
     }
 }

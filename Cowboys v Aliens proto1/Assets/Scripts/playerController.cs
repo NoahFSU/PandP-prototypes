@@ -137,7 +137,7 @@ public class playerController : MonoBehaviour, IDamage
         GunAnim.SetBool("Reloading", false);
 
     }
-    void movement()
+    public void movement()
     {
         if (controller.isGrounded)
         {
