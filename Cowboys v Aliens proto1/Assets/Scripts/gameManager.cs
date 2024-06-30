@@ -20,7 +20,7 @@ public class gameManager : MonoBehaviour
     [SerializeField] public TMP_Text magAmmoText;
     [SerializeField] public TMP_Text reserverAmmoText;
     [SerializeField] public TMP_Text grenadeAmmo;
-
+    
 
     [Header("----- Player UI -----")]
 
@@ -152,16 +152,12 @@ public class gameManager : MonoBehaviour
         enemyUI.SetActive(false);
         ammoUI.SetActive(false);
         walletUI.SetActive(false);
-        grenadeUI.SetActive(false);
-        gunUI.SetActive(false);
+        
         yield return new WaitForSeconds(3);
         playerUI.SetActive(true);
         reticleUI.SetActive(true);
         enemyUI.SetActive(true);
         ammoUI.SetActive(true);
         walletUI.SetActive(true);
-        grenadeUI.SetActive(true);
-        gunUI.SetActive(true);
-
     }
 }
