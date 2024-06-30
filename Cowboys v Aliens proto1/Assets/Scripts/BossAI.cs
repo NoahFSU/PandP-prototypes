@@ -48,7 +48,7 @@ public class BossAI : MonoBehaviour, IDamage
     bool isAttacking;
 
     bool isDamaged;
-    
+
     private void Awake()
     {
         healthbar = GetComponentInChildren<FloatingHealthbar>();
@@ -237,19 +237,23 @@ public class BossAI : MonoBehaviour, IDamage
     //Already made methods
     public void TakeDamage(int amount)
     {
-        bossHP -= amount;
-        healthbar.UpdateHealthBar(bossHP, bossMHP);
-        StartCoroutine(FlashingRed());
-
-        if (bossHP <= 0)
+        if (bossHP > 0)
         {
-            gameManager.Instance.statePause();
-            gameManager.Instance.menuActive = gameManager.Instance.menuWin;
-            gameManager.Instance.menuActive.SetActive(gameManager.Instance.isPaused);
-            // gameManager.Instance.updateGameGoal(-1);
-            Destroy(gameObject);
-            
+            bossHP -= amount;
+            healthbar.UpdateHealthBar(bossHP, bossMHP);
+            StartCoroutine(FlashingRed());
+
+            if (bossHP <= 0)
+            {
+                gameManager.Instance.statePause();
+                gameManager.Instance.menuActive = gameManager.Instance.menuWin;
+                gameManager.Instance.menuActive.SetActive(gameManager.Instance.isPaused);
+                // gameManager.Instance.updateGameGoal(-1);
+                Destroy(gameObject);
+
+            }
         }
+
     }
 
     void FaceTarget()
@@ -266,7 +270,8 @@ public class BossAI : MonoBehaviour, IDamage
 
     IEnumerator FlashingRed()
     {
-        if (isDamaged){
+        if (isDamaged)
+        {
             yield break;
         }
         isDamaged = true;

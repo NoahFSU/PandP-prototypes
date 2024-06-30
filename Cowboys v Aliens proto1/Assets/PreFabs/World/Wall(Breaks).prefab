@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 674f4a120a78e024f99c576533de5ed9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitEffect: {fileID: 2429347885775842310, guid: 46da30f49eead4f409132d0730019dca, type: 3}
+  hitEffect: {fileID: 198220379293217532, guid: d8f0099df63275647a8bcf646df1ca00, type: 3}
   HitSound: {fileID: 0}
   WalkSound: {fileID: 0}
   hitVol: 0
@@ -137,5 +137,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   WallHP: 5
-  WallModel: {fileID: 7993900550073978690}
   drops: []

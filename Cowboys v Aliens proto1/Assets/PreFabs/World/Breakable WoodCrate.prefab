@@ -84,7 +84,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   WallHP: 1
-  WallModel: {fileID: 6081493485211563484}
   drops:
   - {fileID: 1912169142639185960, guid: 989d7d4bad618984bbcbf4280b7861de, type: 3}
   - {fileID: 5339882028878924471, guid: a26c0771c71d83648b73cb7e7d047119, type: 3}
@@ -123,13 +122,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 674f4a120a78e024f99c576533de5ed9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitEffect: {fileID: 2429347885775842310, guid: 46da30f49eead4f409132d0730019dca, type: 3}
+  hitEffect: {fileID: 198220379293217532, guid: d8f0099df63275647a8bcf646df1ca00, type: 3}
   HitSound: {fileID: 0}
   WalkSound: {fileID: 0}
   hitVol: 0
   WalkVol: 0
---- !u!23 &6081493485211563484 stripped
-MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: -1504981713932161579, guid: b0a9c34f8ad2c4c49988cbeb282fceec, type: 3}
-  m_PrefabInstance: {fileID: 4573674803327555593}
-  m_PrefabAsset: {fileID: 0}
