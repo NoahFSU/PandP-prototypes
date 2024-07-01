@@ -1066,7 +1066,7 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 7807308742103579054}
         m_TargetAssemblyTypeName: SettingsMenu, Assembly-CSharp
         m_MethodName: SetFullscreen
         m_Mode: 0
@@ -2060,30 +2060,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1461390669595240179
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3691384139435204464}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e3eefeb1a3dbca4b8f9ea413f8872e0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  myMixer: {fileID: 24100000, guid: 06c111c5748f11c499ede0073dcd9c2f, type: 2}
-  musicSlider: {fileID: 7982605751890543551}
-  SFXSlider: {fileID: 5520985903422274629}
-  resolutionDropdown: {fileID: 6313316897491194956}
-  qualityDropdown: {fileID: 1960608238926744255}
-  qualityLevels:
-  - {fileID: 11400000, guid: 27d8b6a916fb97c4186e5f606393e279, type: 2}
-  - {fileID: 11400000, guid: 1009e56631f73a24cb9e15f40e07194a, type: 2}
-  - {fileID: 11400000, guid: f9dbee75561f36f4689ec96d9a2e7a9d, type: 2}
-  - {fileID: 11400000, guid: 07c0ee0319a84d14b90a5bc62309d91b, type: 2}
-  - {fileID: 11400000, guid: 6fe5492d6e08d0f429279efce149bd3b, type: 2}
-  - {fileID: 11400000, guid: 9add4bbf8d0ff7f42b6b52dcf2194420, type: 2}
 --- !u!224 &1491037625060239784
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2644,7 +2620,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 7807308742103579054}
         m_TargetAssemblyTypeName: SettingsMenu, Assembly-CSharp
         m_MethodName: SetQuality
         m_Mode: 0
@@ -4174,7 +4150,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 977688896206764452}
-  - component: {fileID: 1461390669595240179}
   - component: {fileID: 3898651769699752536}
   - component: {fileID: 5432151112494143360}
   m_Layer: 5
@@ -5667,7 +5642,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 7807308742103579054}
         m_TargetAssemblyTypeName: SettingsMenu, Assembly-CSharp
         m_MethodName: SetSFXVolume
         m_Mode: 1
@@ -6441,7 +6416,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 7807308742103579054}
         m_TargetAssemblyTypeName: SettingsMenu, Assembly-CSharp
         m_MethodName: SetResolution
         m_Mode: 0
@@ -8068,7 +8043,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 7807308742103579054}
         m_TargetAssemblyTypeName: SettingsMenu, Assembly-CSharp
         m_MethodName: SetMusicVolume
         m_Mode: 1
